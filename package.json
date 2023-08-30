@@ -1,0 +1,39 @@
+{
+  "name": "oogiri-frontpage-next",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev -p 8080 -H 10.88.0.103",
+    "build": "next build",
+    "build:dev": "env-cmd -f .env.development yarn build",
+    "build:dev:local": "env-cmd -f .env.development.local yarn build",
+    "build:uat": "env-cmd -f .env.staging yarn build",
+    "build:uat:local": "env-cmd -f .env.staging.local yarn build",
+    "build:prod": "env-cmd -f .env.production yarn build",
+    "build:prod:local": "env-cmd -f .env.production.local yarn build",
+    "start": "next start -p 8080",
+    "lint": "next lint",
+    "build:serve": "next build & next start -p 8080 -H 10.88.0.103"
+  },
+  "dependencies": {
+    "@n8tb1t/use-scroll-position": "^2.0.3",
+    "@types/node": "20.3.2",
+    "@types/react": "18.2.14",
+    "@types/react-dom": "18.2.6",
+    "autoprefixer": "10.4.14",
+    "axios": "1.3.4",
+    "env-cmd": "^10.1.0",
+    "eslint": "8.43.0",
+    "eslint-config-next": "13.4.7",
+    "mini-css-extract-plugin": "^2.7.6",
+    "next": "13.4.7",
+    "next-seo": "^6.0.0",
+    "postcss": "8.4.24",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-iframe": "^1.8.5",
+    "sharp": "^0.32.1",
+    "tailwindcss": "3.3.2",
+    "typescript": "5.1.3"
+  }
+}
