@@ -105,6 +105,41 @@ nav {
     gap: 100px;
 }
 
+.index-top {
+    position: relative;
+
+}
+
+.index-banner {
+    width: 100vw;
+    height: 636px;
+    background-image: url(../assets/img/banner.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+    .banner-icon {
+        width: 200px;
+        height: 100%;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: 30%;
+        cursor: pointer;
+    }
+
+    .prev {
+        background-image: url(../assets/img/button_bannerLeft.svg);
+    }
+
+    .next {
+        background-image: url(../assets/img/button_bannerRight.svg);
+    }
+}
+
 .index-page .index-middle {
     display: flex;
     flex-direction: row;

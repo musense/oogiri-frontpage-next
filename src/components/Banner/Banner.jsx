@@ -1,5 +1,8 @@
 import React from "react";
 
 export default function Banner() {
-    return <div>Banner</div>;
+    return <div className="index-banner">
+        <div className="banner-icon prev" />
+        <div className="banner-icon next" />
+    </div>;
 }
