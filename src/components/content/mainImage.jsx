@@ -18,11 +18,11 @@ export default function MainImage({
     }, [isVideo, mainImage])
     console.log("🚀 ~ file: mainImage.jsx:12 ~ mainImage:", mainImage)
     console.log("🚀 ~ file: mainImage.jsx:12 ~ isVideo:", isVideo)
-    const troImage = useLoadImage(triangleRangeOrange);
+    // const troImage = useLoadImage(triangleRangeOrange);
 
     return (
         <div className="top-banner-wrapper">
-            {mainImage && (
+            {/* {mainImage && (
                 isVideo
                     ? <Iframe
                         className="top-banner"
@@ -56,7 +56,7 @@ export default function MainImage({
                     objectFit: "cover",
                     objectPosition: "50% 50%"
                 }}
-            />}
+            />} */}
         </div>
     )
 }

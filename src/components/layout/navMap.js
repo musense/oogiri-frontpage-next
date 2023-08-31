@@ -1,32 +1,20 @@
 const navMap = new Map([
-    ['about', {
+    ['news', {
         name: {
-            en: 'About',
-            ch: '關於陌聲',
+            en: 'news',
+            ch: 'ニュース',
         },
     }],
-    ['contact', {
+    ['hot', {
         name: {
-            en: 'Contact Us',
-            ch: '聯絡我們',
+            en: 'hot',
+            ch: 'ホット',
         },
     }],
-    ['contactUs', {
+    ['recommend', {
         name: {
-            en: null,
-            ch: null,
-        },
-    }],
-    ['service', {
-        name: {
-            en: 'Service',
-            ch: '服務項目',
-        },
-    }],
-    ['marketing', {
-        name: {
-            en: 'Marketing',
-            ch: '行銷趨勢',
+            en: 'recommend',
+            ch: 'おすすめ',
         },
     }],
 ])

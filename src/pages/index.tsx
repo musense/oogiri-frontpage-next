@@ -1,8 +1,28 @@
+import type { GetServerSideProps, InferGetServerSidePropsType } from 'next'
 import { Main } from '@components/Main/Main'
 import { Meta } from '@layouts/Meta'
 import Index from '@components/index/index'
+import { getTitleContents } from '@services/titleContents'
 
-const Home = () => {
+type HomeProps = InferGetServerSidePropsType<typeof getServerSideProps>
+
+export const getServerSideProps: GetServerSideProps = async () => {
+  const apiUrl = process.env.NEXT_PUBLIC_SERVER_URL
+
+  let payload = {
+    apiUrl: apiUrl,
+  }
+
+  const titleContents = await getTitleContents(payload)
+
+  return {
+    props: {
+      titleContents: titleContents,
+    },
+  }
+}
+
+const Home = ({ titleContents }: HomeProps) => {
   return (
     <Main
       meta={
@@ -14,7 +34,7 @@ const Home = () => {
         />
       }
     >
-      <Index />
+      <Index titleContents={titleContents} />
     </Main>
   )
 }

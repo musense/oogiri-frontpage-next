@@ -26,14 +26,14 @@ function HotContents({ contents }) {
   return <>
     <div className='hot-left-side'>
       {leftContents && leftContents.map((content, index) => {
-        return <Link key={index} href={`/trend/${content.sitemapUrl}`} className='hot-content'>
+        return <Link key={index} href={`//${content.sitemapUrl}`} className='hot-content'>
           <Content title={content.title} />
         </Link>
       })}
     </div>
     <div className='hot-right-side'>
       {rightContents && rightContents.map((content, index) => {
-        return <Link key={index} href={`/trend/${content.sitemapUrl}`} className='hot-content'>
+        return <Link key={index} href={`//${content.sitemapUrl}`} className='hot-content'>
           <Content title={content.title} />
         </Link>
       })}

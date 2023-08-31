@@ -1,21 +1,19 @@
 import React, { useEffect } from 'react';
 import styles from './css/about.module.css';
-import AOS from 'aos';
-import 'aos/dist/aos.css';
 import Image from 'next/image';
 import { useAppContext } from "@store/context";
 import useInitial from "@services/useInitial";
 import useLoadImage from "@services/useLoadImage";
 
 import {
-  bg,
-  welcome,
-  top,
-  musenseCanHelp,
-  reply,
-  triangleBox,
-  triangleRangeOrange_right,
-  triangleRangeOrange_left
+  // bg,
+  // welcome,
+  // top,
+  // musenseCanHelp,
+  // reply,
+  // triangleBox,
+  // triangleRangeOrange_right,
+  // triangleRangeOrange_left
 } from "@components/index/images";
 
 export default function About() {
@@ -25,27 +23,18 @@ export default function About() {
     dispatch
   });
 
-  const backgroundImage = useLoadImage(bg);
-  const welcomeImage = useLoadImage(welcome);
-  const musenseCanHelpImage = useLoadImage(musenseCanHelp);
-  const topImage = useLoadImage(top);
-  const replyImage = useLoadImage(reply);
-  const triangleBoxImage = useLoadImage(triangleBox);
-  const triangleRangeOrangeRightImage = useLoadImage(triangleRangeOrange_right);
-  const triangleRangeOrangeLeftImage = useLoadImage(triangleRangeOrange_left);
+  // const backgroundImage = useLoadImage(bg);
+  // const welcomeImage = useLoadImage(welcome);
+  // const musenseCanHelpImage = useLoadImage(musenseCanHelp);
+  // const topImage = useLoadImage(top);
+  // const replyImage = useLoadImage(reply);
+  // const triangleBoxImage = useLoadImage(triangleBox);
+  // const triangleRangeOrangeRightImage = useLoadImage(triangleRangeOrange_right);
+  // const triangleRangeOrangeLeftImage = useLoadImage(triangleRangeOrange_left);
 
-  useEffect(() => {
-
-    AOS.init({
-      offset: 500,
-      delay: 50, // values from 0 to 3000, with step 50ms
-      duration: 400, // values from 0 to 3000, with step 50ms);
-      easing: 'ease-in-out',
-    });
-  }, []);
   return (
     <div className={styles['about-us']}>
-      {backgroundImage && <Image
+      {/* {backgroundImage && <Image
         alt=""
         className={styles['bg']}
         placeholder='blur'
@@ -81,10 +70,6 @@ export default function About() {
           objectPosition: '50% 50%',
         }}
       />}
-      {state.clientWidth > 768
-        ? <BubbleBox />
-        : <BubbleBoxMobile />
-      }
       {musenseCanHelpImage
         ? musenseCanHelpImage.after
           ? (
@@ -219,66 +204,8 @@ export default function About() {
           src={triangleRangeOrangeLeftImage.default.src}
           width={triangleRangeOrangeLeftImage.default.width}
           height={triangleRangeOrangeLeftImage.default.height} />}
-      </div>
+      </div> */}
     </div>
   );
-}
-
-function BubbleBoxMobile() {
-  return <div className={'bubble-box-mobile'}>
-    <div>
-      <div
-        className={'orange-bubble-product'} >
-        要怎麼讓消費者能夠快速地<br />了解我的產品特色？
-      </div>
-      <div
-        className={'orange-bubble-view'}>
-        如何在網路上增加瀏覽數，<br />並且讓客人願意付費呢？
-      </div>
-    </div>
-    <div>
-      <div
-        className={'blue-bubble-seo'} >
-        ＳＥＯ是什麼？<br />對我有什麼幫助？
-      </div>
-      <div
-        className={'blue-bubble-time'} >
-        為什麼花錢做一堆廣告<br />卻沒有效果？
-      </div>
-    </div>
-  </div>;
-}
-
-function BubbleBox() {
-  return <div className={'bubble-box'}>
-    <div>
-      <div
-        className={'orange-bubble-left'}
-        data-aos='orange-slide-left'
-        data-aos-delay='0' >
-        如何在網路上增加瀏覽數，<br />並且讓客人願意付費呢？
-      </div>
-      <div
-        className={'orange-bubble-right'}
-        data-aos='orange-slide-right'
-        data-aos-delay='400' >
-        要怎麼讓消費者能夠快速地<br />了解我的產品特色？
-      </div>
-    </div>
-    <div>
-      <div
-        className={'blue-bubble-left'}
-        data-aos='blue-slide-left'
-        data-aos-delay='600' >
-        ＳＥＯ是什麼？<br />對我有什麼幫助？
-      </div>
-      <div
-        className={'blue-bubble-right'}
-        data-aos='blue-slide-right'
-        data-aos-delay='1000' >
-        為什麼花錢做一堆廣告<br />卻沒有效果？
-      </div>
-    </div>
-  </div>;
 }
 

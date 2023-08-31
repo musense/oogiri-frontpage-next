@@ -1,0 +1,258 @@
+.card {
+    position: relative;
+    width: auto;
+    height: var(--card-height);
+    cursor: pointer;
+}
+
+.card {
+    &.order::after {
+        content: "";
+        position: absolute;
+        top: 7px;
+        left: 6px;
+        background-repeat: no-repeat;
+        background-size: contain;
+        width: 58px;
+        height: 21px;
+    }
+
+    &.order_1::after {
+        background-image: url(../../assets/img/button_1st.svg);
+    }
+
+    &.order_2::after {
+        background-image: url(../../assets/img/button_2nd.svg);
+    }
+
+    &.order_3::after {
+        background-image: url(../../assets/img/button_3rd.svg);
+    }
+
+    &.order_4::after {
+        background-image: url(../../assets/img/button_4th.svg);
+    }
+
+    &.order_5::after {
+        background-image: url(../../assets/img/button_5th.svg);
+    }
+}
+
+.card.news {
+    .card-info {
+        gap: 20px;
+
+        .card-title {
+            border-left: 5px solid var(--theme-color-hex);
+            padding-left: 10px;
+            color: var(--theme-color-hex);
+            font-size: 24px;
+            line-height: 1.2;
+        }
+    }
+
+    .card-more-button {
+        margin-top: -10px;
+        margin-right: -10px;
+        background-image: url(./../../assets/img/button_more.svg);
+        width: 92px;
+        height: 33px;
+        align-self: flex-end;
+        filter: drop-shadow(1px 2px 2px rgb(0 0 0/0.3));
+    }
+}
+
+.card.hot {
+    .card-info {
+        position: relative;
+        width: 244px;
+        justify-content: space-evenly;
+
+        .card-title {
+            color: #ff86aa;
+            font-size: 18px;
+        }
+
+        .card-content-intro {
+            width: inherit;
+        }
+    }
+}
+
+.card.recommend {
+    .card-info {
+        width: 335px;
+        align-items: center;
+        gap: 10px;
+
+        .card-title {
+            align-self: self-start;
+            text-decoration: underline;
+            text-underline-offset: 5px;
+            text-decoration-thickness: 3px;
+            color: var(--theme-color-hex);
+            font-size: 24px;
+            line-height: 1.5;
+        }
+
+        .card-content-intro {
+            width: 100%;
+        }
+    }
+
+    .card-more-button {
+        background-image: url(./../../assets/img/button_more_long.svg);
+        width: 329px;
+        height: 39px;
+        margin-top: 20px
+    }
+}
+
+
+.card-more-button {
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.card>div {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    height: 100%;
+    width: fit-content;
+}
+
+.card-img {
+    position: inherit;
+    overflow: hidden;
+    transform: scale(1);
+    transition: transform 0.1s linear;
+}
+
+.card-info {
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    word-break: break-all;
+}
+
+.card-title {
+    line-height: 1.2;
+    font-family: 'title';
+    position: inherit;
+    box-sizing: border-box;
+    letter-spacing: 3px;
+    text-align: left;
+    overflow: hidden;
+}
+
+.card-content-intro {
+    width: 400px;
+    letter-spacing: 2px;
+    position: relative;
+    font-size: 13.5px;
+    color: #4d4867;
+    white-space: break-spaces;
+    line-height: 1.5;
+}
+
+.card-content-intro p {
+    margin-block-start: 0;
+    margin-block-end: 0;
+}
+
+.card-content-intro ol,
+.card-content-intro ul {
+    overflow: hidden;
+    margin-block-start: unset;
+    margin-block-end: unset;
+    padding-inline-start: 15px;
+    list-style-type: '\2605';
+}
+
+.card-content-intro li {
+    width: 100%;
+    padding-inline-start: 10px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+
+.card-tag {
+    display: block;
+    overflow: hidden;
+    color: #f88d2a;
+    background-color: #fff;
+    padding-right: 30px;
+    width: 230px;
+    height: 11px;
+}
+
+.card-tag>span {
+    display: inline-block;
+    /* These have to be inline block to wrap correctly */
+    position: relative;
+    /* Give the ellipsis an anchor point so it's positioned after the element */
+    background-color: #fff;
+    /* Cover the ellipsis of the previous element with the same background color */
+    white-space: pre;
+    /* Make sure the only point where wrapping is allowed is before a comma */
+}
+
+.card-tag>span:after {
+    position: absolute;
+    /* Take the ellipsis out of the flow, so the next item will cover it */
+    content: "…";
+    /* Each span has an ellipsis */
+}
+
+.card-tag>span:last-child:after {
+    content: "";
+    /* Except for the last one */
+}
+
+.card-create-date {
+    color: #53575a;
+}
+
+@media (hover:hover) {
+
+    .card:hover .card-img {
+        transform: scale(1.05);
+    }
+
+}
+
+@media (max-width: 768px) {
+    .card {
+        width: 80vw;
+    }
+
+    .card>div {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+        width: fit-content;
+    }
+
+    .card-title {
+        height: fit-content;
+        text-align: center;
+    }
+
+    .card-footer {
+        position: relative;
+        justify-content: center;
+        width: 100%;
+        word-break: keep-all;
+        height: fit-content;
+    }
+
+    .card-tag {
+        text-align: left;
+        line-height: 1.6;
+        height: 1.6rem;
+    }
+}

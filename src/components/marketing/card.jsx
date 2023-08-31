@@ -16,7 +16,7 @@ export default function Card({ content }) {
 
 
   const route = {
-    pathname: "/trend/[sitemapUrl]",
+    pathname: "/[sitemapUrl]",
     query: { sitemapUrl: sitemapUrl },
   }
   const tagNameArray = tags && tags.reduce((acc, curr) => {

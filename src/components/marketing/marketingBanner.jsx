@@ -31,7 +31,7 @@ export default function MarketingBanner() {
     }, [state.clientWidth])
     return (
         <div className={'marketing-banner'}>
-            {banner &&
+            {/* {banner &&
                 (state.clientWidth <= 768
                     ? <Image
                         placeholder="blur"
@@ -51,7 +51,7 @@ export default function MarketingBanner() {
                         alt={''}
                         style={style}
                     />)
-            }
+            } */}
         </div>
     )
 

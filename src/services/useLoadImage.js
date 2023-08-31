@@ -14,7 +14,7 @@ export default function useLoadImage(imageNameMap) {
         } else {
             imageImport = imageNameMap.get('mobile')
         }
-        imageImport.then(res => {
+        imageImport && imageImport.then(res => {
             if (!res.after) {
                 setImage({
                     default: res.default,

@@ -21,11 +21,11 @@
 }
 
 .nav-button>.bubble.orange {
-  background-image: url(./../../../assets/menu/bubbleOrange.webp);
+  /* background-image: url(./../../../assets/menu/bubbleOrange.webp);*/
 }
 
 .nav-button>.bubble.blue {
-  background-image: url(./../../../assets/menu/bubbleBlue.webp);
+  /* background-image: url(./../../../assets/menu/bubbleBlue.webp);*/
 }
 
 .nav-button>.nav-text-wrapper {

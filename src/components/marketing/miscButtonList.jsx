@@ -20,7 +20,7 @@ export default function MiscButtonList({ hasSitemapUrl }) {
           <BtnMarketing
             title="看更多文章"
             name='看更多文章'
-            to={`/trend/${state.categorySitemapUrl}`}
+            to={`//${state.categorySitemapUrl}`}
             callback={() => dispatch({
               type: "SEE_MORE",
               payload: {

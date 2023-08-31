@@ -41,28 +41,21 @@ export default function NavWrapper() {
           offset={-200}
           href={`/#about`}
           to='#about'
-          name='about' />
+          name='news' />
       </li>
       <li>
         <HeaderScrollLink
           offset={serviceOffset}
           href={`/#service`}
           to='#service'
-          name='service' />
+          name='hot' />
       </li>
       <li>
         <HeaderScrollLink
           offset={contactUsOffset}
           href={`/#contact`}
           to='#contact'
-          name='contact' />
-      </li>
-      <li>
-        <HeaderScrollLink
-          offset={0}
-          href={'/trend'}
-          name='marketing'
-          disableScroll />
+          name='recommend' />
       </li>
     </ul>
   </nav>;

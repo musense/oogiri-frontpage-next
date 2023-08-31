@@ -2,9 +2,9 @@
     --why-musense-height: 564px;
     --why-musense-width: 100vw;
 
-    --why-musense-bird: url(./../../../assets/index/bird.webp);
+    /* --why-musense-bird: url(./../../../assets/index/bird.webp);
     --why-musense-blueBox: url(./../../../assets/index/blueBox.webp);
-    --why-musense-main: url(./../../../assets/index/whyMusense.webp);
+    --why-musense-main: url(./../../../assets/index/whyMusense.webp); */
     --whi-musense-hr: unset;
     position: relative;
     margin: calc(258px - 78px + 229px) 0 0;
@@ -23,7 +23,7 @@
     position: absolute;
     left: 5%;
     top: -155px;
-    background-image: var(--why-musense-bird);
+    /* background-image: var(--why-musense-bird); */
     background-repeat: no-repeat;
     background-size: cover;
     width: 228px;
@@ -32,7 +32,7 @@
 
 .why-musense .main {
     margin: 0 auto;
-    background-image: var(--why-musense-main);
+    /* background-image: var(--why-musense-main); */
     height: 76px;
     position: relative;
     width: 538px;
@@ -97,7 +97,7 @@
     position: absolute;
     bottom: 49px;
     right: 90px;
-    background-image: var(--why-musense-blueBox);
+    /* background-image: var(--why-musense-blueBox); */
     background-repeat: no-repeat;
     background-size: cover;
     width: 377px;
@@ -129,7 +129,7 @@
 
     .why-musense .main::before,
     .why-musense .main::after {
-        background-image: url(./../../../assets/mobile/service/flower_blue.webp);
+        /* background-image: url(./../../../assets/mobile/service/flower_blue.webp); */
         background-color: transparent;
         background-repeat: no-repeat;
         background-size: contain;
@@ -174,7 +174,7 @@
         position: absolute;
         bottom: 49px;
         right: 90px;
-        background-image: var(--why-musense--blueBox);
+        /* background-image: var(--why-musense--blueBox); */
         background-repeat: no-repeat;
         background-size: cover;
         width: 377px;

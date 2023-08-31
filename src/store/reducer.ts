@@ -107,7 +107,7 @@ const mainReducer = (
                 ...state,
                 // lastPathname: action.payload.lastPathname,
                 // pathname: action.payload.pathname,
-                mainSiteHref: ['/c_', '/tag_'].some(route => action.payload.pathname?.includes(route)) ? '/trend' : '/'
+                mainSiteHref: ['/c_', '/tag_'].some(route => action.payload.pathname?.includes(route)) ? '/' : '/'
             };
         }
         case ReducerActionEnum.SEE_MORE: {

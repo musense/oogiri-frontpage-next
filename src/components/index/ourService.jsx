@@ -19,7 +19,7 @@ export default function OurService() {
   const ourServiceImage = useLoadImage(ourService);
   return (
     <div id='service' className={styles['our-service-wrapper']}>
-      {ourServiceImage && <Image
+      {/* {ourServiceImage && <Image
         alt=""
         src={ourServiceImage.default.src}
         width={ourServiceImage.default.width}
@@ -28,7 +28,7 @@ export default function OurService() {
           width: '100%',
           objectFit: 'contain'
         }}
-      />}
+      />} */}
       <ServiceBox />
     </div>
   );

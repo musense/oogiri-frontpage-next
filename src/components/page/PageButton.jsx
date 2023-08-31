@@ -18,7 +18,7 @@ export default function PageButton({ styles, label, value }) {
     const handleClick = useCallback(() => {
         if (Number(value) === Number(router.query.currentPage)) return
         router.push(
-            `/trend/${router.query.sitemapUrl}?currentPage=${value}`,
+            `//${router.query.sitemapUrl}?currentPage=${value}`,
             undefined,
             {
                 shallow: true,

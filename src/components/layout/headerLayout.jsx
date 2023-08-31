@@ -26,7 +26,7 @@ export default function HeaderLayout() {
       </>
       }
       <div className={'navbar-wrapper'}>
-        <Logo color={'gray'} />
+        <Logo type={'main'} />
         <NavWrapper />
       </div>
     </header>
