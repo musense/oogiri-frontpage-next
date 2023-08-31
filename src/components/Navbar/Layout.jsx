@@ -5,7 +5,7 @@ import { createPortal } from 'react-dom'
 import { useAppContext } from '@store/context'
 import useModalRootRef from '@services/useModalRootRef'
 
-export default function Layout({ children }) {
+export default function Layout({ tags, children }) {
   const { state } = useAppContext()
   const modalRoot = useModalRootRef()
 
@@ -18,7 +18,7 @@ export default function Layout({ children }) {
           modalRoot
         )}
       {children}
-      <FooterLayout />
+      <FooterLayout tags={tags} />
     </>
   )
 }

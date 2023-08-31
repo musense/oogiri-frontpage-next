@@ -3,15 +3,16 @@ import Layout from '@components/Navbar/Layout'
 
 type IMainProps = {
   meta: ReactNode
+  tags: Array<{}>
   children: ReactNode
 }
 
-function Main({ meta, children }: IMainProps) {
+function Main({ meta, tags, children }: IMainProps) {
   return (
     <div className='w-full'>
       {meta}
       <div className='mx-auto'>
-        <Layout>
+        <Layout tags={tags}>
           <main className='z-10 main-container'>{children}</main>
         </Layout>
       </div>
