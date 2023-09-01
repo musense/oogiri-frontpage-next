@@ -23,6 +23,7 @@ body {
     overflow-x: hidden;
     margin: 0;
     background-color: var(--theme-background-color);
+    width: calc(100vw - (100vw - 100%));
 }
 
 input:focus-visible,
@@ -37,7 +38,7 @@ textarea {
 header {
     position: fixed;
     top: 0;
-    width: 100vw;
+    width: 100%;
     box-sizing: border-box;
     height: var(--header-height);
     background-color: var(--theme-color-hex);
@@ -79,13 +80,13 @@ nav {
 
 .index-top {
     position: relative;
-
+    width: 100%;
 }
 
 .index-banner {
-    width: 100vw;
+    width: 100%;
     height: 636px;
-    border-radius: 20px;
+    border-radius: 6px;
     background-image: url(../assets/img/banner.png);
     background-repeat: no-repeat;
     background-size: cover;
@@ -1256,7 +1257,7 @@ a {
     position: relative;
     background-color: #4f4969;
     height: calc(56px + 275px);
-    width: 100vw;
+    width: 100%;
 
     display: flex;
     flex-direction: column;
