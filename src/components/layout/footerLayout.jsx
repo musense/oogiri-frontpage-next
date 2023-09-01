@@ -1,8 +1,9 @@
 import Tag from '@components/content/tag';
 import { useAppContext } from "@store/context";
+import CommunityIcon from '@components/CommunityIcon/CommunityIcon';
 
 export default function FooterLayout({ tags }) {
-  const { state, dispatch } = useAppContext();
+  const { state } = useAppContext();
   console.log("🚀 ~ file: footerLayout.jsx:6 ~ FooterLayout ~ state:", state)
 
   const footerClass = state.pathname === "" ? 'index-footer' : ''
@@ -11,11 +12,11 @@ export default function FooterLayout({ tags }) {
     <footer className={`footer-wrapper ${footerClass}`}>
       <div className='footer-box'>
         <div className='top-side'>
-          <div className="icon twitter" />
-          <div className="icon blog" />
-          <div className="trend-tags" />
-          <div className="icon facebook" />
-          <div className="icon instagram" />
+          <CommunityIcon type={'twitter'} />
+          <CommunityIcon type={'blog'} />
+          <CommunityIcon type={'trend-tags'} />
+          <CommunityIcon type={'facebook'} />
+          <CommunityIcon type={'instagram'} />
         </div>
         <div className='bottom-side'>
           {tags && tags.length > 0 && tags.map((tag, index) => {
@@ -30,3 +31,5 @@ export default function FooterLayout({ tags }) {
     </footer>
   );
 }
+
+

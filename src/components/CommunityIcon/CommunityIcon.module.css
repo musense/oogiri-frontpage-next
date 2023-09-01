@@ -1,0 +1,31 @@
+.icon {
+    width: 36px;
+    height: 30px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    cursor: pointer;
+}
+
+.twitter {
+    background-image: url(../../assets/img/button_twi_icon.svg);
+}
+
+.blog {
+    background-image: url(../../assets/img/button_blog_icon.svg);
+}
+
+.trend-tags {
+    width: 179px;
+    height: 80px;
+    background-image: url(../../assets/img/button_trend.svg);
+    cursor: default;
+}
+
+.facebook {
+    background-image: url(../../assets/img/button_fb_icon.svg);
+}
+
+.instagram {
+    background-image: url(../../assets/img/button_ig_icon.svg);
+}

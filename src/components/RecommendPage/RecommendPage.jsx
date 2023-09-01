@@ -11,7 +11,7 @@ export default function RecommendPage({ contents }) {
         )
     })
     return (
-        <div className='recommend-page'>
+        <div id="recommend" className='recommend-page'>
             {content}
         </div>
     )

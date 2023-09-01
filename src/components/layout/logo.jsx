@@ -12,13 +12,10 @@ export default function Logo({ type = 'main', position = "header" }) {
         title="Musense Marketing"
         src={logo.src}
         alt="Musense Marketing"
-        width={logo.width}
-        height={logo.height}
+        width={202}
+        height={40}
         style={{
-          width: '100%',
-          maxWidth: '27rem',
-          height: '100%',
-          objectFit: 'contain'
+          objectFit: 'cover'
         }}
       />
     </div>

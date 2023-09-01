@@ -5,6 +5,7 @@ import NavBackDrop from './NavBackDrop';
 import { useAppContext } from "@store/context";
 import { useEffect, useRef } from 'react';
 import useWaitState from '@services/useWaitState'
+import CommunityIcon from '@components/CommunityIcon/CommunityIcon';
 
 export default function HeaderLayout() {
   const { state } = useAppContext();
@@ -26,9 +27,18 @@ export default function HeaderLayout() {
       </>
       }
       <Logo type={'main'} />
+
+
+      <div className={'navbar-icon'}>
+        <CommunityIcon type={'twitter'} />
+        <CommunityIcon type={'blog'} />
+        <CommunityIcon type={'facebook'} />
+        <CommunityIcon type={'instagram'} />
+      </div>
       <div className={'navbar-wrapper'}>
         <NavWrapper />
       </div>
+
     </header>
   );
 }

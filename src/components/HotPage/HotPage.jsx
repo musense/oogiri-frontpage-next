@@ -13,7 +13,7 @@ export default function HotPage({ contents }) {
         )
     })
     return (
-        <div className='hot-page'>
+        <div id="hot" className='hot-page'>
             {content}
         </div>
     )

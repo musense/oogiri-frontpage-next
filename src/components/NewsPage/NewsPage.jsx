@@ -12,7 +12,7 @@ export default function NewsPage({ contents }) {
         )
     })
     return (
-        <div className='news-page'>
+        <div id="news" className='news-page'>
             {content}
         </div>
     )

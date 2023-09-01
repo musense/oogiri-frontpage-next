@@ -32,7 +32,6 @@ const HeaderScrollLink = ({
     })
   }, [dispatch, offset, disableScroll]);
 
-  const color = name === 'marketing' ? 'blue' : 'orange'
   const mainClassName = className ? className : styles['nav-button']
 
   return (
@@ -42,9 +41,7 @@ const HeaderScrollLink = ({
       href={href}
       className={mainClassName}
     >
-      {/* <div className={`${styles['bubble']} ${styles[color]}`} /> */}
       <div className={styles['nav-text-wrapper']}>
-        {/* <div>{navMap.get(name).name.en}</div> */}
         <div>{navMap.get(name).name.ch}</div>
       </div>
     </Link>

@@ -16,8 +16,8 @@ export default function NavWrapper() {
     e.stopPropagation()
   }, [])
 
-  const serviceOffset = state.clientWidth <= 768 ? -80 : -150
-  const contactUsOffset = state.clientWidth <= 768 ? -80 : -150
+  const middleOffset = -120
+  const bottomOffset = -120
 
   useEffect(() => {
     if (navRef.current === null) {
@@ -38,23 +38,23 @@ export default function NavWrapper() {
     <ul>
       <li>
         <HeaderScrollLink
-          offset={-200}
-          href={`/#about`}
-          to='#about'
+          offset={middleOffset}
+          href={`/#news`}
+          to='#news'
           name='news' />
       </li>
       <li>
         <HeaderScrollLink
-          offset={serviceOffset}
-          href={`/#service`}
-          to='#service'
+          offset={middleOffset}
+          href={`/#hot`}
+          to='#hot'
           name='hot' />
       </li>
       <li>
         <HeaderScrollLink
-          offset={contactUsOffset}
-          href={`/#contact`}
-          to='#contact'
+          offset={bottomOffset}
+          href={`/#recommend`}
+          to='#recommend'
           name='recommend' />
       </li>
     </ul>
