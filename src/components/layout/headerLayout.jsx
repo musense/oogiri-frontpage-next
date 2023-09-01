@@ -25,8 +25,8 @@ export default function HeaderLayout() {
         <Hamburger />
       </>
       }
+      <Logo type={'main'} />
       <div className={'navbar-wrapper'}>
-        <Logo type={'main'} />
         <NavWrapper />
       </div>
     </header>

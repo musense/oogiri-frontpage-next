@@ -36,6 +36,14 @@
     &.order_5::after {
         background-image: url(../../assets/img/button_5th.svg);
     }
+
+    .card-title {
+        font-family: var(--font-title);
+    }
+
+    .card-cont-intro {
+        font-family: var(--font-content);
+    }
 }
 
 .card.news {

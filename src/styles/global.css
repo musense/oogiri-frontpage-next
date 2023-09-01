@@ -7,7 +7,8 @@ html {
 
 
 :root {
-    --header-height: 110px;
+
+    --header-height: 98px;
     --clamp-line: 3;
     --header-z-index: 99999;
     --theme-background-color: #fffff4;
@@ -24,37 +25,6 @@ body {
     background-color: var(--theme-background-color);
 }
 
-/* tag用 */
-@font-face {
-    font-family: 'tag';
-    src: url(/fonts/tag/47214.ttf) format('ttf');
-}
-
-/* content用-regular */
-@font-face {
-    font-family: 'content';
-    src: url(/fonts/content/BIZUDGothic-Regular.ttf) format('ttf');
-}
-
-/* content用-bold */
-@font-face {
-    font-family: 'content-bold';
-    src: url(/fonts/content/BIZUDGothic-Bold.ttf) format('ttf');
-}
-
-/* title用 */
-@font-face {
-    font-family: 'title';
-    src: url(/fonts/GenSenRounded-B.ttc) format('ttc');
-}
-
-/* 源雲明體 */
-@font-face {
-    font-family: GenRyuMin;
-    src: url(/fonts/GenRyuMin-SB.ttc) format('ttc');
-}
-
-
 input:focus-visible,
 textarea:focus-visible {
     outline: unset;
@@ -66,22 +36,24 @@ textarea {
 
 header {
     position: fixed;
+    top: 0;
+    width: 100vw;
     box-sizing: border-box;
-    inset: 0;
     height: var(--header-height);
-    box-shadow: 0px 5px 3px 0px #eee;
-    background-color: #fff;
+    background-color: var(--theme-color-hex);
     z-index: var(--header-z-index);
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: flex-end;
-    transition: top 0.2s ease-in;
-}
+    color: white;
 
-
-header.show {
-    top: 0;
+    &>a {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        left: 20px;
+    }
 }
 
 #nav-backdrop {
@@ -249,7 +221,6 @@ nav {
     letter-spacing: 2px;
     font-size: 18px;
     font-weight: normal;
-    font-family: Openhuninn;
     /* background-color: beige; */
 }
 
@@ -257,7 +228,7 @@ nav {
     position: relative;
     display: flex;
     flex-direction: row;
-    gap: 54px;
+    gap: 127px;
     margin: 0;
     padding: 0;
 }
@@ -265,7 +236,6 @@ nav {
 .navbar-wrapper li {
     position: relative;
     list-style: none;
-    width: var(--header-btn-width);
     height: var(--header-btn-height);
 }
 
@@ -1195,6 +1165,7 @@ a {
     letter-spacing: 1px;
     white-space: nowrap;
     cursor: pointer;
+    font-family: var(--font-tag);
 }
 
 .marketing-main-name {
