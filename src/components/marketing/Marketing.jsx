@@ -12,24 +12,21 @@ export default function MarketingPage({
     openTitleName = '',
     commonPageItems,
     categoryList = null,
-    popularContents,
     sitemapUrl = '',
 }) {
     const { state, dispatch } = useAppContext();
     useInitial({ state, dispatch })
 
-    const banner = sitemapUrl === '' && <MarketingBanner />
+    // const banner = sitemapUrl === '' && <MarketingBanner />
     const buttonList = <MarketingButtonList categoryList={categoryList} openTitleName={openTitleName} />
     const cardWrapper = <CardWrapper commonPageItems={commonPageItems} />
-    const cardFooter = <PageWrapper sitemapUrl={sitemapUrl} />
-    const popularArticles = <PopularArticles contents={popularContents} />
+    // const cardFooter = <PageWrapper sitemapUrl={sitemapUrl} />
 
     return (<>
-        {banner}
+        {/* {banner} */}
         {buttonList}
         {cardWrapper}
-        {cardFooter}
-        {popularArticles}
+        {/* {cardFooter} */}
     </>);
 }
 

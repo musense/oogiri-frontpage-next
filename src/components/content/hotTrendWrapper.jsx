@@ -1,9 +1,12 @@
 import React from 'react'
 import Tag from './tag';
 
-const InnerHotTrendWrapper = ({
+const HotTrendWrapper = ({
+    pageType,
+    bottomPage,
     position,
     popularTagList,
+    children
 }) => {
 
     const content = popularTagList && popularTagList.map((tag, index) => {
@@ -14,14 +17,22 @@ const InnerHotTrendWrapper = ({
         />;
     })
 
-    return <div className={`content-right-side ${position}`}>
-        <div className="hot-trend" />
-        <div className="hot-tag-wrapper">
-            {content}
+    return <div className={`trend-layout ${pageType}`}>
+        <div className={'content-top'}>
+            <div className={`content-left-side`}>
+                {children}
+            </div>
+            <div className={`content-right-side ${position}`}>
+                <div className="hot-trend" />
+                <div className="hot-tag-wrapper">
+                    {content}
+                </div>
+            </div>
         </div>
-    </div>;
+        <div className={`content-bottom`}>
+            {bottomPage}
+        </div>
+    </div>
 }
-
-const HotTrendWrapper = React.memo(InnerHotTrendWrapper);
 
 export default HotTrendWrapper

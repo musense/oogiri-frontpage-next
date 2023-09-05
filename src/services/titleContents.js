@@ -78,7 +78,7 @@ export async function getMainContentBySitemapUrl(payload) {
     categories,
     updatedAt,
     publishedAt,
-    // htmlContent,
+    htmlContent,
     ...rest } = response
   console.log("🚀 ~ file: titleContents.js:72 ~ getMainContentBySitemapUrl ~ response:", response)
   return {
@@ -93,7 +93,7 @@ export async function getMainContentBySitemapUrl(payload) {
     categories,
     updatedAt,
     publishedAt,
-    // htmlContent,
+    htmlContent,
   }
 }
 

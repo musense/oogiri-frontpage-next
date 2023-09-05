@@ -5,6 +5,7 @@ function DeskTopBtnMarketingWrapper({
     showCategoryList,
     btnProps
 }) {
+
     return <BtnMarketingWrapper position='upper'>
         {showCategoryList && showCategoryList.map((category, index) =>
             <BtnMarketing key={index} {...btnProps(index, category)} />

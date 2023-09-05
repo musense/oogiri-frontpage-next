@@ -1,22 +1,25 @@
 import Tag from '@components/content/tag';
-import { useAppContext } from "@store/context";
 import CommunityIcon from '@components/CommunityIcon/CommunityIcon';
 
-export default function FooterLayout({ tags }) {
-  const { state } = useAppContext();
-  console.log("🚀 ~ file: footerLayout.jsx:6 ~ FooterLayout ~ state:", state)
+export default function FooterLayout({ tags, pathname }) {
+  console.log("🚀 ~ file: footerLayout.jsx:6 ~ FooterLayout ~ pathname:", pathname)
 
-  const footerClass = state.pathname === "" ? 'index-footer' : ''
+  pathname
+  const footerClass = pathname === ""
+    ? 'index-footer'
+    : pathname.indexOf('/tag_') !== -1
+      ? 'tag-footer'
+      : ''
 
   return (
     <footer className={`footer-wrapper ${footerClass}`}>
       <div className='footer-box'>
         <div className='top-side'>
-          <CommunityIcon type={'twitter'} />
-          <CommunityIcon type={'blog'} />
+          {/* <CommunityIcon type={'twitter'} />
+          <CommunityIcon type={'blog'} /> */}
           <CommunityIcon type={'trend-tags'} />
-          <CommunityIcon type={'facebook'} />
-          <CommunityIcon type={'instagram'} />
+          {/* <CommunityIcon type={'facebook'} />
+          <CommunityIcon type={'instagram'} /> */}
         </div>
         <div className='bottom-side'>
           {tags && tags.length > 0 && tags.map((tag, index) => {
@@ -24,6 +27,7 @@ export default function FooterLayout({ tags }) {
               key={index}
               href={tag.sitemapUrl}
               tagName={`# ${tag.name}`}
+              footerLayout
             />;
           })}
         </div>

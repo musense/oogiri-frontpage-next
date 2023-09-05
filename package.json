@@ -8,7 +8,7 @@
     "not op_mini all"
   ],
   "scripts": {
-    "dev": "next dev -p 8080 -H 10.88.0.103",
+    "dev": "next dev -p 4200 -H 10.88.0.103",
     "build": "next build",
     "build:dev": "env-cmd -f .env.development yarn build",
     "build:dev:local": "env-cmd -f .env.development.local yarn build",
@@ -16,15 +16,20 @@
     "build:uat:local": "env-cmd -f .env.staging.local yarn build",
     "build:prod": "env-cmd -f .env.production yarn build",
     "build:prod:local": "env-cmd -f .env.production.local yarn build",
-    "start": "next start -p 8080",
+    "start": "next start -p 4200",
     "lint": "next lint",
-    "build:serve": "next build & next start -p 8080 -H 10.88.0.103"
+    "build:serve": "next build & next start -p 4200 -H 10.88.0.103"
   },
   "dependencies": {
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
+    "@mui/material": "^5.14.7",
     "@n8tb1t/use-scroll-position": "^2.0.3",
     "@types/node": "20.3.2",
     "@types/react": "18.2.14",
     "@types/react-dom": "18.2.6",
+    "@types/react-swipeable-views": "^0.13.2",
+    "@types/react-swipeable-views-utils": "^0.13.4",
     "axios": "1.3.4",
     "env-cmd": "^10.1.0",
     "eslint": "8.43.0",
@@ -35,6 +40,8 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-iframe": "^1.8.5",
+    "react-swipeable-views": "^0.14.0",
+    "react-swipeable-views-utils": "^0.14.0",
     "sharp": "^0.32.1",
     "typescript": "5.1.3"
   },

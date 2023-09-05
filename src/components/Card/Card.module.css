@@ -46,7 +46,77 @@
     }
 }
 
+.card-content {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    width: fit-content;
+}
+
+.card.tag-page {
+    --card-height: fit-content;
+    --card-wrapper-row-gap: 70px;
+
+    & .card-content {
+        position: relative;
+
+        &>div:first-child {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+
+            &>span {
+                margin-left: 5px;
+            }
+
+            &>span:first-child {
+                position: absolute;
+                top: -5px;
+                transform: translateY(-100%);
+                left: 0;
+                color: var(--theme-color-hex);
+                font-size: 16px;
+            }
+        }
+    }
+
+    .card-info {
+        gap: 20px;
+
+        .card-title {
+            border-left: 5px solid var(--theme-color-hex);
+            padding-left: 10px;
+            color: var(--theme-black-color-hex);
+            font-size: 24px;
+            line-height: 1.2;
+        }
+
+        .card-content-intro {
+            .ellipsis {
+                -webkit-line-clamp: 4;
+            }
+        }
+    }
+
+    .card-more-button {
+        margin-top: -10px;
+        margin-right: -10px;
+        background-image: url(./../../assets/img/button_more.svg);
+        width: 92px;
+        height: 33px;
+        align-self: flex-end;
+        filter: drop-shadow(1px 2px 2px rgb(0 0 0/0.3));
+
+        &.button-flex-end {
+            margin: unset;
+            margin-top: auto;
+        }
+    }
+}
+
 .card.news {
+
     .card-info {
         gap: 20px;
 
@@ -77,7 +147,7 @@
         justify-content: space-evenly;
 
         .card-title {
-            color: #ff86aa;
+            color: var(--vice-color-hex);
             font-size: 18px;
         }
 
@@ -121,14 +191,6 @@
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
-}
-
-.card>div {
-    display: flex;
-    flex-direction: row;
-    gap: 20px;
-    height: 100%;
-    width: fit-content;
 }
 
 .card-img {

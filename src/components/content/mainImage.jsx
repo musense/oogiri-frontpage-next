@@ -20,43 +20,43 @@ export default function MainImage({
     console.log("🚀 ~ file: mainImage.jsx:12 ~ isVideo:", isVideo)
     // const troImage = useLoadImage(triangleRangeOrange);
 
-    return (
-        <div className="top-banner-wrapper">
-            {/* {mainImage && (
-                isVideo
-                    ? <Iframe
-                        className="top-banner"
-                        url={iframeUrl}
-                        loading='lazy'
-                        width="100%"
-                        height="100%"
-                        display="block"
-                        position="relative"
+    // return (
+    //     <div className="top-banner-wrapper">
+    //         {mainImage && (
+    //             isVideo
+    //                 ? <Iframe
+    //                     className="top-banner"
+    //                     url={iframeUrl}
+    //                     loading='lazy'
+    //                     width="100%"
+    //                     height="100%"
+    //                     display="block"
+    //                     position="relative"
 
-                    />
-                    : <Image
-                        className="top-banner"
-                        src={mainImage}
-                        width={1000}
-                        height={1000}
-                        alt={imgAltText}
-                        style={{
-                            objectFit: "cover",
-                            objectPosition: "50% 50%"
-                        }}
-                    />)}
-            {troImage && <Image className="triangle-range_orange"
-                placeholder="blur"
-                blurDataURL={troImage.default.blurDataURL}
-                src={troImage.default.src}
-                width={troImage.default.width}
-                height={troImage.default.height}
-                alt={''}
-                style={{
-                    objectFit: "cover",
-                    objectPosition: "50% 50%"
-                }}
-            />} */}
-        </div>
-    )
+    //                 />
+    //                 : <Image
+    //                     className="top-banner"
+    //                     src={mainImage}
+    //                     width={1000}
+    //                     height={1000}
+    //                     alt={imgAltText}
+    //                     style={{
+    //                         objectFit: "cover",
+    //                         objectPosition: "50% 50%"
+    //                     }}
+    //                 />)}
+    //         {troImage && <Image className="triangle-range_orange"
+    //             placeholder="blur"
+    //             blurDataURL={troImage.default.blurDataURL}
+    //             src={troImage.default.src}
+    //             width={troImage.default.width}
+    //             height={troImage.default.height}
+    //             alt={''}
+    //             style={{
+    //                 objectFit: "cover",
+    //                 objectPosition: "50% 50%"
+    //             }}
+    //         />}
+    //     </div>
+    // )
 }

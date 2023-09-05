@@ -9,10 +9,10 @@ import useInitial from "@services/useInitial";
 export default function ContentPage({
     mainContent,
     previousAndNextPage,
-    relatedArticles,
     popularTagList,
     isPreview = false
 }) {
+    console.log("🚀 ~ file: ContentPage.jsx:16 ~ mainContent:", mainContent)
     const { previousEditor, nextEditor } = previousAndNextPage;
 
     const { state, dispatch } = useAppContext();
@@ -31,12 +31,6 @@ export default function ContentPage({
                 nextInfo={nextEditor}
                 isPreview={isPreview}
             />
-            <ExtendReading
-                contents={relatedArticles}
-            />
-            <HotTrendWrapper
-                position='bottom'
-                popularTagList={popularTagList} />
         </>
     )
 

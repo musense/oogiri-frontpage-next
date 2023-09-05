@@ -7,19 +7,19 @@ const nextConfig = {
             {
                 protocol: 'http',
                 hostname: '10.88.0.106',
-                port: '3000',
+                port: '4200',
                 pathname: '/images/**',
             },
             {
                 protocol: 'http',
                 hostname: '10.88.0.106',
-                port: '3000',
+                port: '4200',
                 pathname: '/saved_image/**',
             },
             {
                 protocol: 'http',
                 hostname: '10.88.0.106',
-                port: '5050',
+                port: '4200',
                 pathname: '/saved_image/**',
             },
             {

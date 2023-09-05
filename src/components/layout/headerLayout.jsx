@@ -30,10 +30,10 @@ export default function HeaderLayout() {
 
 
       <div className={'navbar-icon'}>
-        <CommunityIcon type={'twitter'} />
+        {/* <CommunityIcon type={'twitter'} />
         <CommunityIcon type={'blog'} />
         <CommunityIcon type={'facebook'} />
-        <CommunityIcon type={'instagram'} />
+        <CommunityIcon type={'instagram'} /> */}
       </div>
       <div className={'navbar-wrapper'}>
         <NavWrapper />

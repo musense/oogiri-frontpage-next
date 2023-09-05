@@ -1,25 +1,25 @@
-import React, { useRef } from "react";
-import Tag from "./tag";
-import HotTrendWrapper from "./hotTrendWrapper";
-import useResizeContentTags from "@services/useResizeContentTags";
+import React from "react";
 import useAddPageView from "@services/useAddPageView";
-import MiscButtonContentList from "./miscButtonContentList";
+import useFormatDate from "@services/useFormatDate";
+import PrevAndNextButton from "./PrevAndNextButton";
+import Tag from "./tag";
 
 export default function MainContent({
     content,
-    popularTagList,
     prevInfo,
     nextInfo,
     isPreview
 }) {
 
-    const contentTagsRef = useRef(null);
-    console.log("🚀 ~ file: mainContent.jsx:15 ~ MainContent ~ contentTagsRef:", contentTagsRef)
+    // const contentTagsRef = useRef(null);
+    // console.log("🚀 ~ file: mainContent.jsx:15 ~ MainContent ~ contentTagsRef:", contentTagsRef)
 
-    useResizeContentTags(contentTagsRef);
+    // useResizeContentTags(contentTagsRef);
     useAddPageView(content._id, isPreview);
+    const formattedUpdateDate = useFormatDate(content.updatedAt, 'jp')
+    const formattedPublishDate = useFormatDate(content.publishedAt, 'jp')
 
-    const contentTags = content.tags && <div ref={contentTagsRef} className="content-tags">{
+    const contentTags = content.tags && <div className="content-tags">{
         content.tags.map((tag, index) => {
             return <Tag
                 key={index}
@@ -29,36 +29,29 @@ export default function MainContent({
         })}
     </div>
     const contentPublishedDate = isPreview
-        ? new Date(content.updatedAt).toLocaleDateString('en-ZA')
-        : new Date(content.publishedAt).toLocaleDateString('en-ZA')
+        ? formattedUpdateDate
+        : formattedPublishDate
 
-    const mainContent = <div
-        className="content-main-content"
-        dangerouslySetInnerHTML={{ __html: content.htmlContent }}
-    />
     return (
-        <div className="main-content-wrapper">
-            <div className="content-left-side">
-                <h1 className="content-title">
-                    {content.title}
-                </h1>
-                <div className="content-misc">
-                    {contentTags}
-                    <div className="content-date-wrapper">
-                        {contentPublishedDate}
-                    </div>
+        <>
+            <h1 className="content-title">
+                {content.title}
+            </h1>
+            <div className="content-misc">
+                <div className="content-date-wrapper">
+                    {contentPublishedDate}
                 </div>
-                {mainContent}
-                <MiscButtonContentList
-                    prevInfo={prevInfo}
-                    nextInfo={nextInfo}
-                />
             </div>
-
-            <HotTrendWrapper
-                position="content"
-                popularTagList={popularTagList} />
-        </div>
+            <div
+                className="content-main-content"
+                dangerouslySetInnerHTML={{ __html: content.htmlContent }}
+            />
+            {contentTags}
+            <PrevAndNextButton
+                prevInfo={prevInfo}
+                nextInfo={nextInfo}
+            />
+        </>
     );
 
 

@@ -1,0 +1,40 @@
+.tag {
+  position: relative;
+  color: var(--vice-color-hex);
+  letter-spacing: 1px;
+  display: flex;
+  flex-direction: row;
+  gap: 2px;
+  letter-spacing: 1px;
+  white-space: nowrap;
+  cursor: pointer;
+
+  &.footer-layout {
+    color: #fff;
+  }
+}
+
+.tag.icon-tag {
+  padding-left: 25px;
+}
+
+.tag.icon-tag::before {
+  content: "";
+  background-image: url(../../../assets/img/button_tagIcon_pink.svg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 23px;
+  height: 20px;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+@media (max-width: 768px) {
+  .tag {
+    font-size: inherit;
+    flex-basis: 7rem;
+    justify-content: center;
+  }
+}

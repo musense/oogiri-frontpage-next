@@ -106,7 +106,7 @@ const mainReducer = (
             return {
                 ...state,
                 // lastPathname: action.payload.lastPathname,
-                // pathname: action.payload.pathname,
+                pathname: action.payload.pathname,
                 mainSiteHref: ['/c_', '/tag_'].some(route => action.payload.pathname?.includes(route)) ? '/' : '/'
             };
         }
