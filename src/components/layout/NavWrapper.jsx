@@ -39,6 +39,13 @@ export default function NavWrapper() {
       <li>
         <HeaderScrollLink
           offset={middleOffset}
+          href={`/c_all_contents.html`}
+          to='c_all_contents.html'
+          name='allContents' />
+      </li>
+      <li>
+        <HeaderScrollLink
+          offset={middleOffset}
           href={`/#news`}
           to='#news'
           name='news' />

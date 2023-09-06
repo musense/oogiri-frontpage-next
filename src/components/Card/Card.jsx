@@ -5,6 +5,7 @@ import styles from './Card.module.css'
 import Tag from '@components/content/tag';
 import useFormatDate from '@services/useFormatDate';
 
+
 export default function Card({
     type,
     order = '',
@@ -18,11 +19,11 @@ export default function Card({
         altText,
         publishedAt,
         sitemapUrl,
-        tags
+        htmlContent,
+        tags,
     } = data;
     console.log("🚀 ~ file: card.jsx:15 ~ Card ~ sitemapUrl:", sitemapUrl)
 
-    let htmlContent = '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>'
 
     const tagNameArray = tags &&
         tags
@@ -37,14 +38,24 @@ export default function Card({
     }
     let content
 
+    // const htmlString = makePTagSurrounded(htmlContent);
+
     const formattedPublishDate = useFormatDate(publishedAt)
     console.log("🚀 ~ file: Card.jsx:37 ~ formattedPublishDate:", formattedPublishDate)
+
+    const cardContentIntro = (
+        <div className={styles['card-content-intro']}>
+            <div
+                className="ellipsis"
+                dangerouslySetInnerHTML={{ __html: htmlContent }} />
+        </div>
+    )
     switch (type) {
         case "tag-page": {
             content = <div className={styles['card-content']}>
                 <div>
                     <span>{formattedPublishDate}</span>
-                    <Image
+                    {homeImagePath && <Image
                         className={styles['card-img']}
                         src={homeImagePath}
                         width={224}
@@ -55,7 +66,7 @@ export default function Card({
                             objectPosition: 'center',
                             flexShrink: 0
                         }}
-                    />
+                    />}
                     {tagNameArray.map((tag, index) =>
                         <Tag
                             key={index}
@@ -69,19 +80,17 @@ export default function Card({
                     <div className={styles['card-title']}>
                         <span>{title}</span>
                     </div>
-                    <div className={styles['card-content-intro']}>
-                        <div
-                            className={`ellipsis ${styles['ellipsis']}`}
-                            dangerouslySetInnerHTML={{ __html: htmlContent }} />
-                    </div>
+                    {cardContentIntro}
                     <div className={`${styles['card-more-button']} ${styles['button-flex-end']}`} />
                 </div>
             </div>
         }
             break;
         case "news": {
-            content = <div className={styles['card-content']}>
-                <Image
+            const { topSorting } = data
+            console.log("🚀 ~ file: Card.jsx:91 ~ topSorting:", topSorting)
+            content = <div className={`${styles['card-content']} ${topSorting ? styles['top-sorting'] : ''}`}>
+                {homeImagePath && <Image
                     className={styles['card-img']}
                     src={homeImagePath}
                     width={224}
@@ -92,26 +101,22 @@ export default function Card({
                         objectPosition: 'center',
                         flexShrink: 0
                     }}
-                />
+                />}
                 <div className={styles['card-info']}>
                     <div className={styles['card-title']}>
                         <span>{title}</span>
                     </div>
-                    <div className={styles['card-content-intro']}>
-                        <div
-                            className={'ellipsis'}
-                            dangerouslySetInnerHTML={{ __html: htmlContent }} />
-                    </div>
+                    {cardContentIntro}
                     <div className={styles['card-more-button']} />
                 </div>
             </div>
         }
             break;
         case "hot": {
-            htmlContent = `<ol><li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Id vero sequi magni acc<li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Id vero sequi magni acc<li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Id vero sequi magni acc</ol>`
 
-            content = <div className={styles['card-content']}>
-                <Image
+            const orderClass = order ? `${styles['order']} ${styles[`order_${order}`]}` : ''
+            content = <div className={`${styles['card-content']}  ${orderClass}`}>
+                {homeImagePath && <Image
                     className={styles['card-img']}
                     src={homeImagePath}
                     width={258}
@@ -122,23 +127,19 @@ export default function Card({
                         objectPosition: 'center',
                         flexShrink: 0
                     }}
-                />
+                />}
                 <div className={styles['card-info']}>
                     <div className={styles['card-title']}>
                         <span>{title}</span>
                     </div>
-                    <div className={styles['card-content-intro']}>
-                        <div
-                            className="ellipsis"
-                            dangerouslySetInnerHTML={{ __html: htmlContent }} />
-                    </div>
+                    {cardContentIntro}
                 </div>
             </div>
         }
             break;
         case "recommend": {
             content = <div className={styles['card-content']}>
-                <Image
+                {homeImagePath && <Image
                     className={styles['card-img']}
                     src={homeImagePath}
                     width={271}
@@ -149,16 +150,12 @@ export default function Card({
                         objectPosition: 'center',
                         flexShrink: 0
                     }}
-                />
+                />}
                 <div className={styles['card-info']}>
                     <div className={styles['card-title']}>
                         <span>{title}</span>
                     </div>
-                    <div className={styles['card-content-intro']}>
-                        <div
-                            className="ellipsis"
-                            dangerouslySetInnerHTML={{ __html: htmlContent }} />
-                    </div>
+                    {cardContentIntro}
                     <div className={styles['card-more-button']} />
                 </div>
             </div>
@@ -168,10 +165,18 @@ export default function Card({
             break;
     }
 
-    const orderClass = order ? `${styles['order']} ${styles[`order_${order}`]}` : ''
-    return homeImagePath && (
-        <Link className={`${styles['card']} ${styles[type]} ${orderClass}`} href={route}>
+    // return homeImagePath && (
+    return (
+        <Link className={`${styles['card']} ${styles[type]}`} href={route}>
             {content}
         </Link >
     );
 }
+function makePTagSurrounded(htmlContent) {
+    let html = htmlContent.split('');
+    html.splice(0, 0, '<p>');
+    html.splice(html.length, 0, '</p>');
+    html = html.join('');
+    return html;
+}
+

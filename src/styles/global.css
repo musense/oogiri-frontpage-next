@@ -528,30 +528,6 @@ a {
     font-family: var(--font-tag);
 }
 
-.btn-marketing.spots::before,
-.btn-marketing.spots::after {
-    content: "";
-    display: block;
-    position: absolute;
-    width: var(--btn-marketing-spots-width);
-    height: 115px;
-    top: 50%;
-    transform: translateY(-50%);
-    background-size: contain;
-    background-position: top center, 50%, 50%;
-    background-repeat: no-repeat;
-}
-
-.btn-marketing.spots::before {
-    /* background-image: url(./../assets/marketing/morePage_spot.webp); */
-    left: var(--btn-marketing-spots-offset);
-}
-
-.btn-marketing.spots::after {
-    /* background-image: url(./../assets/marketing/morePage_spot_right.webp); */
-    right: var(--btn-marketing-spots-offset);
-}
-
 .card-wrapper {
     --card-height: 275px;
     --card-wrapper-row-gap: 60px;

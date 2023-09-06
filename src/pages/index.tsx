@@ -2,7 +2,12 @@ import type { GetServerSideProps, InferGetServerSidePropsType } from 'next'
 import { Main } from '@components/Main/Main'
 import { Meta } from '@layouts/Meta'
 import Index from '@components/index/index'
-import { getTitleContents } from '@services/titleContents'
+import {
+  getHotContents,
+  getNewsContents,
+  getRecommendContents,
+  getTitleContents,
+} from '@services/titleContents'
 import { getPopularTagList } from '@services/tagContents'
 
 type HomeProps = InferGetServerSidePropsType<typeof getServerSideProps>
@@ -14,30 +19,44 @@ export const getServerSideProps: GetServerSideProps = async () => {
     apiUrl: apiUrl,
   }
 
-  const titleContentsPromise = getTitleContents(payload)
+  const newsContentsPromise = getNewsContents(payload)
+  const hotContentsPromise = getHotContents(payload)
+  const recommendContentsPromise = getRecommendContents(payload)
   const popularTagsPromise = getPopularTagList(payload)
 
-  const { titleContents, popularTags } = await Promise.all([
-    titleContentsPromise,
-    popularTagsPromise,
-  ]).then((res) => {
-    const response = {
-      titleContents: res[0],
-      popularTags: res[1],
-    }
-    console.log('🚀 ~ file: index.tsx:62 ~ ]).then ~ response:', response)
-    return response
-  })
+  const { newsContents, hotContents, recommendContents, popularTags } =
+    await Promise.all([
+      newsContentsPromise,
+      hotContentsPromise,
+      recommendContentsPromise,
+      popularTagsPromise,
+    ]).then((res) => {
+      const response = {
+        newsContents: res[0],
+        hotContents: res[1],
+        recommendContents: res[2],
+        popularTags: res[3],
+      }
+      console.log('🚀 ~ file: index.tsx:39 ~ ]).then ~ response:', response)
+      return response
+    })
 
   return {
     props: {
-      titleContents: titleContents,
+      newsContents: newsContents,
+      hotContents: hotContents,
+      recommendContents: recommendContents,
       popularTags: popularTags,
     },
   }
 }
 
-const Home = ({ titleContents, popularTags }: HomeProps) => {
+const Home = ({
+  newsContents,
+  hotContents,
+  recommendContents,
+  popularTags,
+}: HomeProps) => {
   return (
     <Main
       meta={
@@ -50,7 +69,11 @@ const Home = ({ titleContents, popularTags }: HomeProps) => {
       }
       tags={popularTags}
     >
-      <Index titleContents={titleContents} />
+      <Index
+        newsContents={newsContents}
+        hotContents={hotContents}
+        recommendContents={recommendContents}
+      />
     </Main>
   )
 }

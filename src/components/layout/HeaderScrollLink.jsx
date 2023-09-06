@@ -25,14 +25,14 @@ const HeaderScrollLink = ({
     if (!destObject) return
     if (disableScroll) return
     e.preventDefault()
-    const { top: destTop } = destObject.getBoundingClientRect()
+    const { top: destTop } = destObject.getBoundingClienRect()
     window.scrollBy({
       top: destTop + offset,
       behavior: 'smooth',
     })
   }, [dispatch, offset, disableScroll]);
 
-  const mainClassName = className ? className : styles['nav-button']
+  const mainClassName = className ? styles[className] : styles['nav-button']
 
   return (
     <Link

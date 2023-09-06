@@ -400,4 +400,45 @@ export async function getPreviewContentByID(payload) {
   return response
 }
 
+/**
+ * An API that get contents from backend sorted by data and topSorting
+ *
+ * @param {string} apiUrl
+ * @returns response
+*/
+export async function getNewsContents(payload) {
+  const { apiUrl } = payload
+  const response = await instance(apiUrl).get(`/editor/frontEnd/topAndNews`)
+    .then(res => res.data.data)
+  console.log("🚀 ~ file: previewContent.js:414 ~ getNewsContents ~ response:", response)
+  return response
+}
+
+/**
+ * An API that get contents from backend sorted by pageView
+ *
+ * @param {string} apiUrl
+ * @returns response
+*/
+export async function getHotContents(payload) {
+  const { apiUrl } = payload
+  const response = await instance(apiUrl).get(`/editor/frontEnd/popular`)
+    .then(res => res.data.data)
+  console.log("🚀 ~ file: previewContent.js:414 ~ getHotContents ~ response:", response)
+  return response
+}
+
+/**
+ * An API that get contents from backend sorted by recommend
+ *
+ * @param {string} apiUrl
+ * @returns response
+*/
+export async function getRecommendContents(payload) {
+  const { apiUrl } = payload
+  const response = await instance(apiUrl).get(`/editor/frontEnd/recommend`)
+    .then(res => res.data.data)
+  console.log("🚀 ~ file: previewContent.js:414 ~ getRecommendContents ~ response:", response)
+  return response
+}
 

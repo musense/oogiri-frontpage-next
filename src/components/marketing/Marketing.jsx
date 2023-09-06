@@ -19,12 +19,16 @@ export default function MarketingPage({
 
     // const banner = sitemapUrl === '' && <MarketingBanner />
     const buttonList = <MarketingButtonList categoryList={categoryList} openTitleName={openTitleName} />
+    const filterInput = <input type="text" placeholder="Search..." />
     const cardWrapper = <CardWrapper commonPageItems={commonPageItems} />
     // const cardFooter = <PageWrapper sitemapUrl={sitemapUrl} />
 
     return (<>
         {/* {banner} */}
-        {buttonList}
+        <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
+            {buttonList}
+            {state.pathname.indexOf('/tag_') === -1 && filterInput}
+        </div>
         {cardWrapper}
         {/* {cardFooter} */}
     </>);
