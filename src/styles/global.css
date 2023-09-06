@@ -525,7 +525,7 @@ a {
     line-height: 1.2;
 
     color: #23b8bc;
-    font-family: var(--font-title);
+    font-family: var(--font-tag);
 }
 
 .btn-marketing.spots::before,
@@ -573,15 +573,17 @@ a {
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    height: calc(var(--card-height) * 2 + var(--card-wrapper-row-gap));
+    width: unset;
+    /* height: calc(var(--card-height) * 2 + var(--card-wrapper-row-gap)); */
 }
 
 .card-wrapper>h3 {
     color: grey;
     width: inherit;
     text-align: center;
-    font-size: 48px;
+    font-size: 28px;
     white-space: nowrap;
+    font-family: var(--font-tag);
 }
 
 .hot-content-container {
@@ -1384,7 +1386,6 @@ a {
         .content-bottom {
             position: relative;
             width: 100%;
-            height: calc(100% + 110px);
         }
     }
 

@@ -7,14 +7,14 @@ export default function CardWrapper({ commonPageItems }) {
     const { state, dispatch } = useAppContext();
     useSetCommonPageItems(commonPageItems, dispatch)
 
-    const content = state.viewContents
+    const content = state.viewContents && state.viewContents.length > 0
         ? state.viewContents.map((content, index) =>
             <Card
                 key={index}
                 type='tag-page'
                 content={content}
             />)
-        : <h3>{`目前還沒有文章！`}</h3>
+        : <h3>{`まだ記事がありません`}</h3>
 
     return <div className={'card-wrapper'}>
         {content}

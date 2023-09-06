@@ -11,6 +11,7 @@ export default function Card({
     content: data
 }) {
 
+    const maxShowTagNumber = 3
     const {
         homeImagePath,
         title,
@@ -23,9 +24,12 @@ export default function Card({
 
     let htmlContent = '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>'
 
-    const tagNameArray = tags && tags.reduce((acc, curr) => {
-        return [...acc, curr.name]
-    }, [])
+    const tagNameArray = tags &&
+        tags
+            .reduce((acc, curr) => {
+                return [...acc, curr.name]
+            }, [])
+            .slice(0, maxShowTagNumber)
 
     const route = {
         pathname: "/[sitemapUrl]",

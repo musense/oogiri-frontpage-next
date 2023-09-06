@@ -1,5 +1,6 @@
 import React from 'react'
 import Tag from './tag';
+import { useAppContext } from "@store/context";
 
 const HotTrendWrapper = ({
     pageType,
@@ -8,7 +9,7 @@ const HotTrendWrapper = ({
     popularTagList,
     children
 }) => {
-
+    const { state, dispatch } = useAppContext();
     const content = popularTagList && popularTagList.map((tag, index) => {
         return <Tag
             key={index}
@@ -16,6 +17,16 @@ const HotTrendWrapper = ({
             tagName={`# ${tag.name}`}
         />;
     })
+    let contentBottom = (
+        <div className={`content-bottom`}>
+            {bottomPage}
+        </div>
+    )
+    if (pageType === 'tag-page') {
+        contentBottom = state.viewContents && state.viewContents.length > 0
+            ? contentBottom
+            : null
+    }
 
     return <div className={`trend-layout ${pageType}`}>
         <div className={'content-top'}>
@@ -29,9 +40,7 @@ const HotTrendWrapper = ({
                 </div>
             </div>
         </div>
-        <div className={`content-bottom`}>
-            {bottomPage}
-        </div>
+        {contentBottom}
     </div>
 }
 

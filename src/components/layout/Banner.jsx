@@ -72,6 +72,7 @@ export default function Banner() {
                                     width: '100%',
                                     height: '636px',
                                     overflow: 'hidden',
+                                    objectFit: 'cover',
                                 }}
                                 src={step.imgPath}
                             />
