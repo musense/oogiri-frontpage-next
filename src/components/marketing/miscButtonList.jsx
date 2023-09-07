@@ -5,7 +5,7 @@ import { useAppContext } from "@store/context";
 
 export default function MiscButtonList({ hasSitemapUrl }) {
   const { state, dispatch } = useAppContext();
-  console.log("🚀 ~ file: miscButtonList.jsx:9 ~ MiscButtonList ~ state.mainSiteHref:", state.mainSiteHref)
+  // console.log("🚀 ~ file: miscButtonList.jsx:9 ~ MiscButtonList ~ state.mainSiteHref:", state.mainSiteHref)
 
   const backName = state.mainSiteHref === '/' ? "回首頁" : "返回"
   return (

@@ -22,13 +22,13 @@ export default function Card({
         htmlContent,
         tags,
     } = data;
-    console.log("🚀 ~ file: card.jsx:15 ~ Card ~ sitemapUrl:", sitemapUrl)
+    // console.log("🚀 ~ file: card.jsx:15 ~ Card ~ sitemapUrl:", sitemapUrl)
 
 
     const tagNameArray = tags &&
         tags
             .reduce((acc, curr) => {
-                return [...acc, curr.name]
+                return [...acc, curr]
             }, [])
             .slice(0, maxShowTagNumber)
 
@@ -41,7 +41,7 @@ export default function Card({
     // const htmlString = makePTagSurrounded(htmlContent);
 
     const formattedPublishDate = useFormatDate(publishedAt)
-    console.log("🚀 ~ file: Card.jsx:37 ~ formattedPublishDate:", formattedPublishDate)
+    // console.log("🚀 ~ file: Card.jsx:37 ~ formattedPublishDate:", formattedPublishDate)
 
     const cardContentIntro = (
         <div className={styles['card-content-intro']}>
@@ -52,10 +52,11 @@ export default function Card({
     )
     switch (type) {
         case "tag-page": {
-            content = <div className={styles['card-content']}>
+            const { topSorting } = data
+            content = <div className={`${styles['card-content']} ${topSorting ? styles['top-sorting'] : ''}`}>
                 <div>
                     <span>{formattedPublishDate}</span>
-                    {homeImagePath && <Image
+                    {homeImagePath ? <Image
                         className={styles['card-img']}
                         src={homeImagePath}
                         width={224}
@@ -66,8 +67,9 @@ export default function Card({
                             objectPosition: 'center',
                             flexShrink: 0
                         }}
-                    />}
-                    {tagNameArray.map((tag, index) =>
+                    />
+                        : <div />}
+                    {tagNameArray && tagNameArray.map((tag, index) =>
                         <Tag
                             key={index}
                             tagName={tag}
@@ -88,9 +90,9 @@ export default function Card({
             break;
         case "news": {
             const { topSorting } = data
-            console.log("🚀 ~ file: Card.jsx:91 ~ topSorting:", topSorting)
+            // console.log("🚀 ~ file: Card.jsx:91 ~ topSorting:", topSorting)
             content = <div className={`${styles['card-content']} ${topSorting ? styles['top-sorting'] : ''}`}>
-                {homeImagePath && <Image
+                {homeImagePath ? <Image
                     className={styles['card-img']}
                     src={homeImagePath}
                     width={224}
@@ -101,7 +103,7 @@ export default function Card({
                         objectPosition: 'center',
                         flexShrink: 0
                     }}
-                />}
+                /> : <div />}
                 <div className={styles['card-info']}>
                     <div className={styles['card-title']}>
                         <span>{title}</span>
@@ -116,7 +118,7 @@ export default function Card({
 
             const orderClass = order ? `${styles['order']} ${styles[`order_${order}`]}` : ''
             content = <div className={`${styles['card-content']}  ${orderClass}`}>
-                {homeImagePath && <Image
+                {homeImagePath ? <Image
                     className={styles['card-img']}
                     src={homeImagePath}
                     width={258}
@@ -127,7 +129,7 @@ export default function Card({
                         objectPosition: 'center',
                         flexShrink: 0
                     }}
-                />}
+                /> : <div />}
                 <div className={styles['card-info']}>
                     <div className={styles['card-title']}>
                         <span>{title}</span>
@@ -139,7 +141,7 @@ export default function Card({
             break;
         case "recommend": {
             content = <div className={styles['card-content']}>
-                {homeImagePath && <Image
+                {homeImagePath ? <Image
                     className={styles['card-img']}
                     src={homeImagePath}
                     width={271}
@@ -150,7 +152,7 @@ export default function Card({
                         objectPosition: 'center',
                         flexShrink: 0
                     }}
-                />}
+                /> : <div />}
                 <div className={styles['card-info']}>
                     <div className={styles['card-title']}>
                         <span>{title}</span>

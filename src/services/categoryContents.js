@@ -61,10 +61,10 @@ export async function getCategoryList(payload) {
 export async function getTitleContentsByCategory(payload) {
     const { categoryName, page, apiUrl } = payload
     // console.log("🚀 ~ file: categoryContents.ts:63 ~ getTitleContentsByCategory ~ categoryName:", categoryName)
-    console.log("🚀 ~ file: categoryContents.ts:63 ~ getTitleContentsByCategory ~ categoryKeyname.get(categoryName):", categoryKeyname.get(categoryName))
+    // console.log("🚀 ~ file: categoryContents.ts:63 ~ getTitleContentsByCategory ~ categoryKeyname.get(categoryName):", categoryKeyname.get(categoryName))
     const response = await instance(apiUrl).get(`/searchCategory/${categoryKeyname.get(categoryName)}?limit=9999&pageNumber=${page}`)
         .then(res => res.data)
-        .then(res => { console.log("🚀 ~ file: categoryContents.ts:66 ~ getTitleContentsByCategory ~ res:", res); return res })
+        // .then(res => { console.log("🚀 ~ file: categoryContents.ts:66 ~ getTitleContentsByCategory ~ res:", res); return res })
         .then(res => res.data && res.data.length > 0 ? res.data.filter(item =>
             // item.draft === false && 
             item.status !== "已排程" && item.status !== "草稿"

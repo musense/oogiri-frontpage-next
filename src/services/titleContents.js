@@ -48,7 +48,7 @@ export async function getMainContentBySitemapUrl(payload) {
   const response = await instance(apiUrl).get(`/checkUrl/${encodedSitemapUrl}`)
     .then(res => res.data.data)
     .then(mainContent => {
-      console.log("🚀 ~ file: titleContents.js:37 ~ getMainContentBySitemapUrl ~ mainContent:", mainContent)
+      // console.log("🚀 ~ file: titleContents.js:37 ~ getMainContentBySitemapUrl ~ mainContent:", mainContent)
       return {
         ...mainContent,
         headTitle: mainContent.headTitle && mainContent.headTitle.length > 0
@@ -80,7 +80,7 @@ export async function getMainContentBySitemapUrl(payload) {
     publishedAt,
     htmlContent,
     ...rest } = response
-  console.log("🚀 ~ file: titleContents.js:72 ~ getMainContentBySitemapUrl ~ response:", response)
+  // console.log("🚀 ~ file: titleContents.js:72 ~ getMainContentBySitemapUrl ~ response:", response)
   return {
     title,
     headTitle,
@@ -110,6 +110,36 @@ export async function getPreviousAndNextPageById(payload) {
     .then(res => res.data)
   // .then(res => { console.log(res); return res })
   return response
+}
+
+/**
+ * Returns all contents
+ * 
+ * @param {string} apiUrl
+ * @returns response
+ */
+export async function getAllContents(payload) {
+  const { apiUrl, page, searchText } = payload
+  const encodedSearchText = encodeURIComponent(searchText)
+  const response = await instance(apiUrl).get(`/editor/frontEnd/getAllEditors?pageNumber=${page}&limit=10&regexSearch=${encodedSearchText}`)
+    // .then(res => { console.log("🚀 ~ file: allContents.js:124 ~ getAllContents ~ res:", res); return res })
+    .then(res => res.data)
+  // .then(res => { console.log("🚀 ~ file: allContents.js:126 ~ getAllContents ~ res:", res); return res })
+  const {
+    totalCount,
+    totalPages,
+    currentPage,
+    data,
+  } = response
+
+  // console.log("🚀 ~ file: titleContents.js:133 ~ getAllContents ~ data:", JSON.stringify(data, null, 2))
+
+  return {
+    totalCount,
+    totalPages,
+    currentPage,
+    data,
+  }
 }
 
 /**
@@ -329,7 +359,7 @@ export async function getPopularContents(payload) {
     // .then(res => { console.log("🚀 ~ file: titleContents.js:209 ~ getPopularContents ~ res:", res); return res })
     return response
   } catch (error) {
-    console.log("🚀 ~ file: titleContents.js:210 ~ getPopularContents ~ error:", error)
+    // console.log("🚀 ~ file: titleContents.js:210 ~ getPopularContents ~ error:", error)
     return null
   }
 
@@ -350,7 +380,7 @@ export async function pageViewByContent(payload) {
       .then(res => res.data.data)
     // .then(res => { console.log("🚀 ~ file: titleContents.js:225 ~ res:", res); return res })
   } catch (error) {
-    console.log("🚀 ~ file: titleContents.js:225 ~ error:", error)
+    // console.log("🚀 ~ file: titleContents.js:225 ~ error:", error)
   }
 
   return response
@@ -368,7 +398,7 @@ export async function getPreviewContentByID(payload) {
   const response = await instance(apiUrl).get(`/tempEditor/${_id}`)
     .then(res => res.data)
     .then(previewContent => {
-      console.log("🚀 ~ file: titleContents.js:262 ~ getPreviewContentByID ~ previewContent:", previewContent)
+      // console.log("🚀 ~ file: titleContents.js:262 ~ getPreviewContentByID ~ previewContent:", previewContent)
       return {
         _id: previewContent._id,
         title: previewContent.title,
@@ -396,7 +426,7 @@ export async function getPreviewContentByID(payload) {
         })[0],
       }
     })
-  console.log("🚀 ~ file: previewContent.js:9 ~ getPreviewContentByID ~ response:", response)
+  // console.log("🚀 ~ file: previewContent.js:9 ~ getPreviewContentByID ~ response:", response)
   return response
 }
 
@@ -410,7 +440,7 @@ export async function getNewsContents(payload) {
   const { apiUrl } = payload
   const response = await instance(apiUrl).get(`/editor/frontEnd/topAndNews`)
     .then(res => res.data.data)
-  console.log("🚀 ~ file: previewContent.js:414 ~ getNewsContents ~ response:", response)
+  // console.log("🚀 ~ file: previewContent.js:414 ~ getNewsContents ~ response:", response)
   return response
 }
 
@@ -424,7 +454,7 @@ export async function getHotContents(payload) {
   const { apiUrl } = payload
   const response = await instance(apiUrl).get(`/editor/frontEnd/popular`)
     .then(res => res.data.data)
-  console.log("🚀 ~ file: previewContent.js:414 ~ getHotContents ~ response:", response)
+  // console.log("🚀 ~ file: previewContent.js:414 ~ getHotContents ~ response:", response)
   return response
 }
 
@@ -438,7 +468,6 @@ export async function getRecommendContents(payload) {
   const { apiUrl } = payload
   const response = await instance(apiUrl).get(`/editor/frontEnd/recommend`)
     .then(res => res.data.data)
-  console.log("🚀 ~ file: previewContent.js:414 ~ getRecommendContents ~ response:", response)
+  // console.log("🚀 ~ file: previewContent.js:414 ~ getRecommendContents ~ response:", response)
   return response
 }
-

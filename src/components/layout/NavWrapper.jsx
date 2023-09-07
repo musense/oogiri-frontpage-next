@@ -8,11 +8,11 @@ export default function NavWrapper() {
   const navRef = useRef(null);
 
   const navHandler = useCallback((e) => {
-    console.log(e.type)
+    // console.log(e.type)
     e.preventDefault()
   }, [])
   const liHandler = useCallback((e) => {
-    console.log(e);
+    // console.log(e);
     e.stopPropagation()
   }, [])
 

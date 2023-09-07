@@ -14,28 +14,28 @@ export default function CheckBoxList({ styles, checkBoxListRef }) {
         checkList.forEach((value, key) => {
             checkBoxList.push(value)
         })
-        console.log("🚀 ~ file: contactUs.jsx:161 ~ checkList.values ~ checkBoxList:", checkBoxList)
+        // console.log("🚀 ~ file: contactUs.jsx:161 ~ checkList.values ~ checkBoxList:", checkBoxList)
         return checkBoxList
     }, [checkList])
-    
+
     const onCheckBoxChange = useCallback((e) => {
-        console.log("🚀 ~ file: CheckBoxList.jsx:38 ~ onCheckBoxChange ~ e:", e)
+        // console.log("🚀 ~ file: CheckBoxList.jsx:38 ~ onCheckBoxChange ~ e:", e)
         if (checkBoxListRef.current === null) {
             checkBoxListRef.current = checkList
         }
-        console.log(e.target.value);
-        console.log(e.target.checked);
-        console.log("🚀 ~ file: contactUs.jsx:23 ~ onCheckBoxChange ~ checkBoxListRef.current:", checkBoxListRef.current)
+        // console.log(e.target.value);
+        // console.log(e.target.checked);
+        // console.log("🚀 ~ file: contactUs.jsx:23 ~ onCheckBoxChange ~ checkBoxListRef.current:", checkBoxListRef.current)
         const originValue = checkBoxListRef.current.get(e.target.value)
-        console.log("🚀 ~ file: contactUs.jsx:24 ~ onCheckBoxChange ~ originValue:", originValue)
+        // console.log("🚀 ~ file: contactUs.jsx:24 ~ onCheckBoxChange ~ originValue:", originValue)
 
         checkBoxListRef.current.set(e.target.value,
             Object.assign({}, originValue, { select: e.target.checked ? 1 : 0 })
         )
 
-        console.log("🚀 ~ file: contactUs.jsx:64 ~ onCheckBoxChange ~ checkBoxListRef.current:", checkBoxListRef.current)
+        // console.log("🚀 ~ file: contactUs.jsx:64 ~ onCheckBoxChange ~ checkBoxListRef.current:", checkBoxListRef.current)
 
-    }, [checkBoxListRef,checkList])
+    }, [checkBoxListRef, checkList])
 
     return <div data-title="合作需求（可複選）" className={`${styles['enter-checkbox-list']}`}>
         {

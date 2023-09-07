@@ -59,6 +59,26 @@
                 color: var(--theme-color-hex);
                 font-size: 16px;
             }
+
+            &>div {
+                height: 127px;
+                width: 224px;
+                flex-shrink: 0;
+            }
+        }
+
+        &.top-sorting::after {
+            display: block;
+            content: "トップ";
+            width: 58px;
+            height: 21px;
+            border-radius: 20px;
+            color: #fff;
+            background-color: #47cfb9;
+            font-size: 14px;
+            text-align: center;
+            z-index: 1;
+            box-sizing: border-box;
         }
     }
 
@@ -100,7 +120,7 @@
     .card-content {
         &.top-sorting::after {
             display: block;
-            content: "置頂";
+            content: "トップ";
             width: 58px;
             height: 21px;
             border-radius: 20px;
@@ -109,8 +129,6 @@
             font-size: 14px;
             text-align: center;
             z-index: 1;
-            letter-spacing: 2px;
-            padding-left: 2px;
             box-sizing: border-box;
         }
     }

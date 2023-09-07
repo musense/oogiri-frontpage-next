@@ -22,10 +22,10 @@ export default function useInitial({
             dispatch({
                 type: 'SET_WINDOW_SIZE',
                 payload: {
-                    width: window.innerWidth ||
+                    clientWidth: window.innerWidth ||
                         document.documentElement.clientWidth ||
                         document.body.clientWidth,
-                    height: window.innerHeight ||
+                    clientHeight: window.innerHeight ||
                         document.documentElement.clientHeight ||
                         document.body.clientHeight,
                 },

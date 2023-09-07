@@ -4,29 +4,19 @@ import { useAppContext } from "@store/context";
 
 export default function PageButton({ styles, label, value }) {
     const router = useRouter();
-    const { dispatch } = useAppContext();
-
-    const setPage = useCallback((value) => {
-        dispatch({
-            type: 'SET_CURRENT_PAGE',
-            payload: {
-                currentPage: value
-            }
-        })
-    }, [dispatch])
 
     const handleClick = useCallback(() => {
         if (Number(value) === Number(router.query.currentPage)) return
-        router.push(
-            `/${router.query.sitemapUrl}?currentPage=${value}`,
-            undefined,
-            {
-                shallow: true,
-                scroll: true
-            }
-        )
-        setPage(value)
-    }, [router, value, setPage])
+
+        let route = router.query.sitemapUrl
+        if (router.asPath.indexOf("?searchText") !== -1) {
+            route = `/${route}?searchText=${router.query.searchText}&currentPage=${value}`
+        } else {
+            route = `/${route}?currentPage=${value}`
+        }
+        router.push(route)
+
+    }, [router, value])
 
     const props = {
         onClick: handleClick,

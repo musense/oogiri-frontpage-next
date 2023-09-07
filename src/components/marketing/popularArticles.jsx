@@ -12,7 +12,7 @@ export default function PopularArticles({ contents }) {
 }
 
 function HotContents({ contents }) {
-  console.log("🚀 ~ file: popularArticles.jsx:15 ~ HotContents ~ contents:", contents)
+  // console.log("🚀 ~ file: popularArticles.jsx:15 ~ HotContents ~ contents:", contents)
 
   const [leftContents, rightContents] = React.useMemo(() => {
     if (!contents || contents.length === 0) return [null, null]

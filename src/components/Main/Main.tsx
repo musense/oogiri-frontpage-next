@@ -1,7 +1,10 @@
 import { type ReactNode } from 'react'
 import Layout from '@components/Navbar/Layout'
+import { useAppContext } from '@store/context'
+import useSetPopularTagList from '@services/useSetPopularTagList'
 
 import localFont from 'next/font/local'
+import { PopularTagType } from '@store/types'
 const tagFont = localFont({
   weight: '400',
   src: './../../assets/fonts/tag/47214.ttf',
@@ -28,13 +31,16 @@ const contentFont = localFont({
   variable: '--font-content',
 })
 
-type IMainProps = {
+type MainProps = {
   meta: ReactNode
-  tags: Array<{}>
+  popularTagList: PopularTagType[]
   children: ReactNode
 }
 
-function Main({ meta, tags, children }: IMainProps) {
+function Main({ meta, popularTagList, children }: MainProps) {
+  const { dispatch } = useAppContext()
+  useSetPopularTagList({ popularTagList, dispatch })
+
   return (
     <main
       className={`z-10 main-container 
@@ -43,7 +49,7 @@ function Main({ meta, tags, children }: IMainProps) {
       ${contentFont.variable}`}
     >
       {meta}
-      <Layout tags={tags}>{children}</Layout>
+      <Layout popularTagList={popularTagList}>{children}</Layout>
     </main>
   )
 }

@@ -15,7 +15,8 @@ const PageTemplate = () => {
     const { state } = useAppContext();
 
     const currentPage = Number(router.query.currentPage) || 1;
-    const totalPage = state.currTotalPage
+    const totalPage = state.totalPage || -1
+    // console.log("🚀 ~ file: pageTemplate.jsx:19 ~ PageTemplate ~ totalPage:", totalPage)
     const __MAX_SHOW_NUMBERS__ = state.clientWidth < 768 ? 3 : 5
 
     const pageContent = <div className={'page-wrapper'}>
@@ -31,7 +32,7 @@ const PageTemplate = () => {
         <LastButton currentPage={currentPage} totalPage={totalPage} />
     </div>
 
-    return pageContent;
+    return totalPage > 0 && pageContent;
 }
 
 export default PageTemplate

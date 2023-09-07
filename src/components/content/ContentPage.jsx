@@ -12,7 +12,7 @@ export default function ContentPage({
     popularTagList,
     isPreview = false
 }) {
-    console.log("🚀 ~ file: ContentPage.jsx:16 ~ mainContent:", mainContent)
+    // console.log("🚀 ~ file: ContentPage.jsx:16 ~ mainContent:", mainContent)
     const { previousEditor, nextEditor } = previousAndNextPage;
 
     const { state, dispatch } = useAppContext();

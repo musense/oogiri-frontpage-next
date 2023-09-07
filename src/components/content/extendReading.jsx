@@ -12,7 +12,7 @@ export default function ExtendReading({ contents }) {
 }
 
 function ExtendReadingContents({ contents }) {
-    console.log("🚀 ~ file: extendReading.jsx:16 ~ ExtendReadingContents ~ contents:", contents)
+    // console.log("🚀 ~ file: extendReading.jsx:16 ~ ExtendReadingContents ~ contents:", contents)
     return contents.slice(0, 3).map((content, index) =>
         content.homeImagePath && <Link key={index} href={content.sitemapUrl}
             className="popular-content">

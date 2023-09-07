@@ -7,7 +7,7 @@ import {
   getPreviousAndNextPageById,
   getMainContentBySitemapUrl,
   getPopularContents,
-  getTitleContents,
+  getAllContents,
 } from '@services/titleContents'
 import {
   getTagContents,
@@ -24,22 +24,22 @@ import PageTemplate from '@components/page/pageTemplate'
 
 type CommonProps = InferGetServerSidePropsType<typeof getServerSideProps>
 
-export const getServerSideProps: GetServerSideProps = async ({ params }) => {
-  const apiUrl = process.env.NEXT_PUBLIC_SERVER_URL
-  const sitemapUrl = params?.sitemapUrl as string
-  console.log('🚀 ~ file: index.tsx:98 ~ sitemapUrl:', sitemapUrl)
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const { sitemapUrl, currentPage = 1, searchText = '' } = context.query
+
   let payload = {
-    apiUrl: apiUrl,
+    apiUrl: process.env.NEXT_PUBLIC_SERVER_URL,
     sitemapUrl: `${process.env.NEXT_PUBLIC_TREND_SITE}/${sitemapUrl}`,
     _id: null,
-    page: 1,
+    page: currentPage,
     categoryName: '',
     tagName: '',
+    searchText: searchText,
   }
 
   let mainContent
 
-  if (sitemapUrl.indexOf('p_') !== -1) {
+  if (sitemapUrl?.indexOf('p_') !== -1) {
     mainContent = await getMainContentBySitemapUrl(payload)
     if (!mainContent) {
       return {
@@ -64,7 +64,7 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
         promiseRelatedArticles,
         promisePopularTagList,
       ]).then((res) => {
-        console.log('🚀 ~ file: index.tsx:160 ~ ]).then ~ res:', res)
+        // console.log('🚀 ~ file: index.tsx:160 ~ ]).then ~ res:', res)
         return {
           previousAndNextPage: res[0],
           relatedArticles: res[1],
@@ -88,7 +88,41 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
       },
     }
   }
+  //* special case
+  if (sitemapUrl === 'c_all_contents.html') {
+    mainContent = {
+      name: 'すべての記事',
+    }
+    // console.log('🚀 ~ file: index.tsx:31 ~ sitemapUrl:', sitemapUrl)
+    const promiseAllContents = getAllContents(payload)
+    const promisePopularTagList = getPopularTagList(payload)
 
+    const { allContents, popularTagList } = await Promise.all([
+      promiseAllContents,
+      promisePopularTagList,
+    ]).then((res) => {
+      const response = {
+        allContents: res[0],
+        popularTagList: res[1],
+      }
+      // console.log('🚀 ~ file: index.tsx:111 ~ ]).then ~ response:', response)
+      return response
+    })
+
+    return {
+      props: {
+        mainTitle: mainContent.name,
+        commonPageItems: allContents.data,
+        sitemapUrl: sitemapUrl,
+        popularTagList: popularTagList,
+        itemPage: {
+          currentPage: allContents.currentPage,
+          totalPage: allContents.totalPages,
+          totalCount: allContents.totalCount,
+        },
+      },
+    }
+  }
   if (sitemapUrl?.indexOf('tag_') !== -1) {
     const tagList = await getTagList(payload)
     mainContent = tagList.find((tag: any) => tag.sitemapUrl === sitemapUrl)
@@ -96,6 +130,7 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
       ...payload,
       tagName: mainContent.name,
     }
+
     const promiseTagItems = getTagContents(payload)
     const promiseTagInfo = getTagInfo(payload)
     const promisePopularContents = getPopularContents(payload)
@@ -108,7 +143,7 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
         promisePopularContents,
         promisePopularTagList,
       ]).then((res) => {
-        console.log('🚀 ~ file: index.tsx:258 ~ ]).then ~ res:', res)
+        // console.log('🚀 ~ file: index.tsx:145 ~ ]).then ~ res:', res)
         return {
           tagItems: res[0],
           tagInfo: res[1],
@@ -120,10 +155,15 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
     return {
       props: {
         mainTitle: mainContent.name,
-        commonPageItems: tagItems,
+        commonPageItems: tagItems.data,
         sitemapUrl: sitemapUrl,
         popularContents: popularContents,
         popularTagList: popularTagList,
+        itemPage: {
+          currentPage: tagItems.currentPage,
+          totalPage: tagItems.totalPages,
+          totalCount: tagItems.totalCount,
+        },
         meta: {
           headTitle: tagInfo.headTitle,
           headDescription: tagInfo.headDescription,
@@ -147,17 +187,16 @@ const Page = ({
   mainContent,
   mainTitle,
   commonPageItems,
+  itemPage,
 }: CommonProps) => {
-  console.log('🚀 ~ file: index.tsx:75 ~ sitemapUrl:', sitemapUrl)
-  console.log(
-    "🚀 ~ file: index.tsx:75 ~ sitemapUrl.indexOf('p_') !== -1:",
-    sitemapUrl.indexOf('p_') !== -1
-  )
+  // console.log('🚀 ~ file: index.tsx:185 ~ sitemapUrl:', sitemapUrl)
 
   const pageType = sitemapUrl
     ? sitemapUrl.indexOf('p_') !== -1
       ? 'content-page'
-      : 'tag-page'
+      : sitemapUrl.indexOf('tag_') !== -1
+      ? 'tag-page'
+      : 'all-content-page'
     : ''
   const metaComponent = (
     <Meta
@@ -174,23 +213,30 @@ const Page = ({
       previousAndNextPage={previousAndNextPage}
     />
   )
+
+  const tagPageTitle = pageType === 'tag-page' ? `# ${mainTitle}` : mainTitle
+  // console.log('🚀 ~ file: index.tsx:221 ~ tagPageTitle:', tagPageTitle)
   const tagPage = (
     <Marketing
-      openTitleName={`# ${mainTitle}`}
+      openTitleName={tagPageTitle}
       commonPageItems={commonPageItems}
       sitemapUrl={sitemapUrl}
+      itemPage={itemPage}
+      pageType={pageType}
     />
   )
 
-  const bottomPage = sitemapUrl ? (
-    sitemapUrl.indexOf('p_') !== -1 ? (
+  const trendBottomLayout = pageType ? (
+    pageType === 'content-page' ? (
       <ExtendReading contents={relatedArticles} />
     ) : (
       <PageTemplate />
     )
   ) : null
-  const page = sitemapUrl
-    ? sitemapUrl.indexOf('p_') !== -1
+  // console.log('🚀 ~ file: index.tsx:223 ~ pageType:', pageType)
+
+  const trendPage = pageType
+    ? pageType === 'content-page'
       ? contentPage
       : tagPage
     : null
@@ -198,14 +244,14 @@ const Page = ({
   return (
     <Main
       meta={metaComponent}
-      tags={popularTagList}
+      popularTagList={popularTagList}
     >
       <TrendLayout
         pageType={pageType}
-        tags={popularTagList}
-        bottomPage={bottomPage}
+        bottomPage={trendBottomLayout}
+        itemPage={itemPage}
       >
-        {page}
+        {trendPage}
       </TrendLayout>
     </Main>
   )

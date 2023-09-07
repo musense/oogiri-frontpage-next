@@ -1,11 +1,8 @@
 import React from "react";
 import MarketingButtonList from '@components/marketing/marketingButtonList';
 import CardWrapper from '@components/marketing/cardWrapper';
-import PopularArticles from '@components/marketing/popularArticles';
-import PageWrapper from '@components/marketing/PageWrapper';
+import ContentsFilterInput from '@components/ContentsFilterInput/contentsFilterInput';
 import { useAppContext } from "@store/context";
-
-import MarketingBanner from "./marketingBanner";
 import useInitial from "@services/useInitial";
 
 export default function MarketingPage({
@@ -13,24 +10,29 @@ export default function MarketingPage({
     commonPageItems,
     categoryList = null,
     sitemapUrl = '',
+    itemPage,
+    pageType,
 }) {
+    // console.log("🚀 ~ file: Marketing.jsx:17 ~ itemPage:", itemPage)
+    // console.log("🚀 ~ file: Marketing.jsx:17 ~ commonPageItems:", commonPageItems)
+
     const { state, dispatch } = useAppContext();
     useInitial({ state, dispatch })
 
-    // const banner = sitemapUrl === '' && <MarketingBanner />
     const buttonList = <MarketingButtonList categoryList={categoryList} openTitleName={openTitleName} />
-    const filterInput = <input type="text" placeholder="Search..." />
+    const filterInput = <ContentsFilterInput />
     const cardWrapper = <CardWrapper commonPageItems={commonPageItems} />
-    // const cardFooter = <PageWrapper sitemapUrl={sitemapUrl} />
 
     return (<>
         {/* {banner} */}
         <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
             {buttonList}
-            {state.pathname.indexOf('/tag_') === -1 && filterInput}
+            {pageType === 'all-content-page' && filterInput}
         </div>
         {cardWrapper}
         {/* {cardFooter} */}
     </>);
 }
+
+
 

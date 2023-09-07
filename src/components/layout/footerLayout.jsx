@@ -1,15 +1,15 @@
 import Tag from '@components/content/tag';
 import CommunityIcon from '@components/CommunityIcon/CommunityIcon';
 
-export default function FooterLayout({ tags, pathname }) {
-  console.log("🚀 ~ file: footerLayout.jsx:6 ~ FooterLayout ~ pathname:", pathname)
+export default function FooterLayout({ popularTagList, pathname }) {
+  // console.log("🚀 ~ file: footerLayout.jsx:6 ~ FooterLayout ~ pathname:", pathname)
 
   pathname
   const footerClass = pathname === ""
     ? 'index-footer'
     : pathname.indexOf('/tag_') !== -1
       ? 'tag-footer'
-      : ''
+      : 'all-content-footer'
 
   return (
     <footer className={`footer-wrapper ${footerClass}`}>
@@ -22,7 +22,7 @@ export default function FooterLayout({ tags, pathname }) {
           <CommunityIcon type={'instagram'} /> */}
         </div>
         <div className='bottom-side'>
-          {tags && tags.length > 0 && tags.map((tag, index) => {
+          {popularTagList && popularTagList.length > 0 && popularTagList.map((tag, index) => {
             return <Tag
               key={index}
               href={tag.sitemapUrl}

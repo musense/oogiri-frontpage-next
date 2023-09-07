@@ -5,12 +5,10 @@ import { useAppContext } from "@store/context";
 const HotTrendWrapper = ({
     pageType,
     bottomPage,
-    position,
-    popularTagList,
     children
 }) => {
-    const { state, dispatch } = useAppContext();
-    const content = popularTagList && popularTagList.map((tag, index) => {
+    const { state } = useAppContext();
+    const content = state.popularTagList && state.popularTagList.map((tag, index) => {
         return <Tag
             key={index}
             href={tag.sitemapUrl}
@@ -23,7 +21,7 @@ const HotTrendWrapper = ({
         </div>
     )
     if (pageType === 'tag-page') {
-        contentBottom = state.viewContents && state.viewContents.length > 0
+        contentBottom = state.totalCount > 0
             ? contentBottom
             : null
     }
@@ -33,7 +31,7 @@ const HotTrendWrapper = ({
             <div className={`content-left-side`}>
                 {children}
             </div>
-            <div className={`content-right-side ${position}`}>
+            <div className={`content-right-side`}>
                 <div className="hot-trend" />
                 <div className="hot-tag-wrapper">
                     {content}

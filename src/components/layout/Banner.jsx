@@ -56,6 +56,7 @@ export default function Banner() {
             className="index-banner"
             sx={{ flexGrow: 1 }}>
             <AutoPlaySwipeableViews
+                interval={4000}
                 axis={'x'}
                 index={activeStep}
                 loop={true}

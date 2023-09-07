@@ -16,8 +16,8 @@ export default function MainImage({
         const property = mainImage.substr(indexOf, endIndexOf - indexOf);
         return property
     }, [isVideo, mainImage])
-    console.log("🚀 ~ file: mainImage.jsx:12 ~ mainImage:", mainImage)
-    console.log("🚀 ~ file: mainImage.jsx:12 ~ isVideo:", isVideo)
+    // console.log("🚀 ~ file: mainImage.jsx:12 ~ mainImage:", mainImage)
+    // console.log("🚀 ~ file: mainImage.jsx:12 ~ isVideo:", isVideo)
     // const troImage = useLoadImage(triangleRangeOrange);
 
     // return (

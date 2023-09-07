@@ -530,7 +530,7 @@ a {
 
 .card-wrapper {
     --card-height: 275px;
-    --card-wrapper-row-gap: 60px;
+    --card-wrapper-row-gap: 70px;
     --card-wrapper-repeat: 3;
     --card-wrapper-width: fit-content;
     position: relative;
@@ -1256,7 +1256,8 @@ a {
         margin-top: 200px;
     }
 
-    &.tag-footer {
+    &.tag-footer,
+    &.all-content-footer {
         margin-top: 110px;
     }
 
@@ -1356,7 +1357,8 @@ a {
     flex-direction: column;
     gap: 70px;
 
-    &.tag-page {
+    &.tag-page,
+    &.all-content-page {
         width: 1350px;
 
         .content-bottom {
@@ -2314,14 +2316,6 @@ a {
         margin-top: 0;
         padding-top: 3rem;
         box-sizing: border-box;
-    }
-
-    .footer-wrapper.marketing {
-        margin-top: 4rem;
-    }
-
-    .footer-wrapper.content {
-        margin-top: 2rem;
     }
 
     .footer-box {

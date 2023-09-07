@@ -6,7 +6,6 @@ import {
   getHotContents,
   getNewsContents,
   getRecommendContents,
-  getTitleContents,
 } from '@services/titleContents'
 import { getPopularTagList } from '@services/tagContents'
 
@@ -37,7 +36,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
         recommendContents: res[2],
         popularTags: res[3],
       }
-      console.log('🚀 ~ file: index.tsx:39 ~ ]).then ~ response:', response)
+      // console.log('🚀 ~ file: index.tsx:39 ~ ]).then ~ response:', response)
       return response
     })
 

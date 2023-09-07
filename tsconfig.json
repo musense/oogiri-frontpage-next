@@ -41,7 +41,9 @@
     "src/pages/_app.jsx",
     "src/services/emailService.js",
     "src/pages/preview/[_id]/index.tsx",
-    "src/components/Navbar/Layout.jsx"
+    "src/components/Navbar/Layout.tsx",
+    "src/components/Main/Main.tsx",
+    "src/components/TrendLayout/TrendLayout.tsx"
   ],
   "exclude": ["node_modules"]
 }

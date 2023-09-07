@@ -1,4 +1,4 @@
-import { Context } from '@store/context';
+import MainContextProvider from '@store/context';
 import '@styles/global.css';
 import Script from 'next/script';
 
@@ -21,9 +21,9 @@ export default function MyApp({ Component, pageProps }) {
             gtag('config', 'G-BF1MZ6YJGH');
         `}
       </Script>
-      <Context>
+      <MainContextProvider>
         <Component {...pageProps} />
-      </Context>
+      </MainContextProvider>
     </>
   );
 }

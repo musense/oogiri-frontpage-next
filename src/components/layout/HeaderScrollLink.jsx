@@ -21,16 +21,16 @@ const HeaderScrollLink = ({
   }, [to]);
 
   const scrollHandler = useCallback((e, destObject) => {
-    dispatch({ type: 'CLOSE_MENU' })
     if (!destObject) return
     if (disableScroll) return
     e.preventDefault()
-    const { top: destTop } = destObject.getBoundingClienRect()
+    // console.log("🚀 ~ file: HeaderScrollLink.jsx:28 ~ scrollHandler ~ destObject:", destObject)
+    const { top: destTop } = destObject.getBoundingClientRect()
     window.scrollBy({
       top: destTop + offset,
       behavior: 'smooth',
     })
-  }, [dispatch, offset, disableScroll]);
+  }, [offset, disableScroll]);
 
   const mainClassName = className ? styles[className] : styles['nav-button']
 

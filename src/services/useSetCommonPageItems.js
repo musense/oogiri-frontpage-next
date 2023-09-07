@@ -1,16 +1,26 @@
 import { useEffect } from "react";
 
-export default function useSetCommonPageItems(commonPageItems, dispatch) {
+export default function useSetCommonPageItems({
+    pageType,
+    itemPage,
+    dispatch }) {
 
     useEffect(() => {
-        dispatch({
-            type: "RESET_FILTER_STATE",
-        })
-        dispatch({
-            type: "SET_ALL_CONTENTS",
-            payload: {
-                contents: commonPageItems,
-            }
-        })
-    }, [commonPageItems, dispatch]);
+        if (['tag-page', 'all-content-page'].some(type => type === pageType)) {
+            if (!itemPage?.currentPage) return
+            dispatch({
+                type: "INITIAL_PAGE_STATUS",
+                payload: {
+                    currentPage: itemPage.currentPage,
+                    totalCount: itemPage.totalCount,
+                    totalPage: itemPage.totalPage,
+                }
+            })
+        }
+    }, [
+        pageType,
+        itemPage?.currentPage,
+        itemPage?.totalCount,
+        itemPage?.totalPage,
+        dispatch]);
 }
