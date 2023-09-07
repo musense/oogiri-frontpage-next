@@ -7,9 +7,9 @@ export default function FooterLayout({ popularTagList, pathname }) {
   pathname
   const footerClass = pathname === ""
     ? 'index-footer'
-    : pathname.indexOf('/tag_') !== -1
-      ? 'tag-footer'
-      : 'all-content-footer'
+    : pathname.indexOf('/p') !== -1
+      ? 'content-footer'
+      : 'tag-footer'
 
   return (
     <footer className={`footer-wrapper ${footerClass}`}>

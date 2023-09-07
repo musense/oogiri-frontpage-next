@@ -21,20 +21,20 @@ export const getServerSideProps: GetServerSideProps = async () => {
   const newsContentsPromise = getNewsContents(payload)
   const hotContentsPromise = getHotContents(payload)
   const recommendContentsPromise = getRecommendContents(payload)
-  const popularTagsPromise = getPopularTagList(payload)
+  const popularTagListPromise = getPopularTagList(payload)
 
-  const { newsContents, hotContents, recommendContents, popularTags } =
+  const { newsContents, hotContents, recommendContents, popularTagList } =
     await Promise.all([
       newsContentsPromise,
       hotContentsPromise,
       recommendContentsPromise,
-      popularTagsPromise,
+      popularTagListPromise,
     ]).then((res) => {
       const response = {
         newsContents: res[0],
         hotContents: res[1],
         recommendContents: res[2],
-        popularTags: res[3],
+        popularTagList: res[3],
       }
       // console.log('🚀 ~ file: index.tsx:39 ~ ]).then ~ response:', response)
       return response
@@ -45,7 +45,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
       newsContents: newsContents,
       hotContents: hotContents,
       recommendContents: recommendContents,
-      popularTags: popularTags,
+      popularTagList: popularTagList,
     },
   }
 }
@@ -54,7 +54,7 @@ const Home = ({
   newsContents,
   hotContents,
   recommendContents,
-  popularTags,
+  popularTagList,
 }: HomeProps) => {
   return (
     <Main
@@ -66,7 +66,7 @@ const Home = ({
           canonical={process.env.NEXT_PUBLIC_SITE}
         />
       }
-      tags={popularTags}
+      popularTagList={popularTagList}
     >
       <Index
         newsContents={newsContents}

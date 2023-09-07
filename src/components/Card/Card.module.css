@@ -36,7 +36,6 @@
 
 .card.tag-page {
     --card-height: fit-content;
-    --card-wrapper-row-gap: 70px;
 
     & .card-content {
         position: relative;

@@ -25,7 +25,12 @@ import PageTemplate from '@components/page/pageTemplate'
 type CommonProps = InferGetServerSidePropsType<typeof getServerSideProps>
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const { sitemapUrl, currentPage = 1, searchText = '' } = context.query
+  const {
+    sitemapUrl,
+    currentPage = 1,
+    searchText = '',
+    previous,
+  } = context.query
 
   let payload = {
     apiUrl: process.env.NEXT_PUBLIC_SERVER_URL,
@@ -220,8 +225,6 @@ const Page = ({
     <Marketing
       openTitleName={tagPageTitle}
       commonPageItems={commonPageItems}
-      sitemapUrl={sitemapUrl}
-      itemPage={itemPage}
       pageType={pageType}
     />
   )

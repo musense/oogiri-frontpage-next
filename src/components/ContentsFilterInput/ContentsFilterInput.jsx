@@ -8,15 +8,16 @@ export default function ContentsFilterInput() {
 
     const onButtonClick = () => {
         if (inputRef.current === null) return
-        if (inputRef.current.value.length === 0) return
-        router.push(`/${router.query.sitemapUrl}?searchText=${inputRef.current.value}`)
+        console.log("🚀 ~ file: ContentsFilterInput.jsx:13 ~ onButtonClick ~ inputRef.current.value:", inputRef.current.value)
+        router.push(`/${router.query.sitemapUrl}?searchText=${inputRef.current.value}`
+            , undefined, { scroll: false })
     }
 
     const handleKeyPress = (event) => {
         if (event.key === 'Enter') {
             onButtonClick();
         }
-    };
+    }
 
     useEffect(() => {
         if (inputRef.current === null) {
@@ -29,11 +30,12 @@ export default function ContentsFilterInput() {
 
     return <div className={styles['content-filter-container']}>
         <input
+            className={styles['filter-input']}
             ref={inputRef}
             type="text"
             placeholder="入力..."
             onKeyDown={handleKeyPress}
         />
-        <button onClick={onButtonClick}>検索</button>
+        <button className={styles['filter-button']} onClick={onButtonClick}>検索</button>
     </div>;
 }

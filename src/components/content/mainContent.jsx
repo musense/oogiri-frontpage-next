@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import useAddPageView from "@services/useAddPageView";
-import useFormatDate from "@services/useFormatDate";
+import formatDate from "@services/formatDate";
 import PrevAndNextButton from "./PrevAndNextButton";
 import Tag from "./tag";
 
@@ -15,9 +15,17 @@ export default function MainContent({
     // console.log("🚀 ~ file: mainContent.jsx:15 ~ MainContent ~ contentTagsRef:", contentTagsRef)
 
     // useResizeContentTags(contentTagsRef);
-    useAddPageView(content._id, isPreview);
-    const formattedUpdateDate = useFormatDate(content.updatedAt, 'jp')
-    const formattedPublishDate = useFormatDate(content.publishedAt, 'jp')
+    // useAddPageView(content._id, isPreview);
+    const [formattedDate, setFormattedDate] = useState();
+    useEffect(() => {
+        let date
+        if (isPreview) {
+            date = formatDate(content.updatedAt, 'jp')
+        } else {
+            date = formatDate(content.publishedAt, 'jp')
+        }
+        setFormattedDate(date)
+    }, [content.publishedAt, content.updatedAt, isPreview]);
 
     const contentTags = content.tags && <div className="content-tags">{
         content.tags.map((tag, index) => {
@@ -28,9 +36,6 @@ export default function MainContent({
             />
         })}
     </div>
-    const contentPublishedDate = isPreview
-        ? formattedUpdateDate
-        : formattedPublishDate
 
     return (
         <>
@@ -39,7 +44,7 @@ export default function MainContent({
             </h1>
             <div className="content-misc">
                 <div className="content-date-wrapper">
-                    {contentPublishedDate}
+                    {formattedDate}
                 </div>
             </div>
             <div

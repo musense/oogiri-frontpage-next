@@ -4,33 +4,27 @@ import CardWrapper from '@components/marketing/cardWrapper';
 import ContentsFilterInput from '@components/ContentsFilterInput/contentsFilterInput';
 import { useAppContext } from "@store/context";
 import useInitial from "@services/useInitial";
+import styles from './Marketing.module.css'
 
 export default function MarketingPage({
     openTitleName = '',
     commonPageItems,
-    categoryList = null,
-    sitemapUrl = '',
-    itemPage,
     pageType,
 }) {
-    // console.log("🚀 ~ file: Marketing.jsx:17 ~ itemPage:", itemPage)
-    // console.log("🚀 ~ file: Marketing.jsx:17 ~ commonPageItems:", commonPageItems)
 
     const { state, dispatch } = useAppContext();
     useInitial({ state, dispatch })
 
-    const buttonList = <MarketingButtonList categoryList={categoryList} openTitleName={openTitleName} />
+    const buttonList = <MarketingButtonList openTitleName={openTitleName} />
     const filterInput = <ContentsFilterInput />
-    const cardWrapper = <CardWrapper commonPageItems={commonPageItems} />
+    const cardWrapper = <CardWrapper commonPageItems={commonPageItems} styles={styles} />
 
     return (<>
-        {/* {banner} */}
-        <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
+        <div className={styles['marketing-page-top']}>
             {buttonList}
             {pageType === 'all-content-page' && filterInput}
         </div>
         {cardWrapper}
-        {/* {cardFooter} */}
     </>);
 }
 

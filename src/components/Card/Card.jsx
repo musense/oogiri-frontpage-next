@@ -3,7 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import styles from './Card.module.css'
 import Tag from '@components/content/tag';
-import useFormatDate from '@services/useFormatDate';
+import formatDate from '@services/formatDate';
 
 
 export default function Card({
@@ -40,7 +40,7 @@ export default function Card({
 
     // const htmlString = makePTagSurrounded(htmlContent);
 
-    const formattedPublishDate = useFormatDate(publishedAt)
+    const formattedPublishDate = formatDate(publishedAt)
     // console.log("🚀 ~ file: Card.jsx:37 ~ formattedPublishDate:", formattedPublishDate)
 
     const cardContentIntro = (

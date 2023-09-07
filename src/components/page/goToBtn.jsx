@@ -8,14 +8,17 @@ export default function GoToBtn({ category, title, id, type }) {
         if (contentID === null) return
         navigate(`/c/${category}/p/${contentID}`)
     }
+
+    const typeClassName = type === 'prev'
+        ? styles['prev-btn']
+        : type === 'next'
+            ? styles['next-btn']
+            : ''
+
     return (id && title) && (
         <div title={title} onClick={() => goToContent(id)}
-            className={`${styles.btn} ${type === 'prev'
-                ? styles['prev-btn']
-                : type === 'next'
-                    ? styles['next-btn']
-                    : ''}`}>{title}
+            className={`${styles.btn} ${typeClassName}`}> {title}
 
-        </div>
+        </div >
     );
 }

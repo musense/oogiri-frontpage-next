@@ -2,6 +2,7 @@ import { type ReactNode } from 'react'
 import HotTrendWrapper from '@components/content/hotTrendWrapper'
 import { useAppContext } from '@store/context'
 import useSetCommonPageItems from '@services/useSetCommonPageItems'
+import useScrollToPosition from '@services/useScrollToPosition'
 
 type TrendLayoutProps = {
   pageType: string
@@ -20,6 +21,7 @@ export default function TrendLayout({
   bottomPage,
   children,
 }: TrendLayoutProps) {
+  useScrollToPosition()
   const { dispatch } = useAppContext()
   useSetCommonPageItems({
     itemPage,

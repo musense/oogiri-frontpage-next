@@ -63,7 +63,7 @@ export async function getMainContentBySitemapUrl(payload) {
         categories: {
           ...mainContent.categories,
           sitemapUrl: getRenamedContent(mainContent.categories.sitemapUrl) || '#',
-        }
+        },
       }
     })
   const {
@@ -123,23 +123,28 @@ export async function getAllContents(payload) {
   const encodedSearchText = encodeURIComponent(searchText)
   const response = await instance(apiUrl).get(`/editor/frontEnd/getAllEditors?pageNumber=${page}&limit=10&regexSearch=${encodedSearchText}`)
     // .then(res => { console.log("🚀 ~ file: allContents.js:124 ~ getAllContents ~ res:", res); return res })
-    .then(res => res.data)
+    .then(res => {
+      const {
+        totalCount,
+        totalPages,
+        currentPage,
+        data,
+      } = res.data
+      const mappedData = data.length > 0 && data.map(item => {
+        return {
+          ...item,
+          sitemapUrl: getRenamedContent(item.sitemapUrl) || '#'
+        }
+      })
+      return {
+        totalCount,
+        totalPages,
+        currentPage,
+        data: mappedData
+      }
+    })
   // .then(res => { console.log("🚀 ~ file: allContents.js:126 ~ getAllContents ~ res:", res); return res })
-  const {
-    totalCount,
-    totalPages,
-    currentPage,
-    data,
-  } = response
-
-  // console.log("🚀 ~ file: titleContents.js:133 ~ getAllContents ~ data:", JSON.stringify(data, null, 2))
-
-  return {
-    totalCount,
-    totalPages,
-    currentPage,
-    data,
-  }
+  return response
 }
 
 /**
@@ -439,8 +444,19 @@ export async function getPreviewContentByID(payload) {
 export async function getNewsContents(payload) {
   const { apiUrl } = payload
   const response = await instance(apiUrl).get(`/editor/frontEnd/topAndNews`)
-    .then(res => res.data.data)
-  // console.log("🚀 ~ file: previewContent.js:414 ~ getNewsContents ~ response:", response)
+    .then(res => {
+      const {
+        data,
+      } = res.data
+      const mappedData = data.length > 0 && data.map(item => {
+        return {
+          ...item,
+          sitemapUrl: getRenamedContent(item.sitemapUrl) || '#'
+        }
+      })
+      return mappedData
+    })
+  // console.log("🚀 ~ file: titleContents.js:457 ~ getNewsContents ~ response:", response)
   return response
 }
 
@@ -453,7 +469,18 @@ export async function getNewsContents(payload) {
 export async function getHotContents(payload) {
   const { apiUrl } = payload
   const response = await instance(apiUrl).get(`/editor/frontEnd/popular`)
-    .then(res => res.data.data)
+    .then(res => {
+      const {
+        data,
+      } = res.data
+      const mappedData = data.length > 0 && data.map(item => {
+        return {
+          ...item,
+          sitemapUrl: getRenamedContent(item.sitemapUrl) || '#'
+        }
+      })
+      return mappedData
+    })
   // console.log("🚀 ~ file: previewContent.js:414 ~ getHotContents ~ response:", response)
   return response
 }
@@ -467,7 +494,18 @@ export async function getHotContents(payload) {
 export async function getRecommendContents(payload) {
   const { apiUrl } = payload
   const response = await instance(apiUrl).get(`/editor/frontEnd/recommend`)
-    .then(res => res.data.data)
+    .then(res => {
+      const {
+        data,
+      } = res.data
+      const mappedData = data.length > 0 && data.map(item => {
+        return {
+          ...item,
+          sitemapUrl: getRenamedContent(item.sitemapUrl) || '#'
+        }
+      })
+      return mappedData
+    })
   // console.log("🚀 ~ file: previewContent.js:414 ~ getRecommendContents ~ response:", response)
   return response
 }

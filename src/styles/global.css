@@ -1,8 +1,6 @@
 html {
     font-size: 62.5%;
     overflow: auto;
-    scroll-padding-top: 150px;
-    scroll-behavior: smooth;
 }
 
 
@@ -113,6 +111,12 @@ header {
     display: none;
 }
 
+#trend-layout-anchor {
+    position: absolute;
+    top: -198px;
+    left: 0;
+}
+
 nav {
     position: relative;
     display: inline-block;
@@ -199,8 +203,8 @@ nav {
 .index-page .index-middle {
     display: flex;
     flex-direction: row;
-    gap: 155px;
     margin-top: 60px;
+    gap: 155px;
 }
 
 .news-page,
@@ -210,6 +214,18 @@ nav {
     display: flex;
     flex-direction: column;
     padding-top: 100px;
+
+    min-width: 290px;
+    width: fit-content;
+
+    h3 {
+        color: grey;
+        width: inherit;
+        text-align: center;
+        font-size: 28px;
+        white-space: nowrap;
+        font-family: var(--font-tag);
+    }
 }
 
 .news-page::before,
@@ -227,14 +243,18 @@ nav {
 
 .news-page {
     gap: 50px;
+    max-width: 651px;
 
     &::before {
         background-image: url(../assets/img/button_newsTittle_pc.svg);
     }
+
+
 }
 
 .hot-page {
     gap: 42px;
+    max-width: 529px;
 
     &::before {
         background-image: url(../assets/img/button_hotTittle_pc.svg);
@@ -247,8 +267,9 @@ nav {
     row-gap: 105px;
     flex-wrap: wrap;
     justify-content: space-between;
-    width: 1400px;
     padding-top: 220px;
+
+    max-width: 1400px;
 
     &::before {
         width: 717px;
@@ -415,27 +436,6 @@ a {
     gap: 5rem;
 }
 
-.marketing-banner+.btn-marketing-wrapper.upper+.card-wrapper {
-    position: relative;
-    height: 610px;
-    top: unset;
-    left: unset;
-    transform: unset;
-    margin: 20px auto 0;
-}
-
-.marketing-banner+.btn-marketing-wrapper.upper+.card-wrapper+.btn-marketing-wrapper.lower {
-    position: relative;
-    top: unset;
-    left: unset;
-    transform: unset;
-    margin: 40px auto 0;
-}
-
-.marketing-banner+.btn-marketing-wrapper.upper+.card-wrapper+.btn-marketing-wrapper.lower+.hot-content-container {
-    margin-top: 100px;
-}
-
 .btn-marketing-wrapper {
     position: relative;
     margin: 0 auto;
@@ -452,17 +452,28 @@ a {
         justify-content: space-between;
         align-items: center;
         width: 330px;
+        flex-shrink: 0;
+        font-family: var(--font-title);
+        font-size: 16px;
 
         span {
             padding: 0 5px;
         }
     }
 
-    .prev {}
+    .prev {
+        span {
+            margin-left: auto;
+        }
+    }
 
     .next {
         margin-left: auto;
         flex-direction: row-reverse;
+
+        span {
+            margin-right: auto;
+        }
     }
 }
 
@@ -489,10 +500,12 @@ a {
     width: var(--btn-marketing-width);
     height: var(--btn-marketing-height);
 
+    background-color: var(--theme-background-color);
     background-position: center;
     background-size: contain;
     background-repeat: no-repeat;
     flex-shrink: 0;
+    border: unset;
 }
 
 .btn-marketing.prev {
@@ -525,40 +538,6 @@ a {
     line-height: 1.2;
 
     color: #23b8bc;
-    font-family: var(--font-tag);
-}
-
-.card-wrapper {
-    --card-height: 275px;
-    --card-wrapper-row-gap: 70px;
-    --card-wrapper-repeat: 3;
-    --card-wrapper-width: fit-content;
-    position: relative;
-    height: fit-content;
-    display: flex;
-    flex-direction: column;
-    flex-wrap: nowrap;
-
-    margin-top: 75px;
-    width: var(--card-wrapper-width);
-    row-gap: var(--card-wrapper-row-gap);
-}
-
-.card-wrapper:has(h3) {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    width: unset;
-    /* height: calc(var(--card-height) * 2 + var(--card-wrapper-row-gap)); */
-}
-
-.card-wrapper>h3 {
-    color: grey;
-    width: inherit;
-    text-align: center;
-    font-size: 28px;
-    white-space: nowrap;
     font-family: var(--font-tag);
 }
 
@@ -879,6 +858,8 @@ a {
     font-size: var(--tag-size);
 
     color: var(--vice-color-hex);
+
+    margin-bottom: 90px;
 }
 
 .content-main-content {
@@ -891,8 +872,8 @@ a {
     height: fit-content;
     margin-top: 10px;
     margin-bottom: 30px;
-    letter-spacing: 2px;
-    line-height: 1.2;
+    letter-spacing: 3px;
+    line-height: 1.5;
     text-align: left;
     font-family: var(--font-content);
 }
@@ -992,7 +973,7 @@ a {
     font-size: var(--normal-font-size);
     width: fit-content;
     height: auto;
-    line-height: initial;
+    line-height: inherit;
     margin-bottom: 0.5rem;
 }
 
@@ -1261,6 +1242,10 @@ a {
         margin-top: 110px;
     }
 
+    &.content-footer {
+        margin-top: 80px;
+    }
+
 }
 
 .top-side,
@@ -1382,7 +1367,7 @@ a {
         .content-bottom {
             position: relative;
             width: 100%;
-            height: 500px;
+            max-height: 500px;
         }
     }
 
@@ -1506,15 +1491,6 @@ a {
         width: fit-content;
     }
 
-    .card-wrapper {
-        --card-wrapper-repeat: 2;
-        position: relative;
-        top: unset;
-        left: unset;
-        transform: unset;
-        margin: 30px auto 0;
-    }
-
     .page-wrapper,
     .btn-marketing-wrapper.lower {
         position: relative;
@@ -1526,10 +1502,6 @@ a {
 
     .hot-content-container {
         margin-top: 30px;
-    }
-
-    .marketing-banner+.btn-marketing-wrapper.upper+.card-wrapper {
-        height: fit-content;
     }
 }
 
@@ -1547,9 +1519,6 @@ a {
 }
 
 @media (max-width: 768px) {
-    html {
-        scroll-padding-top: 200000rem;
-    }
 
     :root {
         --header-height: 8rem;
@@ -1768,31 +1737,6 @@ a {
     .btn-marketing:not(div).active {
         background-color: var(--theme-color-hex);
         color: white;
-    }
-
-    .marketing-banner+.btn-marketing-wrapper.upper+.card-wrapper+.btn-marketing-wrapper.lower+.hot-content-container {
-        margin-top: 5rem;
-    }
-
-    .card-wrapper {
-        --card-height: fit-content;
-        --card-wrapper-row-gap: 6rem;
-        --card-wrapper-width: calc(370px * 3);
-        position: relative;
-        margin-top: 5rem;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        height: fit-content;
-        width: 100%;
-        row-gap: 5rem;
-        top: unset;
-        left: unset;
-        transform: unset;
-    }
-
-    .card-wrapper.no-card>h3 {
-        font-size: 3rem;
     }
 
     .hot-content-container {

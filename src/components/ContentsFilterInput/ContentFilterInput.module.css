@@ -3,4 +3,23 @@
     flex-direction: row;
     flex-wrap: nowrap;
     align-items: center;
+
+    >* {
+        height: 30px;
+        font-size: 18px;
+        box-sizing: border-box;
+        font-family: '__tagFont_33696b';
+    }
+
+    .filter-input {
+        width: 200px;
+    }
+
+    .filter-button {
+        width: 50px;
+        background-color: #23b8bc;
+        color: #fff;
+        border: unset;
+        line-height: 1;
+    }
 }

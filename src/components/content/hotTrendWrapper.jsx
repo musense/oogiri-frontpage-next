@@ -27,6 +27,7 @@ const HotTrendWrapper = ({
     }
 
     return <div className={`trend-layout ${pageType}`}>
+        <div id='trend-layout-anchor' />
         <div className={'content-top'}>
             <div className={`content-left-side`}>
                 {children}

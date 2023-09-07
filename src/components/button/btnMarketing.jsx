@@ -24,7 +24,7 @@ export default function BtnMarketing({
     className: cancelHoverState
       ? `btn-marketing ${className} `
       : `btn-marketing ${className} ${active ? "active" : ""}`,
-    onClick: callback,
+    onClick: () => callback(),
   }
 
   const linkComponent = <Link {...linkProps}>{name}</Link>;

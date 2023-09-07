@@ -1,4 +1,4 @@
-export default function useFormatDate(
+export default function formatDate(
     date = undefined,
     locale = 'ko-KR'
 ) {
