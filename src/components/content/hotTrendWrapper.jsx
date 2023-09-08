@@ -8,13 +8,15 @@ const HotTrendWrapper = ({
     children
 }) => {
     const { state } = useAppContext();
-    const content = state.popularTagList && state.popularTagList.map((tag, index) => {
-        return <Tag
-            key={index}
-            href={tag.sitemapUrl}
-            tagName={`# ${tag.name}`}
-        />;
-    })
+
+    const content = state.clientWidth > 768 &&
+        state.popularTagList && state.popularTagList.map((tag, index) => {
+            return <Tag
+                key={index}
+                href={tag.sitemapUrl}
+                tagName={`# ${tag.name}`}
+            />;
+        })
     let contentBottom = (
         <div className={`content-bottom`}>
             {bottomPage}
@@ -32,12 +34,12 @@ const HotTrendWrapper = ({
             <div className={`content-left-side`}>
                 {children}
             </div>
-            <div className={`content-right-side`}>
+            {state.clientWidth > 768 && <div className={`content-right-side`}>
                 <div className="hot-trend" />
                 <div className="hot-tag-wrapper">
                     {content}
                 </div>
-            </div>
+            </div>}
         </div>
         {contentBottom}
     </div>

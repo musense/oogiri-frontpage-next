@@ -1,0 +1,28 @@
+.MuiMobileStepper-dot {
+    --dot-size: 12px;
+    width: var(--dot-size);
+    height: var(--dot-size);
+
+    @media (max-width: 768px) {
+        --dot-size: 0.5rem;
+    }
+}
+
+.MuiMobileStepper-dots {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    height: 100%;
+    gap: 50px;
+    margin-bottom: 45px;
+
+    @media (max-width: 768px) {
+        gap: 1.5rem;
+        margin-bottom: 2rem;
+    }
+}
+
+
+.MuiMobileStepper-dotActive {
+    background-color: var(--vice-color-hex);
+}

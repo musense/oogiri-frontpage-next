@@ -5,6 +5,8 @@ import SwipeableViews from 'react-swipeable-views';
 import { autoPlay } from 'react-swipeable-views-utils';
 
 import React, { useState, useCallback } from "react";
+import { useAppContext } from "@store/context";
+import styles from './css/Banner.module.css'
 
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 
@@ -28,7 +30,7 @@ const images = [
 ];
 
 export default function Banner() {
-
+    const { state } = useAppContext();
     const [activeStep, setActiveStep] = useState(0);
 
     let maxSteps = images.length
@@ -52,9 +54,7 @@ export default function Banner() {
     };
 
     return (
-        <Box
-            className="index-banner"
-            sx={{ flexGrow: 1 }}>
+        <Box className={styles['index-banner']}>
             <AutoPlaySwipeableViews
                 interval={4000}
                 axis={'x'}
@@ -67,14 +67,8 @@ export default function Banner() {
                     <div key={index}>
                         {Math.abs(activeStep - index) <= 2 ? (
                             <Box
+                                className={styles['index-banner-img']}
                                 component="img"
-                                sx={{
-                                    display: 'block',
-                                    width: '100%',
-                                    height: '636px',
-                                    overflow: 'hidden',
-                                    objectFit: 'cover',
-                                }}
                                 src={step.imgPath}
                             />
                         ) : null}
@@ -82,23 +76,23 @@ export default function Banner() {
                 ))}
             </AutoPlaySwipeableViews>
             <MobileStepper
-                className='stepper'
+                className={styles['stepper']}
                 steps={maxSteps}
                 activeStep={activeStep}
-                nextButton={
-                    <Button
-                        className="banner-icon"
-                        size="small"
-                        onClick={handleNext}>
-                        <div className="banner-icon next" />
-                    </Button>
-                }
                 backButton={
                     <Button
-                        className="banner-icon"
+                        className={styles['banner-icon']}
                         size="small"
                         onClick={handleBack}>
-                        <div className="banner-icon prev" />
+                        <div className={`${styles['banner-icon']} ${styles['prev']}`} />
+                    </Button>
+                }
+                nextButton={
+                    <Button
+                        className={styles['banner-icon']}
+                        size="small"
+                        onClick={handleNext}>
+                        <div className={`${styles['banner-icon']} ${styles['next']}`} />
                     </Button>
                 }
             />

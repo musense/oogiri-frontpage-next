@@ -8,11 +8,9 @@ export default function NavWrapper() {
   const navRef = useRef(null);
 
   const navHandler = useCallback((e) => {
-    // console.log(e.type)
     e.preventDefault()
   }, [])
   const liHandler = useCallback((e) => {
-    // console.log(e);
     e.stopPropagation()
   }, [])
 
@@ -34,7 +32,8 @@ export default function NavWrapper() {
     }
   }, [navRef, navHandler, liHandler]);
 
-  return <nav ref={navRef} className={`${state.menuOpen ? 'active' : ''}`}>
+  return <nav ref={navRef}
+  >
     <ul>
       <li>
         <HeaderScrollLink

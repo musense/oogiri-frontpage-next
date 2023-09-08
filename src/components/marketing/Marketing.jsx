@@ -15,7 +15,7 @@ export default function MarketingPage({
     const { state, dispatch } = useAppContext();
     useInitial({ state, dispatch })
 
-    const buttonList = <MarketingButtonList openTitleName={openTitleName} />
+    const buttonList = <MarketingButtonList pageType={pageType} openTitleName={openTitleName} />
     const filterInput = <ContentsFilterInput />
     const cardWrapper = <CardWrapper commonPageItems={commonPageItems} styles={styles} />
 

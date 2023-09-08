@@ -4,7 +4,7 @@ import { useMemo } from "react"
 function Dots({ value }) {
     return (
         <PageButton
-            styles="dots"
+            className="dots"
             label="···"
             value={value}
         />
@@ -13,7 +13,7 @@ function Dots({ value }) {
 
 function FirstButton() {
     return <PageButton
-        styles={"toFirst"}
+        className={"toFirst"}
         label={'<<'}
         value={1}
     />;
@@ -21,7 +21,7 @@ function FirstButton() {
 
 function LastButton({ totalPage }) {
     return <PageButton
-        styles={"toLast"}
+        className={"toLast"}
         label={'>>'}
         value={totalPage}
     />;
@@ -29,7 +29,7 @@ function LastButton({ totalPage }) {
 
 function NextButton({ currentPage, totalPage }) {
     return <PageButton
-        styles={"next"}
+        className={"next"}
         label={'>'}
         value={currentPage + 1 > totalPage ? totalPage : currentPage + 1}
     />;
@@ -37,13 +37,14 @@ function NextButton({ currentPage, totalPage }) {
 
 function PrevButton({ currentPage }) {
     return <PageButton
-        styles={"prev"}
+        className={"prev"}
         label={'<'}
         value={currentPage - 1 < 1 ? 1 : currentPage - 1}
     />;
 }
 
 function PageNumber({
+    styles,
     currentPage,
     totalPage,
     deviceType,
@@ -88,7 +89,7 @@ function PageNumber({
             if (showDots === false) {
                 return <PageButton
                     key={index}
-                    styles={currentPage === value ? 'active number' : "number"}
+                    className={currentPage === value ? 'active number' : "number"}
                     label={value}
                     value={(value)} />
             }
@@ -96,7 +97,7 @@ function PageNumber({
                 if (index < __MAX_SHOW_NUMBERS__ - 1) {
                     return <PageButton
                         key={index}
-                        styles={currentPage === value ? 'active number' : "number"}
+                        className={currentPage === value ? 'active number' : "number"}
                         label={value}
                         value={(value)}
                     />
@@ -116,7 +117,7 @@ function PageNumber({
                 }
                 return <PageButton
                     key={index}
-                    styles={currentPage === value ? 'active number' : "number"}
+                    className={currentPage === value ? 'active number' : "number"}
                     label={value}
                     value={value} />
             }
@@ -129,7 +130,7 @@ function PageNumber({
                 } else {
                     return <PageButton
                         key={index}
-                        styles={currentPage === value ? 'active number' : "number"}
+                        className={currentPage === value ? 'active number' : "number"}
                         label={value}
                         value={(value)}
                     />
@@ -140,7 +141,7 @@ function PageNumber({
         pageView = showArray && showArray.map((value, index) => {
             return <PageButton
                 key={index}
-                styles={currentPage === value ? 'active number' : "number"}
+                className={currentPage === value ? 'active number' : "number"}
                 label={value}
                 value={(value)} />
         });

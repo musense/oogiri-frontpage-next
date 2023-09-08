@@ -21,20 +21,20 @@ export default function HeaderLayout() {
 
   return (
     <header>
-      {state.clientWidth <= 768 && <>
+      {/* {state.clientWidth <= 768 && <>
         {prevState && <NavBackDrop />}
         <Hamburger />
       </>
-      }
+      } */}
       <Logo type={'main'} />
 
 
-      <div className={'navbar-icon'}>
+      {state.clientWidth > 768 && <div className={'navbar-icon'}>
         {/* <CommunityIcon type={'twitter'} />
         <CommunityIcon type={'blog'} />
         <CommunityIcon type={'facebook'} />
         <CommunityIcon type={'instagram'} /> */}
-      </div>
+      </div>}
       <div className={'navbar-wrapper'}>
         <NavWrapper />
       </div>

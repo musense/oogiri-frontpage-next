@@ -3,6 +3,20 @@
     flex-direction: row;
     justify-content: space-between;
     width: 650px;
+
+    @media (max-width: 768px) {
+        flex-direction: column;
+        width: 100%;
+        align-items: center;
+
+
+    }
+}
+
+@media (max-width: 768px) {
+    .marketing-page-top:has(>*:not(:first-child:nth-last-child(1))) {
+        gap: 3rem;
+    }
 }
 
 .card-wrapper {

@@ -1,5 +1,6 @@
 import MainContextProvider from '@store/context';
 import '@styles/global.css';
+import '@components/layout/css/Banner.css';
 import Script from 'next/script';
 
 export default function MyApp({ Component, pageProps }) {

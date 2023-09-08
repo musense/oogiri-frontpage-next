@@ -20,6 +20,11 @@
     height: 80px;
     background-image: url(../../assets/img/button_trend.svg);
     cursor: default;
+
+    @media (max-width:768px) {
+        width: 100%;
+        height: 5rem;
+    }
 }
 
 .facebook {
@@ -28,4 +33,12 @@
 
 .instagram {
     background-image: url(../../assets/img/button_ig_icon.svg);
+}
+
+.tagIconGreen {
+    --green-tag-icon-size: 2.5rem;
+    width: var(--green-tag-icon-size);
+    height: var(--green-tag-icon-size);
+    rotate: -15deg;
+    background-image: url(../../assets/img/button_tagIcon_green.svg);
 }
