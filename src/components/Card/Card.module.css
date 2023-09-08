@@ -11,6 +11,14 @@
         font-family: var(--font-title);
     }
 
+    @media (max-width: 768px) {
+        .card-title {
+            height: fit-content;
+            width: inherit;
+            text-align: center;
+        }
+    }
+
     .card-content {
         &::after {
             content: "";
@@ -19,10 +27,22 @@
             left: 6px;
             display: none;
         }
+
+        @media (max-width: 768px) {
+            &::after {
+                left: 32px;
+            }
+        }
     }
 
     .card-cont-intro {
         font-family: var(--font-content);
+    }
+}
+
+@media (max-width: 768px) {
+    .card {
+        width: 80vw;
     }
 }
 
@@ -32,6 +52,23 @@
     gap: 27px;
     width: fit-content;
     margin-left: auto;
+}
+
+@media (max-width: 768px) {
+    .card-content {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+        width: 100%;
+        align-items: center;
+        padding: 0 2.5rem;
+        box-sizing: border-box;
+
+        &>div:first-child {
+            width: 100%;
+            height: 16rem;
+        }
+    }
 }
 
 .card.tag-page {
@@ -144,14 +181,38 @@
         }
     }
 
+    @media (max-width: 768px) {
+        .card-info {
+            width: 100%;
+
+            .card-title {
+                width: inherit;
+                border-left: unset;
+                padding-left: unset;
+
+            }
+        }
+    }
+
     .card-more-button {
         margin-top: -10px;
         margin-right: -10px;
         background-image: url(./../../assets/img/button_more.svg);
+
         width: 92px;
         height: 33px;
         align-self: flex-end;
         filter: drop-shadow(1px 2px 2px rgb(0 0 0/0.3));
+    }
+
+    @media (max-width: 768px) {
+        .card-more-button {
+            background-image: url(./../../assets/img/button_more_line.svg);
+            align-self: center;
+            filter: unset;
+            width: 8rem;
+            height: 3rem;
+        }
     }
 }
 
@@ -168,6 +229,12 @@
 
         .card-content-intro {
             width: inherit;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .card-info {
+            width: 100%;
         }
     }
 
@@ -200,13 +267,45 @@
             background-image: url(../../assets/img/button_5th.svg);
         }
     }
+
+    @media (max-width: 768px) {
+        .card-content {
+            gap: 1rem;
+            padding: unset;
+
+            &.order::after {
+                left: 7px;
+            }
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .card.hot {
+        &:not(:first-child) {
+            width: 17rem;
+            align-self: flex-start;
+
+            .card-img {
+                height: 10rem;
+            }
+        }
+    }
 }
 
 .card.recommend {
+    @media (max-width: 768px) {
+        .card-content {
+            width: 100%;
+            padding: unset;
+        }
+    }
+
     .card-info {
         width: 335px;
         align-items: center;
         gap: 10px;
+
 
         .card-title {
             align-self: self-start;
@@ -220,6 +319,23 @@
 
         .card-content-intro {
             width: 100%;
+        }
+    }
+
+
+    @media (max-width: 768px) {
+        .card-info {
+            width: 100%;
+
+            .card-title {
+                text-align: justify;
+            }
+
+            .card-content-intro {
+                .ellipsis {
+                    -webkit-line-clamp: 6;
+                }
+            }
         }
     }
 
@@ -245,12 +361,25 @@
     transition: transform 0.1s linear;
 }
 
+@media (max-width: 768px) {
+    .card-img {
+        width: 100%;
+        height: 16rem;
+    }
+}
+
 .card-info {
     width: 400px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     word-break: break-all;
+}
+
+@media (max-width: 768px) {
+    .card-info {
+        width: 100%;
+    }
 }
 
 .card-title {
@@ -309,79 +438,10 @@
 
 }
 
-.card-tag {
-    display: block;
-    overflow: hidden;
-    color: #f88d2a;
-    background-color: #fff;
-    padding-right: 30px;
-    width: 230px;
-    height: 11px;
-}
-
-.card-tag>span {
-    display: inline-block;
-    /* These have to be inline block to wrap correctly */
-    position: relative;
-    /* Give the ellipsis an anchor point so it's positioned after the element */
-    background-color: #fff;
-    /* Cover the ellipsis of the previous element with the same background color */
-    white-space: pre;
-    /* Make sure the only point where wrapping is allowed is before a comma */
-}
-
-.card-tag>span:after {
-    position: absolute;
-    /* Take the ellipsis out of the flow, so the next item will cover it */
-    content: "…";
-    /* Each span has an ellipsis */
-}
-
-.card-tag>span:last-child:after {
-    content: "";
-    /* Except for the last one */
-}
-
-.card-create-date {
-    color: #53575a;
-}
-
 @media (hover:hover) {
 
     .card:hover .card-img {
         transform: scale(1.05);
     }
 
-}
-
-@media (max-width: 768px) {
-    .card {
-        width: 80vw;
-    }
-
-    .card>div {
-        display: flex;
-        flex-direction: column;
-        gap: 2rem;
-        width: fit-content;
-    }
-
-    .card-title {
-        height: fit-content;
-        text-align: center;
-    }
-
-    .card-footer {
-        position: relative;
-        justify-content: center;
-        width: 100%;
-        word-break: keep-all;
-        height: fit-content;
-    }
-
-    .card-tag {
-        text-align: left;
-        line-height: 1.6;
-        height: 1.6rem;
-    }
 }

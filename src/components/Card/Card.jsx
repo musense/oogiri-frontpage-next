@@ -4,6 +4,7 @@ import Link from 'next/link';
 import styles from './Card.module.css'
 import Tag from '@components/content/tag';
 import formatDate from '@services/formatDate';
+import { useAppContext } from "@store/context";
 
 
 export default function Card({
@@ -12,6 +13,7 @@ export default function Card({
     content: data
 }) {
 
+    const { state } = useAppContext();
     const maxShowTagNumber = 3
     const {
         homeImagePath,
@@ -108,7 +110,7 @@ export default function Card({
                     <div className={styles['card-title']}>
                         <span>{title}</span>
                     </div>
-                    {cardContentIntro}
+                    {state.clientWidth > 768 && cardContentIntro}
                     <div className={styles['card-more-button']} />
                 </div>
             </div>
@@ -134,7 +136,7 @@ export default function Card({
                     <div className={styles['card-title']}>
                         <span>{title}</span>
                     </div>
-                    {cardContentIntro}
+                    {state.clientWidth > 768 && cardContentIntro}
                 </div>
             </div>
         }
