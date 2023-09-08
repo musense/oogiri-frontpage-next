@@ -4,7 +4,7 @@
     height: var(--dot-size);
 
     @media (max-width: 768px) {
-        --dot-size: 0.8rem;
+        --dot-size: 0.5rem;
     }
 }
 
@@ -17,7 +17,8 @@
     margin-bottom: 45px;
 
     @media (max-width: 768px) {
-        gap: 2rem;
+        gap: 1.5rem;
+        margin-bottom: 2rem;
     }
 }
 
