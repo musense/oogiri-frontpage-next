@@ -1312,67 +1312,6 @@ a {
     margin-left: auto;
 }
 
-.footer-wrapper {
-    position: relative;
-    background-color: var(--theme-black-color-hex);
-    height: calc(56px + 275px);
-    width: 100%;
-
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-
-    .footer-box {
-        height: 275px;
-        width: inherit;
-        background-color: var(--theme-color-hex);
-        display: flex;
-        flex-direction: column;
-        justify-content: space-evenly;
-        align-items: center;
-    }
-
-    &.index-footer {
-        margin-top: 200px;
-    }
-
-    &.tag-footer,
-    &.all-content-footer {
-        margin-top: 110px;
-    }
-
-    &.content-footer {
-        margin-top: 80px;
-    }
-
-}
-
-.top-side,
-.bottom-side {
-    position: relative;
-    display: flex;
-    justify-content: center;
-}
-
-.top-side {
-    flex-direction: row;
-    align-items: center;
-    gap: 30px;
-    width: 482px;
-}
-
-.bottom-side {
-    width: 800px;
-    font-size: 16px;
-    flex-wrap: wrap;
-    color: white;
-    row-gap: 24px;
-
-    &>a {
-        margin: 0 35px;
-    }
-}
-
 .button-box {
     position: inherit;
     display: flex;
@@ -2329,43 +2268,6 @@ a {
         font-size: 1.5rem;
         color: grey;
         width: 50%;
-    }
-
-    .footer-wrapper {
-        height: 36rem;
-        margin-top: 0;
-        padding-top: 3rem;
-        box-sizing: border-box;
-    }
-
-    .footer-box {
-        align-items: center;
-        flex-direction: column;
-        gap: 1.5rem;
-        height: fit-content;
-        justify-content: center;
-        margin: unset;
-        width: calc(100% - 3.6rem);
-    }
-
-    .top-side,
-    .bottom-side {
-        width: 100%;
-        line-height: 1;
-    }
-
-    .top-side {
-        width: 100%;
-        align-items: center;
-        gap: 1.5rem;
-        font-size: 1rem;
-        letter-spacing: 0.2rem;
-    }
-
-    .bottom-side {
-        font-size: 0.9rem;
-        align-items: center;
-        gap: 1rem;
     }
 
     .button-box {
