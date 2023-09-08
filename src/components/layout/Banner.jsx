@@ -5,6 +5,7 @@ import SwipeableViews from 'react-swipeable-views';
 import { autoPlay } from 'react-swipeable-views-utils';
 
 import React, { useState, useCallback } from "react";
+import { useAppContext } from "@store/context";
 
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 
@@ -28,7 +29,7 @@ const images = [
 ];
 
 export default function Banner() {
-
+    const { state } = useAppContext();
     const [activeStep, setActiveStep] = useState(0);
 
     let maxSteps = images.length
@@ -51,6 +52,13 @@ export default function Banner() {
         setActiveStep(step);
     };
 
+    const sxStyle = {
+        display: 'block',
+        width: '100%',
+        height: state.clientWidth > 768 ? '636px' : '18rem',
+        overflow: 'hidden',
+        objectFit: 'cover',
+    }
     return (
         <Box
             className="index-banner"
@@ -68,13 +76,7 @@ export default function Banner() {
                         {Math.abs(activeStep - index) <= 2 ? (
                             <Box
                                 component="img"
-                                sx={{
-                                    display: 'block',
-                                    width: '100%',
-                                    height: '636px',
-                                    overflow: 'hidden',
-                                    objectFit: 'cover',
-                                }}
+                                sx={sxStyle}
                                 src={step.imgPath}
                             />
                         ) : null}
