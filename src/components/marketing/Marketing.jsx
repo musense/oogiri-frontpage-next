@@ -1,7 +1,7 @@
 import React from "react";
 import MarketingButtonList from '@components/marketing/marketingButtonList';
 import CardWrapper from '@components/marketing/cardWrapper';
-import ContentsFilterInput from '@components/ContentsFilterInput/contentsFilterInput';
+import ContentsFilterInput from '@components/ContentsFilterInput/ContentsFilterInput';
 import { useAppContext } from "@store/context";
 import useInitial from "@services/useInitial";
 import styles from './Marketing.module.css'
