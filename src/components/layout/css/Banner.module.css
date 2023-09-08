@@ -1,10 +1,15 @@
 .index-banner {
+    position: relative;
     margin-top: var(--header-height);
 
     width: 100%;
     border-radius: 6px;
     background-color: grey;
     filter: drop-shadow(0px 7px 6px rgba(0 0 0/0.6));
+
+    @media (max-width: 768px) {
+        filter: unset;
+    }
 
     .index-banner-img {
         display: block;
@@ -19,37 +24,6 @@
         inset: 0;
         background-color: transparent;
         padding: unset;
-
-        .MuiMobileStepper-dot {
-            --dot-size: 12px;
-            width: var(--dot-size);
-            height: var(--dot-size);
-        }
-
-        @media (max-width: 768px) {
-            .MuiMobileStepper-dot {
-                --dot-size: 0.8rem;
-            }
-        }
-
-        .MuiMobileStepper-dots {
-            display: flex;
-            flex-direction: row;
-            align-items: flex-end;
-            height: 100%;
-            gap: 50px;
-            margin-bottom: 45px;
-        }
-
-        @media (max-width: 768px) {
-            .MuiMobileStepper-dots {
-                gap: 2rem;
-            }
-        }
-
-        .MuiMobileStepper-dotActive {
-            background-color: var(--vice-color-hex);
-        }
     }
 
     .banner-icon {

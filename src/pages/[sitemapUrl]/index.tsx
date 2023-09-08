@@ -219,11 +219,11 @@ const Page = ({
     />
   )
 
-  const tagPageTitle = pageType === 'tag-page' ? `# ${mainTitle}` : mainTitle
+  // const tagPageTitle = pageType === 'tag-page' ? `# ${mainTitle}` : mainTitle
   // console.log('🚀 ~ file: index.tsx:221 ~ tagPageTitle:', tagPageTitle)
   const tagPage = (
     <Marketing
-      openTitleName={tagPageTitle}
+      openTitleName={mainTitle}
       commonPageItems={commonPageItems}
       pageType={pageType}
     />

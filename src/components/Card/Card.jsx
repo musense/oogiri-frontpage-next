@@ -71,7 +71,7 @@ export default function Card({
                         }}
                     />
                         : <div />}
-                    {tagNameArray && tagNameArray.map((tag, index) =>
+                    {state.clientWidth > 768 && tagNameArray && tagNameArray.map((tag, index) =>
                         <Tag
                             key={index}
                             tagName={tag}

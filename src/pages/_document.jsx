@@ -5,7 +5,7 @@ export default function Document() {
     <Html lang='zh-tw'>
       <Head />
       <body>
-        <div id="modal-root" />
+        {/* <div id="modal-root" /> */}
         <Main />
         <NextScript />
       </body>

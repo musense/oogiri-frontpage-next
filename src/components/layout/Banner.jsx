@@ -79,20 +79,20 @@ export default function Banner() {
                 className={styles['stepper']}
                 steps={maxSteps}
                 activeStep={activeStep}
+                backButton={
+                    <Button
+                        className={styles['banner-icon']}
+                        size="small"
+                        onClick={handleBack}>
+                        <div className={`${styles['banner-icon']} ${styles['prev']}`} />
+                    </Button>
+                }
                 nextButton={
                     <Button
                         className={styles['banner-icon']}
                         size="small"
                         onClick={handleNext}>
                         <div className={`${styles['banner-icon']} ${styles['next']}`} />
-                    </Button>
-                }
-                backButton={
-                    <Button
-                        className={styles['banner-icon']}
-                        size="small"
-                        onClick={handleNext}>
-                        <div className={`${styles['banner-icon']} ${styles['prev']}`} />
                     </Button>
                 }
             />
