@@ -732,69 +732,6 @@ a {
     filter: drop-shadow(0px 4px 4px rgb(0 0 0/0.2));
 }
 
-.page-wrapper {
-    position: relative;
-    margin: 0 auto;
-
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    justify-content: center;
-    gap: 20px;
-    width: fit-content;
-    user-select: none;
-    font-family: var(--font-title);
-}
-
-.page-wrapper .page {
-    position: relative;
-    width: 30px;
-    height: 30px;
-    box-sizing: border-box;
-    border: 2px solid var(--theme-color-hex);
-    color: var(--theme-color-hex);
-    background-color: transparent;
-    box-shadow: 0px 2px 2px rgba(0 0 0/0.4);
-}
-
-.page-wrapper .page.prev,
-.page-wrapper .page.next,
-.page-wrapper .page.toFirst,
-.page-wrapper .page.toLast {
-    border: unset;
-    color: #fff;
-    background-color: var(--vice-color-hex);
-}
-
-.page-wrapper .page.toFirst,
-.page-wrapper .page.toLast {
-    width: 60px;
-}
-
-.page-wrapper button {
-    background-color: transparent;
-    color: var(--theme-red);
-    font-size: 18px;
-    display: block;
-    padding: unset;
-    margin-top: 0;
-    margin-bottom: 0;
-    text-align: center;
-}
-
-.page-wrapper .page:focus {
-    outline: unset;
-}
-
-.page-wrapper+.btn-marketing-wrapper {
-    top: 950px;
-}
-
-.page-wrapper .page.active {
-    background-color: var(--theme-color-hex);
-    color: #fff;
-    box-shadow: none;
-}
 
 .top-banner-wrapper {
     position: relative;
@@ -1406,11 +1343,6 @@ a {
 }
 
 @media (hover:hover) {
-    .page-wrapper .page:hover {
-        background-color: var(--theme-color-hex);
-        color: #fff;
-    }
-
     .btn-marketing:not(div):hover {}
 
     .btn-marketing:disabled:hover {
@@ -1469,7 +1401,6 @@ a {
         width: fit-content;
     }
 
-    .page-wrapper,
     .btn-marketing-wrapper.lower {
         position: relative;
         top: unset;
@@ -1646,51 +1577,6 @@ a {
         background-color: var(--theme-color-hex);
         height: 1px;
         width: 8rem;
-    }
-
-    .page-wrapper {
-        position: relative;
-        margin: 0 auto;
-        top: unset;
-        left: unset;
-        transform: unset;
-        gap: 1rem;
-    }
-
-    .page-wrapper>div {
-        width: 90vw;
-        gap: 1rem;
-    }
-
-    .page-wrapper .page {
-        border-width: 0.2rem;
-        width: 3rem;
-        height: 3rem;
-        font-size: 1.5rem;
-        background-color: transparent;
-        line-height: 1;
-
-        &:not(&.number) {
-            font-weight: 700;
-        }
-
-        &.number {
-            font-size: 2rem;
-        }
-    }
-
-    .page-wrapper .page.toFirst,
-    .page-wrapper .page.toLast {
-        width: 3.5rem;
-    }
-
-    .page-wrapper+.btn-marketing-wrapper {
-        margin-top: 3rem;
-    }
-
-    .page-wrapper *a.active,
-    .page-wrapper * button.active {
-        font-size: 3rem;
     }
 
     .btn-marketing {

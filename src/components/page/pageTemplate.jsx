@@ -1,5 +1,5 @@
 import React from 'react'
-
+import styles from './pageTemplate.module.css'
 import {
     FirstButton,
     PrevButton,
@@ -16,10 +16,9 @@ const PageTemplate = () => {
 
     const currentPage = Number(router.query.currentPage) || 1;
     const totalPage = state.totalPage || -1
-    // console.log("🚀 ~ file: pageTemplate.jsx:19 ~ PageTemplate ~ totalPage:", totalPage)
     const __MAX_SHOW_NUMBERS__ = state.clientWidth < 768 ? 3 : 5
 
-    const pageContent = <div className={'page-wrapper'}>
+    const pageContent = <div className={styles['page-wrapper']}>
         <FirstButton currentPage={currentPage} />
         <PrevButton currentPage={currentPage} />
         <PageNumber
