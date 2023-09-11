@@ -10,6 +10,10 @@
   cursor: pointer;
   justify-content: space-between;
   user-select: none;
+
+  @media (max-width: 768px) {
+    height: fit-content;
+  }
 }
 
 .nav-button>.nav-text-wrapper,
@@ -56,5 +60,6 @@
 @media (max-width: 768px) {
   .nav-button>.nav-text-wrapper {
     color: white;
+    font-size: 1.5rem;
   }
 }
