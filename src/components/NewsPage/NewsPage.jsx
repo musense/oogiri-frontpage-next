@@ -18,7 +18,7 @@ export default function NewsPage({ contents }) {
                 className="news-page"
                 href={`/c_all_contents.html`}
                 to='c_all_contents.html'
-                name='allContents'
+                name='allContents-new-page'
             />
         </div>
     )

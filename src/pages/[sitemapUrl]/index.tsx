@@ -96,7 +96,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   //* special case
   if (sitemapUrl === 'c_all_contents.html') {
     mainContent = {
-      name: 'すべての記事',
+      name: '記事一覽',
     }
     // console.log('🚀 ~ file: index.tsx:31 ~ sitemapUrl:', sitemapUrl)
     const promiseAllContents = getAllContents(payload)

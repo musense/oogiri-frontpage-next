@@ -176,11 +176,4 @@ export default function Card({
         </Link >
     );
 }
-function makePTagSurrounded(htmlContent) {
-    let html = htmlContent.split('');
-    html.splice(0, 0, '<p>');
-    html.splice(html.length, 0, '</p>');
-    html = html.join('');
-    return html;
-}
 
