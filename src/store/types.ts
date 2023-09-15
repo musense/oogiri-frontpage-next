@@ -39,3 +39,11 @@ export type PopularTagType = {
     sorting: number,
     sitemapUrl: string,
 }
+
+export type BannerListType = {
+    _id: string,
+    name: string,
+    sort: number,
+    hyperlink: string,
+    contentImagePath: string,
+}

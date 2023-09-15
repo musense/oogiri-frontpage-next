@@ -21,6 +21,7 @@ import Marketing from '@components/marketing/Marketing'
 import TrendLayout from '@components/TrendLayout/TrendLayout'
 import ExtendReading from '@components/content/extendReading'
 import PageTemplate from '@components/page/pageTemplate'
+import { getBanners } from '@services/bannerContents'
 
 type CommonProps = InferGetServerSidePropsType<typeof getServerSideProps>
 
@@ -44,6 +45,8 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
   let mainContent
 
+  let promisePopularTagList, promiseBannerList
+
   if (sitemapUrl?.indexOf('p_') !== -1) {
     mainContent = await getMainContentBySitemapUrl(payload)
     if (!mainContent) {
@@ -61,19 +64,22 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     }
     const promisePreviousAndNextPage = getPreviousAndNextPageById(payload)
     const promiseRelatedArticles = getRelatedArticles(payload)
-    const promisePopularTagList = getPopularTagList(payload)
+    promisePopularTagList = getPopularTagList(payload)
+    promiseBannerList = getBanners(payload)
 
-    const { previousAndNextPage, relatedArticles, popularTagList } =
+    const { previousAndNextPage, relatedArticles, popularTagList, bannerList } =
       await Promise.all([
         promisePreviousAndNextPage,
         promiseRelatedArticles,
         promisePopularTagList,
+        promiseBannerList,
       ]).then((res) => {
         // console.log('🚀 ~ file: index.tsx:160 ~ ]).then ~ res:', res)
         return {
           previousAndNextPage: res[0],
           relatedArticles: res[1],
           popularTagList: res[2],
+          bannerList: res[3],
         }
       })
 
@@ -83,6 +89,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
         mainContent: mainContent,
         previousAndNextPage: previousAndNextPage,
         relatedArticles: relatedArticles,
+        bannerList: bannerList,
         popularTagList: popularTagList,
         sitemapUrl: sitemapUrl,
         meta: {
@@ -100,15 +107,18 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     }
     // console.log('🚀 ~ file: index.tsx:31 ~ sitemapUrl:', sitemapUrl)
     const promiseAllContents = getAllContents(payload)
-    const promisePopularTagList = getPopularTagList(payload)
+    promisePopularTagList = getPopularTagList(payload)
+    promiseBannerList = getBanners(payload)
 
-    const { allContents, popularTagList } = await Promise.all([
+    const { allContents, popularTagList, bannerList } = await Promise.all([
       promiseAllContents,
       promisePopularTagList,
+      promiseBannerList,
     ]).then((res) => {
       const response = {
         allContents: res[0],
         popularTagList: res[1],
+        bannerList: res[2],
       }
       // console.log('🚀 ~ file: index.tsx:111 ~ ]).then ~ response:', response)
       return response
@@ -119,6 +129,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
         mainTitle: mainContent.name,
         commonPageItems: allContents.data,
         sitemapUrl: sitemapUrl,
+        bannerList: bannerList,
         popularTagList: popularTagList,
         itemPage: {
           currentPage: allContents.currentPage,
@@ -139,14 +150,16 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     const promiseTagItems = getTagContents(payload)
     const promiseTagInfo = getTagInfo(payload)
     const promisePopularContents = getPopularContents(payload)
-    const promisePopularTagList = getPopularTagList(payload)
+    promisePopularTagList = getPopularTagList(payload)
+    promiseBannerList = getBanners(payload)
 
-    const { tagItems, tagInfo, popularContents, popularTagList } =
+    const { tagItems, tagInfo, popularContents, popularTagList, bannerList } =
       await Promise.all([
         promiseTagItems,
         promiseTagInfo,
         promisePopularContents,
         promisePopularTagList,
+        promiseBannerList,
       ]).then((res) => {
         // console.log('🚀 ~ file: index.tsx:145 ~ ]).then ~ res:', res)
         return {
@@ -154,6 +167,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
           tagInfo: res[1],
           popularContents: res[2],
           popularTagList: res[3],
+          bannerList: res[4],
         }
       })
 
@@ -163,6 +177,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
         commonPageItems: tagItems.data,
         sitemapUrl: sitemapUrl,
         popularContents: popularContents,
+        bannerList: bannerList,
         popularTagList: popularTagList,
         itemPage: {
           currentPage: tagItems.currentPage,
@@ -186,6 +201,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 const Page = ({
   relatedArticles,
   previousAndNextPage,
+  bannerList,
   popularTagList,
   sitemapUrl,
   meta,
@@ -247,6 +263,7 @@ const Page = ({
   return (
     <Main
       meta={metaComponent}
+      bannerList={bannerList}
       popularTagList={popularTagList}
     >
       <TrendLayout
