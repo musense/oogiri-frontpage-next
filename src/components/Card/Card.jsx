@@ -82,7 +82,7 @@ export default function Card({
 
                 <div className={styles['card-info']}>
                     <div className={styles['card-title']}>
-                        <span>{title}</span>
+                        <span className="ellipsis">{title}</span>
                     </div>
                     {cardContentIntro}
                     <div className={`${styles['card-more-button']} ${styles['button-flex-end']}`} />
@@ -108,7 +108,7 @@ export default function Card({
                 /> : <div />}
                 <div className={styles['card-info']}>
                     <div className={styles['card-title']}>
-                        <span>{title}</span>
+                        <span className="ellipsis">{title}</span>
                     </div>
                     {state.clientWidth > 768 && cardContentIntro}
                     <div className={styles['card-more-button']} />
@@ -134,7 +134,7 @@ export default function Card({
                 /> : <div />}
                 <div className={styles['card-info']}>
                     <div className={styles['card-title']}>
-                        <span>{title}</span>
+                        <span className="ellipsis">{title}</span>
                     </div>
                     {state.clientWidth > 768 && cardContentIntro}
                 </div>
@@ -157,7 +157,7 @@ export default function Card({
                 /> : <div />}
                 <div className={styles['card-info']}>
                     <div className={styles['card-title']}>
-                        <span>{title}</span>
+                        <span className="ellipsis">{title}</span>
                     </div>
                     {cardContentIntro}
                     <div className={styles['card-more-button']} />

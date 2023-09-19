@@ -265,7 +265,7 @@
     .card-info {
         position: relative;
         width: 244px;
-        justify-content: space-evenly;
+        justify-content: space-between;
 
         @media (max-width: 768px) {
             width: 100%;
@@ -351,6 +351,7 @@
 
         .card-content-intro {
             width: 100%;
+            height: auto;
         }
 
         @media (max-width: 768px) {
@@ -427,6 +428,8 @@
     color: #4d4867;
     white-space: break-spaces;
     line-height: 1.5;
+    height: 60px;
+    flex-shrink: 0;
 }
 
 .card-content-intro {
