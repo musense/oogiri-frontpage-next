@@ -37,12 +37,10 @@
   display: unset;
   width: 160px;
   text-align: center;
-  background-color: #47cfb9;
   height: 30px;
-  color: #fff;
+  color: var(--vice-color-hex);
   line-height: 30px;
   border-radius: 20px;
-  filter: drop-shadow(2px 2px 3px rgb(0 0 0/0.4));
 }
 
 @media (max-width: 1200px) {

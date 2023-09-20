@@ -2,7 +2,13 @@ const navMap = new Map([
     ['allContents', {
         name: {
             en: 'allContents',
-            ch: 'すべての記事',
+            ch: '記事一覽',
+        },
+    }],
+    ['allContents-new-page', {
+        name: {
+            en: 'allContents',
+            ch: '<<紀事一覽へ>>',
         },
     }],
     ['news', {

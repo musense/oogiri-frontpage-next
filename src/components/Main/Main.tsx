@@ -4,7 +4,7 @@ import { useAppContext } from '@store/context'
 import useSetPopularTagList from '@services/useSetPopularTagList'
 
 import localFont from 'next/font/local'
-import { PopularTagType } from '@store/types'
+import { PopularTagType, BannerListType } from '@store/types'
 const tagFont = localFont({
   weight: '400',
   src: './../../assets/fonts/tag/47214.ttf',
@@ -33,11 +33,12 @@ const contentFont = localFont({
 
 type MainProps = {
   meta: ReactNode
+  bannerList: BannerListType[]
   popularTagList: PopularTagType[]
   children: ReactNode
 }
 
-function Main({ meta, popularTagList, children }: MainProps) {
+function Main({ meta, bannerList, popularTagList, children }: MainProps) {
   const { dispatch } = useAppContext()
   useSetPopularTagList({ popularTagList, dispatch })
 
@@ -49,7 +50,12 @@ function Main({ meta, popularTagList, children }: MainProps) {
       ${contentFont.variable}`}
     >
       {meta}
-      <Layout popularTagList={popularTagList}>{children}</Layout>
+      <Layout
+        bannerList={bannerList}
+        popularTagList={popularTagList}
+      >
+        {children}
+      </Layout>
     </main>
   )
 }

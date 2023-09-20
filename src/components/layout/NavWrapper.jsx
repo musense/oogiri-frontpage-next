@@ -38,13 +38,6 @@ export default function NavWrapper() {
       <li>
         <HeaderScrollLink
           offset={middleOffset}
-          href={`/c_all_contents.html`}
-          to='c_all_contents.html'
-          name='allContents' />
-      </li>
-      <li>
-        <HeaderScrollLink
-          offset={middleOffset}
           href={`/#news`}
           to='#news'
           name='news' />
@@ -62,6 +55,13 @@ export default function NavWrapper() {
           href={`/#recommend`}
           to='#recommend'
           name='recommend' />
+      </li>
+      <li>
+        <HeaderScrollLink
+          offset={middleOffset}
+          href={`/c_all_contents.html`}
+          to='c_all_contents.html'
+          name='allContents' />
       </li>
     </ul>
   </nav>;

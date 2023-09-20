@@ -29,6 +29,7 @@ export default function ContentsFilterInput() {
     }, [inputRef]);
 
     return <div className={styles['content-filter-container']}>
+        <button className={styles['filter-button']} onClick={onButtonClick}>検索</button>
         <input
             className={styles['filter-input']}
             ref={inputRef}
@@ -36,6 +37,5 @@ export default function ContentsFilterInput() {
             placeholder="入力..."
             onKeyDown={handleKeyPress}
         />
-        <button className={styles['filter-button']} onClick={onButtonClick}>検索</button>
     </div>;
 }

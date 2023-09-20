@@ -3,23 +3,48 @@
     flex-direction: row;
     flex-wrap: nowrap;
     align-items: center;
+    justify-content: space-evenly;
+
+    background-image: url(../../assets/img/button_search.svg);
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
 
     >* {
-        height: 30px;
-        font-size: 18px;
+        height: 40px;
         box-sizing: border-box;
         font-family: '__tagFont_33696b';
-    }
 
-    .filter-input {
-        width: 200px;
+        background-color: transparent;
+        border: transparent;
+        color: transparent;
     }
 
     .filter-button {
-        width: 50px;
-        background-color: #23b8bc;
-        color: #fff;
-        border: unset;
-        line-height: 1;
+        width: 55px;
+    }
+
+    .filter-input {
+        width: 210px;
+        font-size: 18px;
+        padding: 0 15px;
+        color: var(--theme-black-color-hex);
+    }
+
+
+    @media (max-width: 768px) {
+        >* {
+            height: 3.5rem;
+        }
+
+        .filter-button {
+            width: 5rem;
+        }
+
+        .filter-input {
+            width: 17rem;
+            font-size: 1.5rem;
+            padding: 0 1.2rem;
+        }
     }
 }

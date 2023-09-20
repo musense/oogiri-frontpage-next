@@ -7,33 +7,15 @@ import { autoPlay } from 'react-swipeable-views-utils';
 import React, { useState, useCallback } from "react";
 import { useAppContext } from "@store/context";
 import styles from './css/Banner.module.css'
+import Link from 'next/link';
 
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 
-const images = [
-    {
-        imgPath:
-            'https://images.unsplash.com/photo-1537944434965-cf4679d1a598?auto=format&fit=crop&w=400&h=250&q=60',
-    },
-    {
-        imgPath:
-            'https://images.unsplash.com/photo-1538032746644-0212e812a9e7?auto=format&fit=crop&w=400&h=250&q=60',
-    },
-    {
-        imgPath:
-            'https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=400&h=250',
-    },
-    {
-        imgPath:
-            'https://images.unsplash.com/photo-1512341689857-198e7e2f3ca8?auto=format&fit=crop&w=400&h=250&q=60',
-    },
-];
-
-export default function Banner() {
+export default function Banner({ bannerList = [] }) {
     const { state } = useAppContext();
     const [activeStep, setActiveStep] = useState(0);
 
-    let maxSteps = images.length
+    let maxSteps = bannerList.length
 
     const handleNext = useCallback(() => {
         setActiveStep((prevActiveStep) => {
@@ -63,14 +45,16 @@ export default function Banner() {
                 onChangeIndex={handleStepChange}
                 enableMouseEvents
             >
-                {images.map((step, index) => (
+                {bannerList.map((step, index) => (
                     <div key={index}>
                         {Math.abs(activeStep - index) <= 2 ? (
-                            <Box
-                                className={styles['index-banner-img']}
-                                component="img"
-                                src={step.imgPath}
-                            />
+                            <Link href={step.hyperlink}>
+                                <Box
+                                    className={styles['index-banner-img']}
+                                    component="img"
+                                    src={step.contentImagePath}
+                                />
+                            </Link>
                         ) : null}
                     </div>
                 ))}
