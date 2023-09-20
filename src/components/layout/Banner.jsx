@@ -7,13 +7,14 @@ import { autoPlay } from 'react-swipeable-views-utils';
 import React, { useState, useCallback } from "react";
 import { useAppContext } from "@store/context";
 import styles from './css/Banner.module.css'
-import Link from 'next/link';
 
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 
 export default function Banner({ bannerList = [] }) {
+    console.log("🚀 ~ file: Banner.jsx:15 ~ Banner ~ bannerList:", bannerList)
     const { state } = useAppContext();
     const [activeStep, setActiveStep] = useState(0);
+    console.log("🚀 ~ file: Banner.jsx:17 ~ Banner ~ activeStep:", activeStep)
 
     let maxSteps = bannerList.length
 
@@ -46,40 +47,38 @@ export default function Banner({ bannerList = [] }) {
                 enableMouseEvents
             >
                 {bannerList.map((step, index) => (
-                    <div key={index}>
-                        {Math.abs(activeStep - index) <= 2 ? (
-                            <Link href={step.hyperlink}>
+                    <a key={index} href={step.hyperlink} target="_blank" rel="noopener noreferrer">
+                        <div >
+                            {Math.abs(activeStep - index) <= 2 ? (
                                 <Box
                                     className={styles['index-banner-img']}
                                     component="img"
                                     src={step.contentImagePath}
                                 />
-                            </Link>
-                        ) : null}
-                    </div>
+                            ) : null}
+                        </div>
+                    </a>
                 ))}
             </AutoPlaySwipeableViews>
-            <MobileStepper
-                className={styles['stepper']}
-                steps={maxSteps}
-                activeStep={activeStep}
-                backButton={
-                    <Button
-                        className={styles['banner-icon']}
-                        size="small"
-                        onClick={handleBack}>
-                        <div className={`${styles['banner-icon']} ${styles['prev']}`} />
-                    </Button>
-                }
-                nextButton={
-                    <Button
-                        className={styles['banner-icon']}
-                        size="small"
-                        onClick={handleNext}>
-                        <div className={`${styles['banner-icon']} ${styles['next']}`} />
-                    </Button>
-                }
+            {/* <div> */}
+            <Button
+                className={`${styles['banner-icon']} ${styles['prev']}`}
+                size="small"
+                onClick={handleBack}
             />
+
+            <div className={styles['stepper-dots']}>
+                {bannerList.map((step, index) => (
+                    <div key={index} className={`${styles['stepper-dot']} ${activeStep === index ? styles['active'] : ''}`} />
+                ))}
+            </div>
+
+            <Button
+                className={`${styles['banner-icon']} ${styles['next']}`}
+                size="small"
+                onClick={handleNext}
+            />
+
         </Box >
     );
 }

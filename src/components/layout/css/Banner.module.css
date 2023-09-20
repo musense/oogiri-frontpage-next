@@ -19,20 +19,66 @@
         object-fit: cover;
     }
 
-    .stepper {
-        position: absolute;
-        inset: 0;
-        background-color: transparent;
-        padding: unset;
-    }
-
     .banner-icon {
+        position: absolute;
+        top: 0;
         width: 200px;
         height: 100%;
         background-position: center;
         background-repeat: no-repeat;
         background-size: 30%;
         cursor: pointer;
+
+        &.prev {
+            left: 0;
+            background-image: url(../../../assets/img/button_bannerLeft.svg);
+
+            &:hover {
+                opacity: 0.8;
+            }
+        }
+
+        &.next {
+            right: 0;
+            background-image: url(../../../assets/img/button_bannerRight.svg);
+
+            &:hover {
+                opacity: 0.8;
+            }
+        }
+    }
+
+    .stepper-dots {
+        position: absolute;
+        bottom: 30px;
+        left: 50%;
+        transform: translateX(-50%);
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        display: flex;
+        flex-direction: row;
+        height: fit-content;
+        gap: 40px;
+    }
+
+    .stepper-dot {
+        --dot-size: 10px;
+        width: var(--dot-size);
+        height: var(--dot-size);
+        border-radius: 50%;
+        background-color: rgba(0, 0, 0, 0.40);
+
+        transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+
+        &.active {
+            background-color: var(--vice-color-hex);
+        }
+
+        @media (max-width: 768px) {
+            --dot-size: 0.5rem;
+        }
     }
 
     @media (max-width: 768px) {
@@ -43,22 +89,6 @@
         .banner-icon {
             width: 8rem;
             background-size: 35%;
-        }
-    }
-
-    .prev {
-        background-image: url(../../../assets/img/button_bannerLeft.svg);
-
-        &:hover {
-            opacity: 0.8;
-        }
-    }
-
-    .next {
-        background-image: url(../../../assets/img/button_bannerRight.svg);
-
-        &:hover {
-            opacity: 0.8;
         }
     }
 }
