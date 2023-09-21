@@ -1,67 +1,116 @@
 import Box from '@mui/material/Box';
-import MobileStepper from '@mui/material/MobileStepper';
 import Button from '@mui/material/Button';
 import SwipeableViews from 'react-swipeable-views';
 import { autoPlay } from 'react-swipeable-views-utils';
-
-import React, { useState, useCallback } from "react";
-import { useAppContext } from "@store/context";
+import React, { useState } from "react";
 import styles from './css/Banner.module.css'
+import ReactPlayer from 'react-player/youtube'
+import { useAppContext } from "@store/context";
 
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 
 export default function Banner({ bannerList = [] }) {
-    console.log("🚀 ~ file: Banner.jsx:15 ~ Banner ~ bannerList:", bannerList)
+
     const { state } = useAppContext();
+    console.log("🚀 ~ file: Banner.jsx:15 ~ Banner ~ bannerList:", bannerList)
+    const [autoPlay, setAutoPlay] = useState(true);
+    const [videoClass, setVideoClass] = useState('start');
     const [activeStep, setActiveStep] = useState(0);
-    console.log("🚀 ~ file: Banner.jsx:17 ~ Banner ~ activeStep:", activeStep)
+    const [light, setLight] = useState(false);
 
     let maxSteps = bannerList.length
 
-    const handleNext = useCallback(() => {
+    const checkBannerTypeAndSetState = (step) => {
+        setLight(false)
+        if (bannerList[step].contentImagePath.indexOf('youtube') !== -1) {
+            setVideoClass('start');
+            setAutoPlay(false);
+        } else {
+            setAutoPlay(true);
+        }
+    }
+
+    const handleNext = () => {
         setActiveStep((prevActiveStep) => {
-            if (prevActiveStep === maxSteps - 1) return 0
+            if (prevActiveStep === maxSteps - 1) {
+                checkBannerTypeAndSetState(0)
+                return 0
+            }
+            checkBannerTypeAndSetState(prevActiveStep + 1)
             return prevActiveStep + 1
         });
-    }, [maxSteps, setActiveStep]);
+    }
 
-    const handleBack = useCallback(() => {
+    const handleBack = () => {
+
         setActiveStep((prevActiveStep) => {
-            if (prevActiveStep === 0) return maxSteps - 1
+            if (prevActiveStep === 0) {
+                checkBannerTypeAndSetState(maxSteps - 1)
+                return maxSteps - 1
+            }
+            checkBannerTypeAndSetState(prevActiveStep - 1);
             return prevActiveStep - 1
         });
-    }, [maxSteps, setActiveStep]);
+    }
 
     const handleStepChange = (step) => {
         setActiveStep(step);
+        checkBannerTypeAndSetState(step);
     };
 
     return (
         <Box className={styles['index-banner']}>
             <AutoPlaySwipeableViews
+                autoplay={autoPlay}
                 interval={4000}
                 axis={'x'}
                 index={activeStep}
                 loop={true}
                 onChangeIndex={handleStepChange}
-                enableMouseEvents
+                slideClassName={styles['banner']}
             >
-                {bannerList.map((step, index) => (
-                    <a key={index} href={step.hyperlink} target="_blank" rel="noopener noreferrer">
-                        <div >
-                            {Math.abs(activeStep - index) <= 2 ? (
+                {bannerList.map((step, index) => {
+                    return Math.abs(activeStep - index) <= 2 ? (
+                        step.contentImagePath.indexOf('youtube') !== -1
+                            ? <div key={index} className={`${styles['index-banner-img']} ${styles['player']} ${videoClass === 'start' ? styles['start'] : styles['end']}`}>
+                                <a href={step.hyperlink} target="_blank" rel="noopener noreferrer" />
+                                <ReactPlayer
+                                    url={step.contentImagePath}
+                                    playing={true}
+                                    muted={state.clientWidth <= 768 ? true : false} // Mute the video
+                                    config={{
+                                        youtube: {
+                                            playerVars: {
+                                                showinfo: 0,
+                                                controls: 0,
+                                                disablekb: 1,
+                                                loop: 0,
+                                                playsinline: 1,
+                                            }
+                                        },
+                                    }}
+                                    width="100%"
+                                    height="100%"
+                                    light={light}
+                                    playIcon={<div />}
+                                    onEnded={() => {
+                                        setVideoClass('end')
+                                        setLight(true)
+                                    }}
+                                />
+                            </div>
+                            : <a key={index} href={step.hyperlink} target="_blank" rel="noopener noreferrer">
                                 <Box
                                     className={styles['index-banner-img']}
                                     component="img"
                                     src={step.contentImagePath}
                                 />
-                            ) : null}
-                        </div>
-                    </a>
-                ))}
-            </AutoPlaySwipeableViews>
-            {/* <div> */}
-            <Button
+                            </a>
+                    ) : null
+                })
+                }
+            </AutoPlaySwipeableViews >
+            < Button
                 className={`${styles['banner-icon']} ${styles['prev']}`}
                 size="small"
                 onClick={handleBack}
@@ -81,4 +130,6 @@ export default function Banner({ bannerList = [] }) {
 
         </Box >
     );
+
+
 }

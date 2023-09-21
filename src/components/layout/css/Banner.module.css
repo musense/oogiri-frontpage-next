@@ -6,9 +6,16 @@
     border-radius: 6px;
     background-color: grey;
     filter: drop-shadow(0px 7px 6px rgba(0 0 0/0.6));
+    height: 636px;
+    overflow: hidden;
 
     @media (max-width: 768px) {
+        height: 18rem;
         filter: unset;
+    }
+
+    .banner {
+        position: relative;
     }
 
     .index-banner-img {
@@ -17,6 +24,38 @@
         height: 636px;
         overflow: hidden;
         object-fit: cover;
+
+        &.player {
+
+            &>a {
+                position: absolute;
+                inset: 0;
+                z-index: 1;
+                background-color: rgba(0, 0, 0, 0.0);
+            }
+
+            &>div {
+                z-index: 0;
+            }
+
+            &::before {
+                content: '';
+                display: block;
+                position: absolute;
+                inset: 0;
+                background-color: rgba(0, 0, 0, 0.0);
+                z-index: 2;
+                display: none;
+            }
+
+            &.start::before {
+                display: block;
+            }
+
+            &.end::before {
+                display: none;
+            }
+        }
     }
 
     .banner-icon {
@@ -61,6 +100,11 @@
         flex-direction: row;
         height: fit-content;
         gap: 40px;
+
+        @media (max-width: 768px) {
+            gap: 2rem;
+            bottom: 1rem;
+        }
     }
 
     .stepper-dot {
