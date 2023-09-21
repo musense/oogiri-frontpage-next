@@ -56,6 +56,10 @@
                 display: none;
             }
         }
+
+        @media (max-width: 768px) {
+            height: 18rem;
+        }
     }
 
     .banner-icon {
@@ -84,6 +88,27 @@
             &:hover {
                 opacity: 0.8;
             }
+        }
+
+        @media (max-width: 768px) {
+            width: 8rem;
+            background-size: 35%;
+        }
+    }
+
+    .mute-icon {
+        position: absolute;
+        bottom: 0;
+        width: fit-content;
+        height: fit-content;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: 30%;
+        cursor: pointer;
+
+        @media (max-width: 768px) {
+            width: 8rem;
+            background-size: 35%;
         }
     }
 
@@ -122,17 +147,6 @@
 
         @media (max-width: 768px) {
             --dot-size: 0.5rem;
-        }
-    }
-
-    @media (max-width: 768px) {
-        .index-banner-img {
-            height: 18rem;
-        }
-
-        .banner-icon {
-            width: 8rem;
-            background-size: 35%;
         }
     }
 }
