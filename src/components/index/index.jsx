@@ -1,5 +1,4 @@
 import React from "react";
-import Banner from "../layout/Banner"
 import NewsPage from "./../../components/NewsPage/NewsPage"
 import HotPage from "./../../components/HotPage/HotPage"
 import RecommendPage from "./../../components/RecommendPage/RecommendPage"
