@@ -25,14 +25,14 @@
         overflow: hidden;
         object-fit: cover;
 
-        &.player {
+        &>a {
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+            background-color: rgba(0, 0, 0, 0.0);
+        }
 
-            &>a {
-                position: absolute;
-                inset: 0;
-                z-index: 1;
-                background-color: rgba(0, 0, 0, 0.0);
-            }
+        /* &.player {
 
             &>div {
                 z-index: 0;
@@ -55,7 +55,7 @@
             &.end::before {
                 display: none;
             }
-        }
+        } */
 
         @media (max-width: 768px) {
             height: 18rem;
@@ -98,7 +98,8 @@
 
     .mute-icon {
         position: absolute;
-        bottom: 0;
+        bottom: 10px;
+        left: 12px;
         width: fit-content;
         height: fit-content;
         background-position: center;
