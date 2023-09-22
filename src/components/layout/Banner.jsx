@@ -90,6 +90,7 @@ export default function Banner({ bannerList = [] }) {
                                 url={step.contentImagePath}
                                 playing={true}
                                 muted={mute} // Mute the video
+                                volume={0.8}
                                 config={{
                                     youtube: {
                                         playerVars: {
@@ -106,8 +107,20 @@ export default function Banner({ bannerList = [] }) {
                                 light={light}
                                 playIcon={<div />}
                                 onEnded={() => {
+                                    console.log("🚀 ~ file: Banner.jsx:110 ~ ReactPlayer onEnded!!!")
                                     setVideoClass('end')
-                                    setLight(true)
+                                    // setLight(true)
+                                }}
+                                onProgress={(state) => {
+                                    const currentTime = state.playedSeconds;
+                                    const duration = state.loadedSeconds || state.duration; // Use loadedSeconds if available, otherwise use duration
+                                    console.log("🚀 ~ file: Banner.jsx:116 ~ Banner ~ currentTime:", currentTime)
+                                    console.log("🚀 ~ file: Banner.jsx:116 ~ Banner ~ duration:", duration)
+                                    if (currentTime >= duration) {
+                                        // Video has ended
+                                        setVideoClass('end')
+                                        setLight(true)
+                                    }
                                 }}
                             />
                         </div>
