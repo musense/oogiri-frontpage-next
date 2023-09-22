@@ -34,7 +34,7 @@ export default function Banner({ bannerList = [] }) {
 
     const checkBannerTypeAndSetState = (step) => {
         setLight(false)
-        if (bannerList[step].contentImagePath.indexOf('youtube') !== -1) {
+        if (bannerList[step].contentImagePath?.indexOf('youtube') !== -1) {
             setVideoClass('start');
             setAutoPlay(false);
         } else {
@@ -83,7 +83,7 @@ export default function Banner({ bannerList = [] }) {
                 slideClassName={styles['banner']}
             >
                 {bannerList.map((step, index) => (
-                    step.contentImagePath.indexOf('youtube') !== -1
+                    step.contentImagePath?.indexOf('youtube') !== -1
                         ? <div key={index} className={`${styles['index-banner-img']}`}>
                             <a href={step.hyperlink} target="_blank" rel="noopener noreferrer" />
                             <ReactPlayer
