@@ -87,12 +87,13 @@ export default function Banner({ bannerList = [] }) {
                         ? <div key={index} className={`${styles['index-banner-img']}`}>
                             <a href={step.hyperlink} target="_blank" rel="noopener noreferrer" />
                             <YoutubePlayer
-                                loop={true}
+                                loop={false}
                                 step={step}
                                 playing={activeStep === index}
                                 mute={mute}
-                                light={false}
+                                light={light}
                                 setLight={setLight}
+                                setAutoPlay={setAutoPlay}
                             />
                         </div>
                         : <a key={index} href={step.hyperlink} target="_blank" rel="noopener noreferrer">

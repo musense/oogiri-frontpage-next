@@ -7,7 +7,8 @@ export default function YoutubePlayer({
     playing,
     mute,
     light,
-    setLight
+    setLight,
+    setAutoPlay,
 }) {
 
     return <ReactPlayer
@@ -42,5 +43,6 @@ export default function YoutubePlayer({
         onEnded={() => {
             console.log("🚀 ~ file: Banner.jsx:110 ~ ReactPlayer onEnded!!!");
             setLight(true);
+            setAutoPlay(true)
         }} />;
 }
