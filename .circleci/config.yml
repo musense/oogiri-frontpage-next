@@ -21,7 +21,7 @@ jobs:
       - run:
           name: Deploy to GCP Compute Engine
           command: |
-            gcloud compute ssh --quiet dino_wu@uat-front --zone "asia-east1-b" "uat-front" --project "uat-environment-387601" --command="cd /home/dino_wu/oogiri-frontpage-next/ && sudo git pull && sudo rm -r .next && sudo yarn install && sudo yarn build:uat:local && sudo pm2 restart 14" -- -l dino_wu
+            gcloud compute ssh --quiet "dino_wu@uat-front" --zone "asia-east1-b" "uat-front" --project "uat-environment-387601" --command="cd /home/dino_wu/oogiri-frontpage-next/ && sudo git pull && sudo rm -r .next && sudo yarn install && sudo yarn build:uat:local && sudo pm2 restart 14" -- -l dino_wu
 
 workflows:
   build-and-deploy:
