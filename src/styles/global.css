@@ -1,6 +1,7 @@
 html {
     font-size: 62.5%;
     overflow: auto;
+    scroll-padding-top: 120px;
 }
 
 

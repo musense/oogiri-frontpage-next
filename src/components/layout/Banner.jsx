@@ -2,10 +2,9 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import SwipeableViews from 'react-swipeable-views';
 import { autoPlay } from 'react-swipeable-views-utils';
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import styles from './css/Banner.module.css'
 import { useAppContext } from "@store/context";
-import { white } from '@mui/material/colors';
 import VolumeOffIcon from '@mui/icons-material/VolumeOff';
 import VolumeUpIcon from '@mui/icons-material/VolumeUp';
 import YoutubePlayer from "@components/VideoPlayer/YoutubePlayer"
@@ -32,7 +31,7 @@ export default function Banner({ bannerList = [] }) {
         setMute(false)
     }, [state.clientWidth]);
 
-    const checkBannerTypeAndSetState = (step) => {
+    const checkBannerTypeAndSetState = useCallback((step) => {
         setLight(false)
         if (bannerList[step].contentImagePath?.indexOf('youtube') !== -1) {
             setVideoClass('start');
@@ -41,9 +40,9 @@ export default function Banner({ bannerList = [] }) {
             setVideoClass('');
             setAutoPlay(true);
         }
-    }
+    }, [bannerList])
 
-    const handleNext = () => {
+    const handleNext = useCallback(() => {
         setActiveStep((prevActiveStep) => {
             if (prevActiveStep === maxSteps - 1) {
                 checkBannerTypeAndSetState(0)
@@ -52,9 +51,9 @@ export default function Banner({ bannerList = [] }) {
             checkBannerTypeAndSetState(prevActiveStep + 1)
             return prevActiveStep + 1
         });
-    }
+    }, [checkBannerTypeAndSetState, maxSteps])
 
-    const handleBack = () => {
+    const handleBack = useCallback(() => {
 
         setActiveStep((prevActiveStep) => {
             if (prevActiveStep === 0) {
@@ -64,7 +63,7 @@ export default function Banner({ bannerList = [] }) {
             checkBannerTypeAndSetState(prevActiveStep - 1);
             return prevActiveStep - 1
         });
-    }
+    }, [checkBannerTypeAndSetState, maxSteps])
 
     const handleStepChange = (step) => {
         setActiveStep(step);
@@ -82,69 +81,127 @@ export default function Banner({ bannerList = [] }) {
                 onChangeIndex={handleStepChange}
                 slideClassName={styles['banner']}
             >
-                {bannerList.map((step, index) => (
-                    step.contentImagePath?.indexOf('youtube') !== -1
-                        ? <div key={index} className={`${styles['index-banner-img']}`}>
-                            <a href={step.hyperlink} target="_blank" rel="noopener noreferrer" />
-                            <YoutubePlayer
-                                loop={false}
+                {
+                    bannerList.map((step, index) => (
+                        step.contentImagePath?.indexOf('youtube') !== -1
+                            ? <YoutubePlayerBannerWrapper
+                                key={index}
+                                index={index}
                                 step={step}
-                                playing={activeStep === index}
+                                activeStep={activeStep}
                                 mute={mute}
                                 light={light}
                                 setLight={setLight}
                                 setAutoPlay={setAutoPlay}
                             />
-                        </div>
-                        : <a key={index} href={step.hyperlink} target="_blank" rel="noopener noreferrer">
-                            <Box
-                                className={styles['index-banner-img']}
-                                component="img"
-                                src={step.contentImagePath}
+                            : <ImageBannerWrapper
+                                key={index}
+                                step={step}
                             />
-                        </a>
-                ))}
+                    ))
+                }
             </AutoPlaySwipeableViews >
-            < Button
-                className={`${styles['banner-icon']} ${styles['prev']}`}
-                size="small"
-                onClick={handleBack}
-            />
+
+            <InnerPrevButton handleBack={handleBack} />
 
             <div className={styles['stepper-dots']}>
-                <SwipeDots
+                <InnerSwipeDots
                     styles={styles}
                     maxSteps={maxSteps}
                     activeStep={activeStep}
                 />
             </div>
 
-            <Button
-                className={`${styles['banner-icon']} ${styles['next']}`}
-                size="small"
-                onClick={handleNext}
-            />
+            <InnerNextButton handleNext={handleNext} />
+
             {videoClass === 'start' && <div className={`${styles['mute-icon']}`}>
-                {
-                    mute
-                        ? <VolumeOffIcon
-                            sx={{
-                                color: '#fff',
-                                fontSize: 30,
-                            }}
-                            onClick={() => setMute(false)}
-                        />
-                        : <VolumeUpIcon
-                            sx={{
-                                color: '#fff',
-                                fontSize: 30,
-                            }}
-                            onClick={() => setMute(true)}
-                        />
-                }
+                <InnerMuteIconButton
+                    mute={mute}
+                    setMute={setMute}
+                />
+
             </div>}
+
         </Box >
     );
+}
+
+const InnerSwipeDots = React.memo(SwipeDots)
+const InnerMuteIconButton = React.memo(MuteIconButton)
+const InnerPrevButton = React.memo(PrevButton)
+const InnerNextButton = React.memo(NextButton)
 
 
+function ImageBannerWrapper({
+    step
+}) {
+    const image = <Box
+        className={styles['index-banner-img']}
+        component="img"
+        src={step.contentImagePath} />
+    return <BannerWrapper hyperlink={step.hyperlink}>
+        {image}
+    </BannerWrapper>;
+}
+
+function YoutubePlayerBannerWrapper({
+    index,
+    step,
+    activeStep,
+    mute,
+    light,
+    setLight,
+    setAutoPlay
+}) {
+    const youtubePlayer = <YoutubePlayer
+        loop={false}
+        step={step}
+        playing={activeStep === index}
+        mute={mute}
+        light={light}
+        setLight={setLight}
+        setAutoPlay={setAutoPlay} />
+    return <BannerWrapper hyperlink={step.hyperlink}>
+        {youtubePlayer}
+    </BannerWrapper>;
+}
+
+function BannerWrapper({ hyperlink, children }) {
+    return <div className={`${styles['index-banner-img']}`}>
+        <a href={hyperlink} target="_blank" rel="noopener noreferrer" />
+        {children}
+    </div>;
+}
+
+function MuteIconButton({
+    mute,
+    setMute
+}) {
+    return mute
+        ? <VolumeOffIcon
+            sx={{
+                color: '#fff',
+                fontSize: 30,
+            }}
+            onClick={() => setMute(false)} />
+        : <VolumeUpIcon
+            sx={{
+                color: '#fff',
+                fontSize: 30,
+            }}
+            onClick={() => setMute(true)} />;
+}
+
+function NextButton({ handleNext }) {
+    return <Button
+        className={`${styles['banner-icon']} ${styles['next']}`}
+        size="small"
+        onClick={handleNext} />;
+}
+
+function PrevButton({ handleBack }) {
+    return <Button
+        className={`${styles['banner-icon']} ${styles['prev']}`}
+        size="small"
+        onClick={handleBack} />;
 }
