@@ -40,6 +40,7 @@
         align-items: flex-start;
         box-sizing: border-box;
         gap: 40px;
+        width: 1100px;
 
         @media (max-width: 768px) {
             flex-wrap: wrap;
@@ -49,6 +50,8 @@
         }
 
         .popular-content {
+            margin-right: auto;
+
             @media (max-width: 768px) {
                 width: 16rem;
             }

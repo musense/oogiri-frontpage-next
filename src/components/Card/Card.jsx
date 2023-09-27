@@ -70,7 +70,7 @@ export default function Card({
                             flexShrink: 0
                         }}
                     />
-                        : <div />}
+                        : <div style={{ width: "224px", flexShrink: "0" }} />}
                     {state.clientWidth > 768 && tagNameArray && tagNameArray.map((tag, index) =>
                         <Tag
                             key={index}
@@ -105,7 +105,7 @@ export default function Card({
                         objectPosition: 'center',
                         flexShrink: 0
                     }}
-                /> : <div />}
+                /> : <div style={{ width: "227px", flexShrink: "0" }} />}
                 <div className={styles['card-info']}>
                     <div className={styles['card-title']}>
                         <span className="ellipsis">{title}</span>
@@ -131,7 +131,7 @@ export default function Card({
                         objectPosition: 'center',
                         flexShrink: 0
                     }}
-                /> : <div />}
+                /> : <div style={{ width: "258px", flexShrink: "0" }} />}
                 <div className={styles['card-info']}>
                     <div className={styles['card-title']}>
                         <span className="ellipsis">{title}</span>
@@ -147,14 +147,14 @@ export default function Card({
                     className={styles['card-img']}
                     src={homeImagePath}
                     width={271}
-                    height={143}
+                    height={152}
                     alt={altText || ''}
                     style={{
                         objectFit: 'cover',
                         objectPosition: 'center',
                         flexShrink: 0
                     }}
-                /> : <div />}
+                /> : <div style={{ width: "271px", flexShrink: "0" }} />}
                 <div className={styles['card-info']}>
                     <div className={styles['card-title']}>
                         <span className="ellipsis">{title}</span>

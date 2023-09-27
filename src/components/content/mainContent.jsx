@@ -3,6 +3,7 @@ import useAddPageView from "@services/useAddPageView";
 import formatDate from "@services/formatDate";
 import PrevAndNextButton from "./PrevAndNextButton";
 import Tag from "./tag";
+import MainImage from "./mainImage";
 
 export default function MainContent({
     content,
@@ -47,6 +48,10 @@ export default function MainContent({
                     {formattedDate}
                 </div>
             </div>
+            <MainImage
+                imgSrc={content.contentImagePath}
+                imgAltText={content.altText}
+            />
             <div
                 className="content-main-content"
                 dangerouslySetInnerHTML={{ __html: content.htmlContent }}

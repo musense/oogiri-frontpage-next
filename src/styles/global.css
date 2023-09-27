@@ -793,8 +793,8 @@ a {
 
 .top-banner {
     margin: 0 auto;
-    width: 1000px;
-    height: 580px;
+    width: 100%;
+    height: auto;
     overflow: hidden;
 }
 
