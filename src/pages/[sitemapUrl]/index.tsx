@@ -54,10 +54,6 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
         props: {},
       }
     }
-    mainContent = {
-      ...mainContent,
-      name: mainContent.categories.name,
-    }
     payload = {
       ...payload,
       _id: mainContent._id,
@@ -85,7 +81,6 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
     return {
       props: {
-        mainTitle: mainContent.name,
         mainContent: mainContent,
         previousAndNextPage: previousAndNextPage,
         relatedArticles: relatedArticles,
@@ -247,7 +242,7 @@ const Page = ({
 
   const trendBottomLayout = pageType ? (
     pageType === 'content-page' ? (
-      <ExtendReading contents={relatedArticles} />
+      relatedArticles && <ExtendReading contents={relatedArticles} />
     ) : (
       <PageTemplate />
     )

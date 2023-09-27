@@ -35,13 +35,13 @@ export default function PrevAndNextButton({
     <div className="btn-marketing-wrapper">
       {prevInfo &&
         <div className="title-btn prev">
-          <span>{prevInfo.title}</span>
+          <span className={'ellipsis'}>{prevInfo.title}</span>
           <BtnMarketing {...buttonProps(prevInfo, true)} />
         </div>
       }
       {nextInfo &&
         <div className="title-btn next">
-          <span>{nextInfo.title}</span>
+          <span className={'ellipsis'}>{nextInfo.title}</span>
           <BtnMarketing {...buttonProps(nextInfo, false)} />
         </div>
       }

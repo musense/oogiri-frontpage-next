@@ -1,5 +1,4 @@
 import React from "react";
-import MainImage from '@components/content/mainImage';
 import MainContent from '@components/content/mainContent';
 import { useAppContext } from "@store/context";
 import useInitial from "@services/useInitial";
@@ -17,19 +16,13 @@ export default function ContentPage({
     useInitial({ state, dispatch })
 
     return mainContent && (
-        <>
-            <MainImage
-                imgSrc={mainContent.contentImagePath}
-                imgAltText={mainContent.altText}
-            />
-            <MainContent
-                content={mainContent}
-                popularTagList={popularTagList}
-                prevInfo={previousEditor}
-                nextInfo={nextEditor}
-                isPreview={isPreview}
-            />
-        </>
+        <MainContent
+            content={mainContent}
+            popularTagList={popularTagList}
+            prevInfo={previousEditor}
+            nextInfo={nextEditor}
+            isPreview={isPreview}
+        />
     )
 
 

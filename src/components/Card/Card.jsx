@@ -147,7 +147,7 @@ export default function Card({
                     className={styles['card-img']}
                     src={homeImagePath}
                     width={271}
-                    height={143}
+                    height={152}
                     alt={altText || ''}
                     style={{
                         objectFit: 'cover',
