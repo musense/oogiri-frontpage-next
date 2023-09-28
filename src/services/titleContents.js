@@ -60,10 +60,6 @@ export async function getMainContentBySitemapUrl(payload) {
             sitemapUrl: getRenamedContent(tag.sitemapUrl) || '#'
           }
         }),
-        categories: {
-          ...mainContent.categories,
-          sitemapUrl: getRenamedContent(mainContent.categories.sitemapUrl) || '#',
-        },
       }
     })
   const {
@@ -75,7 +71,6 @@ export async function getMainContentBySitemapUrl(payload) {
     altText,
     _id,
     tags,
-    categories,
     updatedAt,
     publishedAt,
     htmlContent,
@@ -90,7 +85,6 @@ export async function getMainContentBySitemapUrl(payload) {
     altText,
     _id,
     tags,
-    categories,
     updatedAt,
     publishedAt,
     htmlContent,
