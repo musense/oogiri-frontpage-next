@@ -40,6 +40,12 @@ const nextConfig = {
                 port: '',
                 pathname: '/home/**',
             },
+            {
+                protocol: 'https',
+                hostname: 'www.youtube.com',
+                port: '',
+                pathname: '/embed/**',
+            },
         ]
     },
     compiler: {
