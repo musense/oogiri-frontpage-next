@@ -8,6 +8,7 @@
   letter-spacing: 1px;
   white-space: nowrap;
   cursor: pointer;
+  font-size: 16px;
 
   &.footer-layout {
     color: #fff;
@@ -15,7 +16,7 @@
 }
 
 .tag.icon-tag {
-  padding-left: 25px;
+  padding-left: 28px;
 }
 
 .tag.icon-tag::before {
@@ -28,7 +29,8 @@
   height: 20px;
   position: absolute;
   left: 0;
-  top: 0;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 @media (max-width: 768px) {
