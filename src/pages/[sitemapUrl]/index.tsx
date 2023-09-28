@@ -38,7 +38,6 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     sitemapUrl: `${process.env.NEXT_PUBLIC_TREND_SITE}/${sitemapUrl}`,
     _id: null,
     page: currentPage,
-    categoryName: '',
     tagName: '',
     searchText: searchText,
   }

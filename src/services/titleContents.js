@@ -24,11 +24,6 @@ export async function getMainContentByID(payload) {
             sitemapUrl: getRenamedContent(tag.sitemapUrl) || '#'
           }
         }),
-        categories: mainContent.categories ? {
-          _id: mainContent.categories._id,
-          name: mainContent.categories.name,
-          sitemapUrl: getRenamedContent(mainContent.categories.sitemapUrl) || '#'
-        } : null
       }
     })
   // console.log("🚀 ~ file: titleContents.js:9 ~ getTitleContentsByID ~ response:", response)
@@ -156,7 +151,6 @@ export async function getTitleContents(payload) {
     .then(res => res.data && res.data.length > 0
       ? res.data.filter(item =>
         item.status !== "已排程" && item.status !== "草稿"
-        // && item.categories.name !== "未分類"
       )
       : []
     )
@@ -175,11 +169,6 @@ export async function getTitleContents(payload) {
             sitemapUrl: getRenamedContent(tag.sitemapUrl) || '#'
           }
         }) : null,
-        categories: {
-          _id: content.categories._id,
-          name: content.categories.name,
-          sitemapUrl: getRenamedContent(content.categories.sitemapUrl) || '#'
-        },
         sitemapUrl: getRenamedContent(content.sitemapUrl) || '#',
       }
     }))
@@ -195,7 +184,6 @@ export async function getTitleContents(payload) {
         // htmlContent,
         ...reset
       } = content
-      const categoryName = content.categories.name;
       return {
         homeImagePath,
         tags,
@@ -205,7 +193,6 @@ export async function getTitleContents(payload) {
         sitemapUrl,
         hidden,
         // htmlContent,
-        categoryName,
       }
     }))
 
@@ -223,10 +210,9 @@ export async function getEditorSitemapUrls(payload) {
   const { apiUrl } = payload
   const response = await instance(apiUrl).get(encodeURI(`/editor?limit=9999&pageNumber=1`))
     .then(res => res.data)
-    // .then(res => res.filter(item => item.draft === false))
-    // .then(res => { console.log("🚀 ~ file: titleContents.js:113 ~ getEditorSitemapUrls ~ res:", res); return res; })
-    //唯二不產URL的只有uncategorized && 未發布
-    .then(res => res.data.filter(item => item.categories.name !== "未分類"))
+  // .then(res => res.filter(item => item.draft === false))
+  // .then(res => { console.log("🚀 ~ file: titleContents.js:113 ~ getEditorSitemapUrls ~ res:", res); return res; })
+  //唯二不產URL的只有uncategorized && 未發布
 
   // .then(res => { console.log("🚀 ~ file: titleContents.js:116 ~ getEditorSitemapUrls ~ res:", res); return res; })
 
@@ -292,8 +278,7 @@ export async function getRelatedArticles(payload) {
     // .then(resRelatedArticles => { console.log("🚀 ~ file: titleContents.js:181 ~ getRelatedArticles ~ resRelatedArticles:", resRelatedArticles); return resRelatedArticles })
     .then(res => res.data.filter(item =>
       item.hidden === false &&
-      item.homeImagePath !== null &&
-      item.categories.name !== "未分類"
+      item.homeImagePath !== null
     ))
     .then(relatedArticles => relatedArticles.map(article => {
       return {
@@ -335,8 +320,7 @@ export async function getPopularContents(payload) {
       .then(res => res.data)
       // .then(res => { console.log("🚀 ~ file: titleContents.js:198 ~ getPopularContents ~ res:", res); return res })
       .then(res => res.data.filter(item =>
-        item.hidden !== true ||
-        item.categories.name !== "未分類"
+        item.hidden !== true
       ))
       .then(popularContents => popularContents.map(content => {
         return {
@@ -407,22 +391,15 @@ export async function getPreviewContentByID(payload) {
         headKeyword: previewContent.headKeyword,
         htmlContent: previewContent.htmlContent,
         altText: previewContent.altText,
-        contentImagePath: previewContent.contentImagePath,
+        contentImagePath: previewContent.contentImagePath ?? null,
         updatedAt: previewContent.updatedAt,
         // tags: previewContent.tags,
-        // categories: previewContent.categories,
         tags: previewContent.tags.length > 0 && previewContent.tags.map(tag => {
           return {
             ...tag,
             sitemapUrl: '#'
           }
         }),
-        categories: previewContent.categories.length > 0 && previewContent.categories.map(cat => {
-          return {
-            ...cat,
-            sitemapUrl: '#'
-          }
-        })[0],
       }
     })
   // console.log("🚀 ~ file: previewContent.js:9 ~ getPreviewContentByID ~ response:", response)
