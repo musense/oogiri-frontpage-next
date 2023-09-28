@@ -23,12 +23,12 @@
     .filter-input {
         width: 205px;
         font-size: 18px;
-        padding: 0 15px;
+        padding: 0 5px 0 15px;
         color: var(--theme-black-color-hex);
     }
 
     .filter-button {
-        width: 50px;
+        width: 60px;
     }
 
 
