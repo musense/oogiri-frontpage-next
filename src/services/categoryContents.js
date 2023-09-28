@@ -68,7 +68,6 @@ export async function getTitleContentsByCategory(payload) {
         .then(res => res.data && res.data.length > 0 ? res.data.filter(item =>
             // item.draft === false && 
             item.status !== "已排程" && item.status !== "草稿"
-            // && item.categories.name !== "未分類"
         ) : [])
         .then(categoryContents => categoryContents.map((content) => {
             if (content.length === 0) {

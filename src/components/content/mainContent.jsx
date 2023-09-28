@@ -16,7 +16,7 @@ export default function MainContent({
     // console.log("🚀 ~ file: mainContent.jsx:15 ~ MainContent ~ contentTagsRef:", contentTagsRef)
 
     // useResizeContentTags(contentTagsRef);
-    // useAddPageView(content._id, isPreview);
+    useAddPageView(content._id, isPreview);
     const [formattedDate, setFormattedDate] = useState();
     useEffect(() => {
         let date

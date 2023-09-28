@@ -93,15 +93,14 @@ export async function getTagContents(payload) {
     // console.log("🚀 ~ file tagContents.js:4 ~ getTagsContent ~ payload:", payload)
     const { tagName, page, apiUrl } = payload
     // console.log("🚀 ~ file: tagContents.js:95 ~ getTagContents ~ tagName:", tagName)
-    const response = await instance(apiUrl).get(`/tags/tagSearch/${tagName}?limit=10&pageNumber=${page}`)
+    const response = await instance(apiUrl).get(`/tags/tagSearch/${tagName.toString()}?limit=10&pageNumber=${page}`)
         .then(res => res.data)
         // .then(res => { console.log("🚀 ~ file: tagContents.js:61 ~ getTagContents ~ res:", res); return res })
         .then(res => {
             if (res.data && res.data.length > 0) {
                 const filteredData = res.data.filter(item =>
                     // item.draft === false &&
-                    item.status !== "已排程" && item.status !== "草稿" &&
-                    item.categories.name !== "未分類")
+                    item.status !== "已排程" && item.status !== "草稿")
                     .map(content => {
                         const {
                             _id,
