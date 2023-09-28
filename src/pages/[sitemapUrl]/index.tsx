@@ -63,27 +63,31 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     promisePopularTagList = getPopularTagList(payload)
     promiseBannerList = getBanners(payload)
 
-    const { previousAndNextPage, relatedArticles, popularTagList, bannerList } =
-      await Promise.all([
-        promisePreviousAndNextPage,
-        promiseRelatedArticles,
-        promisePopularTagList,
-        promiseBannerList,
-      ]).then((res) => {
-        // console.log('🚀 ~ file: index.tsx:160 ~ ]).then ~ res:', res)
-        return {
-          previousAndNextPage: res[0],
-          relatedArticles: res[1],
-          popularTagList: res[2],
-          bannerList: res[3],
-        }
-      })
+    const {
+      previousAndNextPage,
+      // relatedArticles,
+      popularTagList,
+      bannerList,
+    } = await Promise.all([
+      promisePreviousAndNextPage,
+      // promiseRelatedArticles,
+      promisePopularTagList,
+      promiseBannerList,
+    ]).then((res) => {
+      // console.log('🚀 ~ file: index.tsx:160 ~ ]).then ~ res:', res)
+      return {
+        previousAndNextPage: res[0],
+        // relatedArticles: res[1],
+        popularTagList: res[1],
+        bannerList: res[2],
+      }
+    })
 
     return {
       props: {
         mainContent: mainContent,
         previousAndNextPage: previousAndNextPage,
-        relatedArticles: relatedArticles,
+        relatedArticles: [],
         bannerList: bannerList,
         popularTagList: popularTagList,
         sitemapUrl: sitemapUrl,
