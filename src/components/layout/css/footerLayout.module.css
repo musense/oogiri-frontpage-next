@@ -78,6 +78,10 @@
             margin-top: 8rem;
         }
 
+        &.content-footer {
+            margin-top: 6rem;
+        }
+
         &.tag-footer,
         &.all-content-footer {
             margin-top: 4rem;
