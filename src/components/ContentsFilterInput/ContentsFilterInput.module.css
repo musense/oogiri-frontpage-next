@@ -20,15 +20,15 @@
         color: transparent;
     }
 
-    .filter-button {
-        width: 55px;
-    }
-
     .filter-input {
-        width: 210px;
+        width: 205px;
         font-size: 18px;
         padding: 0 15px;
         color: var(--theme-black-color-hex);
+    }
+
+    .filter-button {
+        width: 50px;
     }
 
 

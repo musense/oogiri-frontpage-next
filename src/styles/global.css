@@ -1283,10 +1283,6 @@ a {
 
         @media (max-width: 768px) {
             width: 100%;
-
-            .ellipsis {
-                -webkit-line-clamp: 6;
-            }
         }
     }
 
@@ -1844,7 +1840,7 @@ a {
 
     .top-banner {
         width: 100%;
-        height: auto;
+        height: calc(90vw / 1.7778);
     }
 
     .triangle-range_orange {
@@ -1923,8 +1919,8 @@ a {
     }
 
     .content-main-content img {
-        height: auto;
         width: 100%;
+        height: calc(90vw / 1.7778);
         background-size: cover;
         background-position: center;
     }
