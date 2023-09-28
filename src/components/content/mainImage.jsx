@@ -9,7 +9,7 @@ export default function MainImage({
     const [isVideo, setIsVideo] = useState(false);
     useEffect(() => {
         if (!mainImage) return
-        if (mainImage.indexOf('youtube') === 1) return
+        if (mainImage.indexOf('youtube') === -1) return
         setIsVideo(true)
 
     }, [mainImage]);
