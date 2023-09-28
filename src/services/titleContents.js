@@ -302,7 +302,12 @@ export async function getRelatedArticles(payload) {
       }
     }).slice(0, 3)
     )
-  // .then(relatedArticles => { console.log("🚀 ~ file: titleContents.js:193 ~ getRelatedArticles ~ relatedArticles:", relatedArticles); return relatedArticles })
+    .then(relatedArticles => { console.log("🚀 ~ file: titleContents.js:193 ~ getRelatedArticles ~ relatedArticles:", relatedArticles); return relatedArticles })
+    .catch(err => {
+      console.log("🚀 ~ file: titleContents.js:280 ~ getRelatedArticles ~ err:", err)
+      return []
+    })
+
   return response
 }
 
