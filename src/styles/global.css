@@ -1835,10 +1835,10 @@ a {
     }
 
     .top-banner-wrapper {
-        --banner-top-offset: 10rem;
-        width: 96vw;
+        --banner-top-offset: 0;
+        width: 100%;
         margin: 0 auto;
-        margin-top: calc(var(--banner-top-offset) + 3rem);
+        margin-top: calc(var(--banner-top-offset) + 0);
         top: unset;
     }
 
