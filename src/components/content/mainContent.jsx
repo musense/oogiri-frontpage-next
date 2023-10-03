@@ -12,10 +12,6 @@ export default function MainContent({
     isPreview
 }) {
 
-    // const contentTagsRef = useRef(null);
-    // console.log("🚀 ~ file: mainContent.jsx:15 ~ MainContent ~ contentTagsRef:", contentTagsRef)
-
-    // useResizeContentTags(contentTagsRef);
     useAddPageView(content._id, isPreview);
     const [formattedDate, setFormattedDate] = useState();
     useEffect(() => {
