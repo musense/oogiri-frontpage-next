@@ -20,10 +20,6 @@ export default function useScrollToPosition() {
                 top: y,
                 behavior: 'smooth',
             })
-            // trendLayoutAnchor.scrollIntoView({
-            //     behavior: 'smooth',
-            //     block: 'start'
-            // })
             return
         }
     }, [router]);

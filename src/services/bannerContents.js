@@ -1,5 +1,4 @@
 import { instance } from "./AxiosInstance";
-import { getRenamedContent } from '@services/sitemap';
 
 /**
  * Returns the selected content by id

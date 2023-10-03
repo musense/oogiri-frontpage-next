@@ -1,6 +1,5 @@
 import { instance } from "./AxiosInstance";
 import { getRenamedContent } from '@services/sitemap';
-import { categoryKeyname } from "./categoryKeyname";
 
 /**
  * Returns the selected content by id
@@ -221,27 +220,6 @@ export async function getEditorSitemapUrls(payload) {
     return [...acc, getRenamedContent(curr.sitemapUrl) || '#']
   }, [])
   return idArray
-}
-
-/**
- * Returns the category info including the title, description, and keywords, etc.
- * 
- * @param {string} categoryName
- * @param {string} apiUrl
- * @returns response
- */
-export async function getCategoryInfo(payload) {
-  const { categoryName, apiUrl } = payload
-  const response = await instance(apiUrl).get(`/category/${categoryKeyname.get(categoryName)}`)
-    .then(res => res.data)
-    .then(category => ({
-      ...category,
-      headTitle: category.headTitle && category.headTitle.length > 0
-        ? category.headTitle : category.name,
-    })
-    )
-  // console.log("🚀 ~ file: titleContents.js:31 ~ getCategoryInfo ~ response:", response)
-  return response
 }
 
 /**
