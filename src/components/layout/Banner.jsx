@@ -168,7 +168,7 @@ function YoutubePlayerBannerWrapper({
 
 function BannerWrapper({ hyperlink, children }) {
     return <div className={`${styles['index-banner-img']}`}>
-        <a href={hyperlink} target="_blank" rel="noopener noreferrer" />
+        {hyperlink && <a href={hyperlink} target="_blank" rel="noopener noreferrer" />}
         {children}
     </div>;
 }
