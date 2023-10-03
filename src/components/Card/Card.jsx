@@ -76,6 +76,7 @@ export default function Card({
                             key={index}
                             tagName={tag}
                             linkOn={false}
+                            className='ellipsis'
                             icon />)
                     }
                 </div>

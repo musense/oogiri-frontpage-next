@@ -1,7 +1,6 @@
 .tag {
   position: relative;
   color: var(--vice-color-hex);
-  letter-spacing: 1px;
   display: flex;
   flex-direction: row;
   gap: 2px;
@@ -12,6 +11,13 @@
 
   &.footer-layout {
     color: #fff;
+  }
+
+  &.ellipsis {
+    display: block;
+    width: 187px;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 }
 
