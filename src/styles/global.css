@@ -268,7 +268,7 @@ nav {
     justify-content: space-between;
     padding-top: 220px;
 
-    max-width: 1400px;
+    width: 1400px;
 
     &::before {
         width: 717px;
