@@ -19,6 +19,8 @@ export default function HeaderLayout() {
     <header>
       <Logo type={'main'} />
       {state.clientWidth > 768 && <div className={'navbar-icon'}>
+        {`process.env.NODE_ENV: ${process.env.NODE_ENV}`} <br />
+        {`process.env.NEXT_PUBLIC_TITLE: ${process.env.NEXT_PUBLIC_TITLE}`} <br />
         {/* <CommunityIcon type={'twitter'} />
         <CommunityIcon type={'blog'} />
         <CommunityIcon type={'facebook'} />

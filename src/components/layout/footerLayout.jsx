@@ -5,7 +5,6 @@ import styles from './css/footerLayout.module.css'
 export default function FooterLayout({ popularTagList, pathname }) {
   console.log("🚀 ~ file: footerLayout.jsx:6 ~ FooterLayout ~ pathname:", pathname)
 
-  pathname
   const footerClass = pathname === "" || pathname === "/"
     ? 'index-footer'
     : pathname.indexOf('/p') !== -1

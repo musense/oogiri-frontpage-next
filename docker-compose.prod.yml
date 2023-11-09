@@ -1,0 +1,12 @@
+version: '1'
+
+services:
+  oogiri-frontpage-next:
+    image: oogiri-frontpage:production
+    ports:
+      - '4202:4200'
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        ENV_VAR: prod
