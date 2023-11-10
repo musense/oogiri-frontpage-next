@@ -16,7 +16,7 @@
     "build:uat:local": "env-cmd -f .env.staging.local yarn build",
     "build:prod": "env-cmd -f .env.production yarn build",
     "build:prod:local": "env-cmd -f .env.production.local yarn build",
-    "start": "yarn build && next start -p 4200",
+    "start": "next start -p 4200",
     "lint": "next lint",
     "build:serve": "next build & next start -p 4200 -H 10.88.0.103",
     "pm2": "yarn build:dev:local && pm2 start ecosystem.config.js",
