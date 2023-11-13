@@ -8,11 +8,27 @@ type IMetaProps = {
   description: string
   keywords: string
   canonical?: string
+  mainImagePath?: string
 }
 
 const Meta = (props: IMetaProps) => {
   const router = useRouter()
   // console.log('🚀 ~ file: Meta.tsx:15 ~ Meta ~ router:', router);
+
+  const openGraphImage = [
+    {
+      url: props.mainImagePath || '',
+      width: 1200,
+      height: 550,
+      alt: props.title
+    },
+    {
+      url: `${router.basePath}/fb_default_image.jpg`,
+      width: 1200,
+      height: 628,
+      alt: props.title
+    }
+  ]
 
   return (
     <>
@@ -62,24 +78,18 @@ const Meta = (props: IMetaProps) => {
           url: props.canonical,
           locale: AppConfig.locale,
           site_name: AppConfig.site_name,
-          images: [
-            {
-              url: `${router.basePath}/apple-touch-icon.png`,
-              width: 32,
-              height: 32,
-            },
-          ],
+          images: openGraphImage
         }}
         twitter={{
           cardType: 'summary_large_image',
           handle: AppConfig.twitter_handle,
-          site: AppConfig.site_name,
+          site: AppConfig.site_name
         }}
         additionalMetaTags={[
           {
             name: 'keywords',
-            content: props.keywords,
-          },
+            content: props.keywords
+          }
         ]}
       />
     </>
