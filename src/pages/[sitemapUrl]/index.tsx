@@ -7,13 +7,13 @@ import {
   getPreviousAndNextPageById,
   getMainContentBySitemapUrl,
   getPopularContents,
-  getAllContents,
+  getAllContents
 } from '@services/titleContents'
 import {
   getTagContents,
   getTagInfo,
   getTagList,
-  getPopularTagList,
+  getPopularTagList
 } from '@services/tagContents'
 
 import ContentPage from '@components/content/ContentPage'
@@ -30,7 +30,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     sitemapUrl,
     currentPage = 1,
     searchText = '',
-    previous,
+    previous
   } = context.query
 
   let payload = {
@@ -39,7 +39,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     _id: null,
     page: currentPage,
     tagName: '',
-    searchText: searchText,
+    searchText: searchText
   }
 
   let mainContent
@@ -50,12 +50,12 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     mainContent = await getMainContentBySitemapUrl(payload)
     if (!mainContent) {
       return {
-        props: {},
+        props: {}
       }
     }
     payload = {
       ...payload,
-      _id: mainContent._id,
+      _id: mainContent._id
     }
     const promisePreviousAndNextPage = getPreviousAndNextPageById(payload)
 
@@ -68,14 +68,14 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
         promisePreviousAndNextPage,
         promiseRelatedArticles,
         promisePopularTagList,
-        promiseBannerList,
+        promiseBannerList
       ]).then((res) => {
         // console.log('🚀 ~ file: index.tsx:160 ~ ]).then ~ res:', res)
         return {
           previousAndNextPage: res[0],
           relatedArticles: res[1],
           popularTagList: res[2],
-          bannerList: res[3],
+          bannerList: res[3]
         }
       })
 
@@ -91,14 +91,15 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
           headTitle: mainContent.headTitle,
           headDescription: mainContent.headDescription,
           headKeyword: mainContent.headKeyword,
-        },
-      },
+          mainImagePath: mainContent.mainImagePath
+        }
+      }
     }
   }
   //* special case
   if (sitemapUrl === 'c_all_contents.html') {
     mainContent = {
-      name: '記事一覽',
+      name: '記事一覽'
     }
     // console.log('🚀 ~ file: index.tsx:31 ~ sitemapUrl:', sitemapUrl)
     const promiseAllContents = getAllContents(payload)
@@ -108,12 +109,12 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     const { allContents, popularTagList, bannerList } = await Promise.all([
       promiseAllContents,
       promisePopularTagList,
-      promiseBannerList,
+      promiseBannerList
     ]).then((res) => {
       const response = {
         allContents: res[0],
         popularTagList: res[1],
-        bannerList: res[2],
+        bannerList: res[2]
       }
       // console.log('🚀 ~ file: index.tsx:111 ~ ]).then ~ response:', response)
       return response
@@ -129,9 +130,9 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
         itemPage: {
           currentPage: allContents.currentPage,
           totalPage: allContents.totalPages,
-          totalCount: allContents.totalCount,
-        },
-      },
+          totalCount: allContents.totalCount
+        }
+      }
     }
   }
   if (sitemapUrl?.indexOf('tag_') !== -1) {
@@ -139,7 +140,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     mainContent = tagList.find((tag: any) => tag.sitemapUrl === sitemapUrl)
     payload = {
       ...payload,
-      tagName: mainContent.name,
+      tagName: mainContent.name
     }
 
     const promiseTagItems = getTagContents(payload)
@@ -154,7 +155,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
         promiseTagInfo,
         promisePopularContents,
         promisePopularTagList,
-        promiseBannerList,
+        promiseBannerList
       ]).then((res) => {
         // console.log('🚀 ~ file: index.tsx:145 ~ ]).then ~ res:', res)
         return {
@@ -162,7 +163,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
           tagInfo: res[1],
           popularContents: res[2],
           popularTagList: res[3],
-          bannerList: res[4],
+          bannerList: res[4]
         }
       })
 
@@ -177,19 +178,19 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
         itemPage: {
           currentPage: tagItems.currentPage,
           totalPage: tagItems.totalPages,
-          totalCount: tagItems.totalCount,
+          totalCount: tagItems.totalCount
         },
         meta: {
           headTitle: tagInfo.headTitle,
           headDescription: tagInfo.headDescription,
-          headKeyword: tagInfo.headKeyword,
-        },
-      },
+          headKeyword: tagInfo.headKeyword
+        }
+      }
     }
   }
 
   return {
-    props: {},
+    props: {}
   }
 }
 
@@ -203,7 +204,7 @@ const Page = ({
   mainContent,
   mainTitle,
   commonPageItems,
-  itemPage,
+  itemPage
 }: CommonProps) => {
   // console.log('🚀 ~ file: index.tsx:185 ~ sitemapUrl:', sitemapUrl)
 
@@ -220,6 +221,7 @@ const Page = ({
       description={meta?.headDescription || process.env.NEXT_PUBLIC_DESCRIPTION}
       keywords={meta?.headKeyword || process.env.NEXT_PUBLIC_KEYWORDS}
       canonical={`${process.env.NEXT_PUBLIC_SITE}/${sitemapUrl}`}
+      mainImagePath={meta?.mainImagePath || ''}
     />
   )
   const contentPage = (

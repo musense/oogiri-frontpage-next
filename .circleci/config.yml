@@ -18,7 +18,7 @@ jobs:
       - run:
           name: Deploy to GCP Compute Engine
           command: |
-            ssh -o StrictHostKeyChecking=no $VM_USER@$VM_IP "cd /home/dino_wu/oogiri-frontpage-next/ && sudo git pull && sudo rm -r .next && sudo yarn install && sudo yarn build:uat:local && sudo pm2 restart 14"
+            ssh -o StrictHostKeyChecking=no $VM_USER@$VM_IP "cd /home/dino_wu/oogiri-frontpage-next/ && sudo git pull && sudo rm -r .next && sudo yarn install && sudo yarn build:uat && sudo pm2 restart oogiri-front"
 
   production_deploy:
     machine:

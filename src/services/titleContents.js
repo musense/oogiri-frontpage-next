@@ -54,6 +54,8 @@ export async function getMainContentBySitemapUrl(payload) {
             sitemapUrl: getRenamedContent(tag.sitemapUrl) || '#'
           }
         }),
+        mainImagePath: mainContent.contentImagePath?.indexOf('<iframe') !== -1
+          ? mainContent.homeImagePath : mainContent.contentImagePath
       }
     })
   const {
@@ -61,6 +63,7 @@ export async function getMainContentBySitemapUrl(payload) {
     headTitle,
     headDescription,
     headKeyword,
+    mainImagePath,
     contentImagePath,
     altText,
     _id,
@@ -75,6 +78,7 @@ export async function getMainContentBySitemapUrl(payload) {
     headTitle,
     headDescription,
     headKeyword,
+    mainImagePath,
     contentImagePath,
     altText,
     _id,

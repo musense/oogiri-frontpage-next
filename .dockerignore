@@ -1,0 +1,26 @@
+.git
+.circleci
+.next
+.vscode
+node_modules
+
+.env
+.env.development
+# .env.development.local
+.env.production
+# .env.production.local
+.env.staging
+# .env.staging.local
+
+.eslintrc.json
+.gitignore
+
+.dockerignore
+docker-compose.yml
+Dockerfile
+
+README.md
+
+robots-*.txt
+
+yarn-*.log
