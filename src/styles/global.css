@@ -882,7 +882,7 @@ a {
   font-family: var(--font-content);
 }
 
-.content-main-content image {
+.content-main-content .image {
   margin: unset;
 }
 
