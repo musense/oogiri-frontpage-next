@@ -78,7 +78,8 @@
 
 .content-main-content h1,
 .content-main-content h2,
-.content-main-content h3 {
+.content-main-content h3,
+.content-main-content h4 {
   font-weight: bold;
 }
 
