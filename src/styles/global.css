@@ -881,11 +881,14 @@ a {
   font-family: var(--font-content);
 }
 
+.content-main-content image {
+  margin: unset;
+}
+
 .content-main-content img {
   width: initial;
+  max-width: 100%;
   height: initial;
-  /* width: 100%;
-    height: 463px; */
   object-fit: cover;
   object-position: center;
 }
