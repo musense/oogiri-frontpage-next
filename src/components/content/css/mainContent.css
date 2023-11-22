@@ -68,6 +68,10 @@
   font-size: 16px;
 }
 
+.content-main-content image {
+  margin: unset;
+}
+
 .content-main-content img {
   width: 100%;
 }
