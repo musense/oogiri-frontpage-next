@@ -172,7 +172,7 @@ function YoutubePlayerBannerWrapper({
 
 function BannerWrapper({ hyperlink, children }) {
   return <div className={`${styles['index-banner-wrapper']}`}>
-    {hyperlink && <a href={hyperlink} target="_blank" rel="noopener noreferrer" />}
+    {hyperlink && <a className={styles['banner-link']} href={hyperlink} target="_blank" rel="noopener noreferrer" />}
     {children}
   </div>;
 }
